@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* --------------------------------------------------
+   THEME CONFIG
+-------------------------------------------------- */
+@theme {
+  --color-brand: #3b82f6;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  --animate-float: float 6s ease-in-out infinite;
+
+  /* Infinite horizontal scroll */
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  --animate-infinite-scroll: infinite-scroll 20s linear infinite;
+}
+
+/* --------------------------------------------------
+   LIGHT THEME VARIABLES (DEFAULT)
+-------------------------------------------------- */
+:root {
+  --background: #ffffff;
+  --foreground: #09090b;
+
+  --surface: #f8fafc;
+  --muted: #f1f5f9;
+
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+
+  --accent: #4f46e5;
+  --accent-2: #06b6d4;
+  --accent-3: #121212c6;
+}
+
+/* --------------------------------------------------
+   DARK THEME VARIABLES
+-------------------------------------------------- */
+.dark {
+  --background: #050505;
+  --foreground: #ffffff;
+
+  --surface: #0b0c10;
+  --muted: #11141b;
+
+  --card-bg: #0d1117;
+  --card-border: rgba(255, 255, 255, 0.08);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+
+  --accent: #818cf8;
+  --accent-2: #2dd4bf;
+}
+
+/* --------------------------------------------------
+   UTILITY HELPERS (TAILWIND FRIENDLY)
+-------------------------------------------------- */
+.bg-surface {
+  background-color: var(--surface);
+}
+
+.bg-card {
+  background-color: var(--card-bg);
+}
+
+.border-card {
+  border-color: var(--card-border);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.accent-bg {
+  background-color: var(--accent);
+}
+
+/* --------------------------------------------------
+   BASE STYLES
+-------------------------------------------------- */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* --------------------------------------------------
+   TEXT SELECTION
+-------------------------------------------------- */
+::selection {
+  background: var(--color-brand);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------
+   SCROLLBAR (THEME AWARE)
+-------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand);
+  border-radius: 10px;
+}
+
+/* --------------------------------------------------
+   SMOOTH TEXT RENDERING
+-------------------------------------------------- */
+html {
+  font-feature-settings: "ss01", "ss02", "cv01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+/* --------------------------------------------------
+   OPTIONAL: REMOVE BLUE TAP HIGHLIGHT (MOBILE)
+-------------------------------------------------- */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================
+   TEXT STROKE (FIXES "WORKS")
+========================= */
+.text-stroke {
+  -webkit-text-stroke: 2px var(--accent);
+  color: transparent;
+}
+
+/* =========================
+   SKELETON LOADER
+========================= */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.type-text {
+  font-family: monospace;
+  font-weight: 800;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  color: var(--accent-3);
+  transition: color 0.3s ease;
+}
+
+.dark .type-text {
+  color: cyan;
+}
