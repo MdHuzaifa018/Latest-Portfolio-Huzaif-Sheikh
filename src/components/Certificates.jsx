@@ -12,13 +12,13 @@ import certificate6Pdf from "../assets/Kodbud.pdf";
 import certificate7Pdf from "../assets/Ethical Hacking.pdf";
 
 const certs = [
-  { id: 1, title: "KYP Program", img: "https://iili.io/3oNLIcb.md.jpg", pdf: certificate1Pdf, glow: "rgba(99,102,241,.4)" },
-  { id: 2, title: "ADCA Expert", img: "https://iili.io/3oNiIse.md.jpg", pdf: certificate2Pdf, glow: "rgba(236,72,153,.4)" },
-  { id: 3, title: "Industrial Internship", img: "https://iili.io/3fm0Oo7.md.jpg", pdf: certificate3Pdf, glow: "rgba(16,185,129,.4)" },
-  { id: 4, title: "React Bootcamp", img: "https://iili.io/2bT9ScB.md.jpg", pdf: certificate4Pdf, glow: "rgba(6,182,212,.4)" },
-  { id: 5, title: "AWS Cloud", img: "https://iili.io/FVONHZP.md.jpg", pdf: certificate5Pdf, glow: "rgba(245,158,11,.4)" },
-  { id: 6, title: "Kodbud Dev", img: "https://iili.io/KoLkXu1.md.jpg", pdf: certificate6Pdf, glow: "rgba(99,102,241,.4)" },
-  { id: 7, title: "Ethical Hacking", img: "https://iili.io/FvJtRlR.md.jpg", pdf: certificate7Pdf, glow: "rgba(239,68,68,.4)" },
+  { id: 1, title: "Web Development", img: "https://iili.io/BpN1eae.png", pdf: certificate1Pdf, glow: "rgba(99,102,241,.4)" },
+  { id: 2, title: "C & C++", img: "https://iili.io/BpNanOQ.png", pdf: certificate2Pdf, glow: "rgba(236,72,153,.4)" },
+  { id: 3, title: "Industrial Internship", img: "https://iili.io/BpN1OF9.png", pdf: certificate3Pdf, glow: "rgba(16,185,129,.4)" },
+  { id: 4, title: "Sheri Bootcamp", img: "https://iili.io/BpNaC5x.png", pdf: certificate4Pdf, glow: "rgba(6,182,212,.4)" },
+  { id: 5, title: "IBM", img: "https://iili.io/BpN1jGS.pngg", pdf: certificate5Pdf, glow: "rgba(245,158,11,.4)" },
+  { id: 6, title: "Profe-ex Dev", img: "https://iili.io/BpN1w67.png", pdf: certificate6Pdf, glow: "rgba(99,102,241,.4)" },
+  { id: 7, title: "Wed Dev", img: "https://iili.io/BpNkLLF.png", pdf: certificate7Pdf, glow: "rgba(239,68,68,.4)" },
 ];
 
 const Certifications = ({ theme }) => {

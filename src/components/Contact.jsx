@@ -40,7 +40,7 @@ const Contact = ({ theme }) => {
       .then(
         () => {
           setLoading(false);
-          toast.success("Packet sent successfully to Shivam.");
+          toast.success("Packet sent successfully to Huzaif.");
           setName(""); setEmail(""); setSubject(""); setMessage("");
         },
         (error) => {
@@ -103,11 +103,11 @@ const Contact = ({ theme }) => {
                 Prefer traditional protocols? Bypass the terminal and send an encrypted packet via email.
               </p>
               <a
-                href="mailto:shivamsaurabh2862@gmail.com"
+                href="mailto:mdhuzaifsh786@gmail.com"
                 className="flex items-center gap-3 transition-colors font-mono text-xs uppercase"
                 style={{ color: colors.highlight }}
               >
-                <FaEnvelope /> shivamsaurabh2862@gmail.com
+                <FaEnvelope /> mdhuzaifsh786@gmail.com
               </a>
             </div>
 
@@ -134,7 +134,7 @@ const Contact = ({ theme }) => {
                   <FaCircle className="text-green-500/50 text-[10px]" />
                 </div>
                 <div style={{ color: colors.subtext }} className="text-[10px] font-mono uppercase tracking-widest flex items-center gap-2">
-                  <FaTerminal style={{ color: colors.highlight }} /> shivam — mail_sender.exe
+                  <FaTerminal style={{ color: colors.highlight }} /> Huzaif — mail_sender.exe
                 </div>
               </div>
 

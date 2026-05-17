@@ -33,13 +33,13 @@ const Footer = ({ theme }) => {
   };
 
   const socialLinks = [
-    { icon: <HiOutlineMail />, href: "mailto:shivamsaurabh2862@gmail.com", label: "Email" },
-    { icon: <FaGithub />, href: "https://github.com/shivamsaurabh25", label: "GitHub" },
-    { icon: <FaLinkedin />, href: "https://linkedin.com/in/shivamsaurabh25", label: "LinkedIn" },
-    { icon: <FaTwitter />, href: "https://twitter.com/shivamsaurabh25", label: "Twitter" },
-    { icon: <FaDev />, href: "https://dev.to/shivamsaurabh25", label: "Dev.to" },
-    { icon: <FaFacebook />, href: "https://facebook.com/shivam.saurabh.714", label: "Facebook" },
-    { icon: <FaInstagram />, href: "https://instagram.com/shivamsaurabh25", label: "Instagram" },
+    { icon: <HiOutlineMail />, href: "mailto:mdhuzaifsh786@gmail.com", label: "Email" },
+    { icon: <FaGithub />, href: "https://github.com/MdHuzaifa018/", label: "GitHub" },
+    { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/huzaif-sheikh-6443a6330/", label: "LinkedIn" },
+    { icon: <FaTwitter />, href: "https://x.com/huzaif_sheikh_1", label: "Twitter" },
+    { icon: <FaDev />, href: "#", label: "Dev.to" },
+    { icon: <FaFacebook />, href: "#", label: "Facebook" },
+    { icon: <FaInstagram />, href: "#", label: "Instagram" },
   ];
 
   return (
@@ -54,7 +54,7 @@ const Footer = ({ theme }) => {
           className="text-[22vw] font-[1000] leading-none italic uppercase tracking-tighter"
           style={{ color: colors.watermark }}
         >
-          SHIVAM
+          HUZAIF
         </h1>
       </div>
 
@@ -68,10 +68,10 @@ const Footer = ({ theme }) => {
                 className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-black italic shadow-2xl"
                 style={{ backgroundColor: colors.accent, boxShadow: `0 20px 40px ${isDark ? 'rgba(0,0,0,0.4)' : 'rgba(99,102,241,0.2)'}` }}
               >
-                S
+                H
               </div>
               <h2 className="text-4xl font-[1000] italic uppercase tracking-tighter">
-                Saurabh<span style={{ color: colors.accent }}>.</span>
+                Sheikh<span style={{ color: colors.accent }}>.</span>
               </h2>
             </div>
             <p 
@@ -146,7 +146,7 @@ const Footer = ({ theme }) => {
             className="flex flex-col md:flex-row items-center gap-4 md:gap-10 text-[10px] font-bold font-mono uppercase tracking-[0.3em]"
             style={{ color: colors.textSecondary }}
           >
-            <span>© {year} [SHIVAM_SAURABH]</span>
+            <span>© {year} [HUZAIF_SHEIKH]</span>
             <span 
               className="hidden md:block w-1 h-1 rounded-full" 
               style={{ backgroundColor: colors.border }}

@@ -17,7 +17,7 @@ const data = [
     title: "Project Mentor",
     subtitle: "Feedback",
     comment:
-      "Shivam’s dedication to building clean and efficient web apps is commendable. Impressive work!",
+      "Huzaif’s dedication to building clean and efficient web apps is commendable. Impressive work!",
   },
   {
     id: 3,

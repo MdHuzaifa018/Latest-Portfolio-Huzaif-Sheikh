@@ -45,10 +45,10 @@ Real-time Currency Exchange: Integrated with external REST APIs to fetch live gl
     image: "https://iili.io/BQ90hEN.png",
     title: "NGO Website",
     category: "Full Stack",
-    url: "https://dictionary-shivam.vercel.app/",
-    repo: "https://github.com/shivamsaurabh25/Dictionary",
+    url: "https://www.foundationabhay.org/",
+    repo: "",
     tags: ["Next.js", "REST API", "Firebase", "Node.js", "Tailwind CSS"],
-    description: `An advanced linguistic processing interface built with React.js that interfaces with the Free Dictionary API. This application provides a comprehensive toolkit for word analysis, including phonetics, semantic examples, and auditory feedback systems.
+    description: `An advanced linguistic processing interface built with Next.js that interfaces with the Free Dictionary API. This application provides a comprehensive toolkit for word analysis, including phonetics, semantic examples, and auditory feedback systems.
 
 Core Architecture Modules:
 Lexical Fetcher: A high-speed API integration layer that parses complex JSON responses into a structured, readable interface for word definitions.
@@ -63,12 +63,12 @@ Optimized API Handling: Implements environmental variable masking and error-boun
   },
   {
     id: 4,
-    image: "https://iili.io/2yG1jse.md.png",
+    image: "https://iili.io/BQ90Mhv.png",
     title: "Atmospheric Intelligence",
     category: "Frontend",
-    url: "https://weatherbyshivam.vercel.app/",
-    repo: "https://github.com/shivamsaurabh25/Weather",
-    tags: ["React.js", "OpenWeather API", "Axios", "Glassmorphism", "Vite"],
+    url: "https://age-calculator-smoky-nu.vercel.app/",
+    repo: "https://github.com/MdHuzaifa018/Age-Calculator.git",
+    tags: ["HTML", "CSS", "JS"],
     description: `A real-time meteorological monitoring station developed with React.js. This application combines advanced asynchronous data fetching with a high-fidelity Glassmorphism UI, providing a sophisticated visual experience for global weather tracking.
 
 Core Architecture Modules:
@@ -84,11 +84,11 @@ Optimized Rendering: Utilizes React's virtual DOM to perform granular updates of
   },
   {
     id: 5,
-    image: "https://iili.io/3Jq5I4a.md.png",
-    title: "Identity Synthesis Lab",
+    image: "https://iili.io/BQ901pa.png",
+    title: "Affiliate web",
     category: "Frontend",
-    url: "https://name-generator-by-shivam.vercel.app/",
-    repo: "https://github.com/shivamsaurabh25/Name-Generator",
+    url: "https://adnan-affiliate-web.vercel.app/",
+    repo: "https://github.com/MdHuzaifa018/Affiliate-Marketing-web.git",
     tags: ["React.js", "Vite", "ES6+", "Glassmorphism", "String Logic"],
     description: `A specialized React-based identity generator designed for competitive gaming ecosystems. This application utilizes complex string interpolation and character mapping to transform standard user input into unique, stylized visual signatures.
 
@@ -105,11 +105,11 @@ Vite Optimization: Leveraging Vite's fast HMR (Hot Module Replacement) and optim
   },
   {
     id: 6,
-    image: "https://iili.io/3JzzJp4.md.png",
+    image: "https://iili.io/BQ900kg.webp",
     title: "Glassmorphism HUD Extension",
     category: "Utility",
-    url: "",
-    repo: "https://github.com/shivamsaurabh25/Glassmorphism_Extension_For_Chrome",
+    url: "https://naj-tech-website.vercel.app/",
+    repo: "",
     tags: ["Chrome API", "JavaScript", "Manifest V3", "Glassmorphism", "CSS3"],
     description: `A sophisticated Chrome browser override that transforms the standard "New Tab" experience into a high-fidelity Glassmorphism dashboard. This utility integrates multimedia processing, interactive gaming logic, and automated visual asset cycling within a single, lightweight browser extension.
 
@@ -126,12 +126,12 @@ Advanced Glassmorphism: Leverages CSS backdrop-filter and sophisticated opacity 
   },
   {
     id: 7,
-    image: "https://iili.io/3B2K3xV.md.png",
-    title: "Task Management Nexus",
+    image: "https://iili.io/BQ907EB.webp",
+    title: "Smart Study Planner",
     category: "Frontend",
-    url: "https://shivam-to-do-list.vercel.app/",
-    repo: "https://github.com/shivamsaurabh25/to-do-app",
-    tags: ["React (Vite)", "Firebase Auth", "Local Storage", "Glassmorphism"],
+    url: "https://smart-study-planner-pink.vercel.app/",
+    repo: "",
+    tags: ["React (Vite)", "Local Storage", "Glassmorphism"],
     description: `A high-security, persistent task management suite engineered with React Vite. This application integrates industrial-grade authentication protocols with a dual-layer data persistence strategy, ensuring user productivity is protected and consistent across browser sessions.
 
 Core Architecture Modules:
@@ -147,10 +147,10 @@ Responsive Component Model: Built with a modular React architecture, ensuring th
   },
   {
     id: 8,
-    image: "https://iili.io/3BRNBX1.md.png",
-    title: "Binary Transformation Engine",
+    image: "https://iili.io/BQ90c21.webp",
+    title: "Educational Institute Web",
     category: "Frontend",
-    url: "https://pdf-jpg-convertor.vercel.app/",
+    url: "https://sri-subramanya-educational-institut.vercel.app/",
     repo: "https://github.com/shivamsaurabh25/pdf---jpg-convertor",
     tags: ["React (Vite)", "PDF.js", "jsPDF", "Framer Motion", "Data Streams"],
     description: `A high-performance document utility engineered with React Vite for bi-directional conversion between PDF and JPG formats. This application specializes in purely client-side binary data processing, ensuring user privacy and zero-latency file handling without server dependency.
@@ -168,11 +168,11 @@ Responsive Viewport Scaling: Engineered with flexible CSS layouts to ensure docu
   },
   {
     id: 9,
-    image: "https://iili.io/3oOw6lt.md.png",
+    image: "",
     title: "Visual Discovery Nexus",
     category: "Frontend",
-    url: "https://photo-gallery-by-shivam.vercel.app/",
-    repo: "https://github.com/shivamsaurabh25/photo-gallery/",
+    url: "",
+    repo: "",
     tags: [
       "React (Vite)",
       "Pexels API",
@@ -195,11 +195,11 @@ Modern Design Language: A custom CSS-driven UI utilizing linear gradients and ba
   },
   {
     id: 10,
-    image: "https://iili.io/3Yoe08J.md.png",
+    image: "",
     title: "Cognitive Match Matrix",
     category: "Games",
-    url: "https://memory-match-shivam.vercel.app/",
-    repo: "https://github.com/shivamsaurabh25/memory-match/",
+    url: "",
+    repo: "",
     tags: [
       "React.js",
       "Tailwind CSS",
@@ -222,11 +222,11 @@ Optimized Asset Handling: Features a modular theme system allowing for instantan
   },
   {
     id: 11,
-    image: "https://iili.io/3MhUafI.md.png",
+    image: "",
     title: "Symmetrical Grid Logic",
     category: "Games",
-    url: "https://tic-tac-toe-endless.vercel.app/",
-    repo: "https://github.com/shivamsaurabh25/tic-tac-toe/",
+    url: "",
+    repo: "",
     tags: [
       "React.js",
       "Tailwind CSS",
@@ -249,11 +249,11 @@ High-Contrast UI: Built with Tailwind CSS, the interface features a dual-mode th
   },
   {
     id: 12,
-    image: "https://iili.io/3yByguR.md.png",
+    image: "",
     title: "AI Vibe Orchestrator",
     category: "AI + Full Stack",
-    url: "https://ai-song-suggester.vercel.app/",
-    repo: "https://github.com/shivamsaurabh25/ai-song-suggester/",
+    url: "",
+    repo: "",
     tags: ["React.js", "Gemini 1.5", "Spotify API", "Node.js", "Tailwind"],
     description: `A sophisticated multimodal AI application that bridges visual recognition and auditory curation. This project leverages the Google Gemini 1.5 Flash model to perform deep semantic analysis of images, translating visual "vibes" into targeted musical queries.
 
@@ -270,11 +270,11 @@ Spotify Integration: Leverages the Spotify Web API Reference to fetch high-resol
   },
   {
     id: 13,
-    image: "https://iili.io/f614bYG.md.png",
+    image: "",
     title: "Service Management Nexus",
     category: "Java + Cloud",
     url: "",
-    repo: "https://github.com/shivamsaurabh25/ServiceManagementApp",
+    repo: "",
     tags: ["JavaFX", "MongoDB Atlas", "Maven", "SHA-256", "CSS3"],
     description: `A sophisticated, cloud-connected enterprise resource planning (ERP) system developed for your 3rd-year major project. This application utilizes a modern JavaFX frontend and a MongoDB Atlas backend to orchestrate real-time service requests between users and providers within a secure, role-based ecosystem.
 
