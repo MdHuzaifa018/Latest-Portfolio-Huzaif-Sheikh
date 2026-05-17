@@ -1,173 +1,133 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaDev,
-  FaFacebook,
-  FaInstagram,
-} from 'react-icons/fa';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaTwitter, FaDev, FaFacebook, FaInstagram } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import { getLenis } from './SmoothScroll';
 
-const Footer = ({ theme }) => {
+
+const socialLinks = [
+  { icon: <HiOutlineMail />, href: "mailto:mdhuzaifsh786@gmail.com", label: "Email", color: "#ea4335" },
+  { icon: <FaGithub />, href: "https://github.com/MdHuzaifa018/", label: "GitHub", color: "#888888" },
+  { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/huzaif-sheikh-6443a6330/", label: "LinkedIn", color: "#0077b5" },
+  { icon: <FaTwitter />, href: "https://x.com/huzaif_sheikh_1", label: "Twitter", color: "#1da1f2" },
+  { icon: <FaDev />, href: "#", label: "Dev.to", color: "#888888" },
+  { icon: <FaFacebook />, href: "#", label: "Facebook", color: "#1877f2" },
+  { icon: <FaInstagram />, href: "#", label: "Instagram", color: "#e4405f" },
+];
+
+const navItems = [
+  { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Works' },
+  { id: 'blog', label: 'Insights' },
+  { id: 'skills', label: 'Interface' },
+];
+
+const Footer = () => {
   const year = new Date().getFullYear();
-  const isDark = theme === 'dark';
-
-  // 1. GLOBAL THEME MAPPING
-  const colors = {
-    bg: isDark ? '#050505' : '#ffffff',
-    textPrimary: isDark ? '#f8fafc' : '#0f172a',
-    textSecondary: isDark ? '#94a3b8' : '#64748b',
-    accent: '#6366f1', // Electric Indigo
-    border: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)',
-    watermark: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(15,23,42,0.05)',
-    statusBg: isDark ? 'rgba(255,255,255,0.03)' : '#f1f5f9',
-  };
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef, { once: true, amount: 0.1 });
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const lenis = getLenis();
+      if (lenis) {
+        lenis.scrollTo(element, { 
+          offset: -80, 
+          duration: 1.2, 
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) 
+        });
+      } else {
+        const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: offsetTop, behavior: "smooth" });
+      }
     }
   };
 
-  const socialLinks = [
-    { icon: <HiOutlineMail />, href: "mailto:mdhuzaifsh786@gmail.com", label: "Email" },
-    { icon: <FaGithub />, href: "https://github.com/MdHuzaifa018/", label: "GitHub" },
-    { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/huzaif-sheikh-6443a6330/", label: "LinkedIn" },
-    { icon: <FaTwitter />, href: "https://x.com/huzaif_sheikh_1", label: "Twitter" },
-    { icon: <FaDev />, href: "#", label: "Dev.to" },
-    { icon: <FaFacebook />, href: "#", label: "Facebook" },
-    { icon: <FaInstagram />, href: "#", label: "Instagram" },
-  ];
-
   return (
-    <footer 
-      className="relative pt-40 pb-10 overflow-hidden transition-colors duration-500"
-      style={{ backgroundColor: colors.bg, color: colors.textPrimary }}
-    >
-      
-      {/* 1. LARGE BACKGROUND TEXT (Dynamic Watermark) */}
+    <footer ref={footerRef} className="relative pt-40 pb-10 overflow-hidden" style={{ backgroundColor: "var(--background)", color: "var(--text-primary)" }}>
+      {/* Animated background glow */}
+      <motion.div
+        animate={{ scale: [1, 1.1, 1], opacity: [0.03, 0.06, 0.03] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] rounded-full blur-[150px] pointer-events-none"
+        style={{ backgroundColor: "#6366f1" }}
+      />
+
+      {/* Top gradient divider */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none" style={{ background: "linear-gradient(90deg, transparent, rgba(99,102,241,0.4), rgba(45,212,191,0.3), transparent)" }} />
+
+      {/* Large Background Watermark */}
       <div className="absolute bottom-[-2vw] left-1/2 -translate-x-1/2 pointer-events-none select-none w-full text-center">
-        <h1 
-          className="text-[22vw] font-[1000] leading-none italic uppercase tracking-tighter"
-          style={{ color: colors.watermark }}
-        >
-          HUZAIF
-        </h1>
+        <h1 className="text-[22vw] font-[1000] leading-none italic uppercase tracking-tighter" style={{ color: "var(--muted)", opacity: 0.4 }}>HUZAIF</h1>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
-          
+
           {/* Column 1: Identity */}
-          <div className="lg:col-span-2">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="lg:col-span-2">
             <div className="flex items-center gap-4 mb-8">
-              <div 
+              <motion.div
                 className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-black italic shadow-2xl"
-                style={{ backgroundColor: colors.accent, boxShadow: `0 20px 40px ${isDark ? 'rgba(0,0,0,0.4)' : 'rgba(99,102,241,0.2)'}` }}
+                style={{ backgroundColor: "#6366f1" }}
+                animate={{ boxShadow: ["0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(99,102,241,0.3)", "0 20px 40px rgba(0,0,0,0.4), 0 0 35px rgba(99,102,241,0.5)", "0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(99,102,241,0.3)"] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.1, rotate: 10 }}
               >
                 H
-              </div>
-              <h2 className="text-4xl font-[1000] italic uppercase tracking-tighter">
-                Sheikh<span style={{ color: colors.accent }}>.</span>
-              </h2>
+              </motion.div>
+              <h2 className="text-4xl font-[1000] italic uppercase tracking-tighter">Sheikh<span style={{ color: "#6366f1" }}>.</span></h2>
             </div>
-            <p 
-              className="text-sm max-w-sm leading-relaxed font-mono uppercase tracking-[0.1em] font-bold"
-              style={{ color: colors.textSecondary }}
-            >
-              Engineering high-performance digital architectures. 
-              Bihar_IN // Global_Ops.
+            <p className="text-sm max-w-sm leading-relaxed font-mono uppercase tracking-[0.1em] font-bold" style={{ color: "var(--text-secondary)" }}>
+              Engineering high-performance digital architectures. Bihar_IN // Global_Ops.
             </p>
-          </div>
+          </motion.div>
 
           {/* Column 2: Navigation Map */}
-          <div>
-            <h4 
-              className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8"
-              style={{ color: colors.accent }}
-            >
-              / Navigation
-            </h4>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.1 }}>
+            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8" style={{ color: "#6366f1" }}>/ Navigation</h4>
             <ul className="space-y-4 font-mono text-[11px] uppercase tracking-widest">
-              {['about', 'projects', 'blog', 'contact'].map((item) => (
-                <li key={item}>
-                  <button 
-                    onClick={() => scrollToSection(item === 'projects' ? 'projects' : item)} 
-                    className="flex items-center gap-2 group font-bold transition-all duration-300 hover:translate-x-2"
-                    style={{ color: colors.textSecondary }}
-                  >
-                    <span 
-                      className="w-0 group-hover:w-4 h-[2px] transition-all" 
-                      style={{ backgroundColor: colors.accent }}
-                    />
-                    {item === 'blog' ? 'Insights' : item === 'contact' ? 'Interface' : item === 'projects' ? 'Works' : 'About'}
-                  </button>
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <motion.button onClick={() => scrollToSection(item.id)} className="flex items-center gap-2 group font-bold" style={{ color: "var(--text-secondary)" }} whileHover={{ x: 8, color: "#6366f1" }} transition={{ type: "spring", stiffness: 400 }}>
+                    <motion.span className="h-[2px]" style={{ backgroundColor: "#6366f1" }} initial={{ width: 0 }} whileHover={{ width: 16 }} transition={{ duration: 0.2 }} />
+                    {item.label}
+                  </motion.button>
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Column 3: Social Bridge */}
-          <div>
-            <h4 
-              className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8"
-              style={{ color: colors.accent }}
-            >
-              / Social_Bridge
-            </h4>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }}>
+            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8" style={{ color: "#6366f1" }}>/ Social_Bridge</h4>
             <div className="grid grid-cols-4 gap-y-6 gap-x-2">
               {socialLinks.map((social, i) => (
-                <motion.a
-                  key={i}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -5, scale: 1.2, color: colors.accent }}
-                  className="text-2xl transition-all"
-                  style={{ color: colors.textSecondary }}
-                  aria-label={social.label}
-                >
+                <motion.a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="text-2xl relative group" style={{ color: "var(--text-secondary)" }} whileHover={{ y: -6, scale: 1.25, color: social.color, filter: `drop-shadow(0 0 8px ${social.color}60)` }} whileTap={{ scale: 0.9 }} aria-label={social.label} title={social.label}>
                   {social.icon}
                 </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* 2. BOTTOM BAR */}
-        <div 
-          className="pt-12 border-t flex flex-col md:flex-row justify-between items-center gap-8"
-          style={{ borderColor: colors.border }}
-        >
-          <div 
-            className="flex flex-col md:flex-row items-center gap-4 md:gap-10 text-[10px] font-bold font-mono uppercase tracking-[0.3em]"
-            style={{ color: colors.textSecondary }}
-          >
+        {/* Bottom Bar */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.3 }} className="pt-12 border-t flex flex-col md:flex-row justify-between items-center gap-8" style={{ borderColor: "var(--card-border)" }}>
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10 text-[10px] font-bold font-mono uppercase tracking-[0.3em]" style={{ color: "var(--text-secondary)" }}>
             <span>© {year} [HUZAIF_SHEIKH]</span>
-            <span 
-              className="hidden md:block w-1 h-1 rounded-full" 
-              style={{ backgroundColor: colors.border }}
-            />
+            <span className="hidden md:block w-1 h-1 rounded-full" style={{ backgroundColor: "var(--card-border)" }} />
             <span>Deployment: v4.0.2_Stable</span>
           </div>
 
-          {/* Enhanced Status Well */}
-          <div 
-            className="px-6 py-3 rounded-full border backdrop-blur-xl flex items-center gap-3"
-            style={{ backgroundColor: colors.statusBg, borderColor: colors.border }}
-          >
-             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]" />
-             <span 
-              className="text-[10px] font-bold font-mono uppercase tracking-[0.2em]"
-              style={{ color: colors.textSecondary }}
-             >
-               Live_Node: {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })} IST
-             </span>
-          </div>
-        </div>
+          {/* Status Well */}
+          <motion.div className="px-6 py-3 rounded-full border backdrop-blur-xl flex items-center gap-3" style={{ backgroundColor: "var(--muted)", borderColor: "var(--card-border)" }} whileHover={{ borderColor: 'rgba(99,102,241,0.3)', boxShadow: '0 0 20px rgba(99,102,241,0.1)' }}>
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]" />
+            <span className="text-[10px] font-bold font-mono uppercase tracking-[0.2em]" style={{ color: "var(--text-secondary)" }}>
+              Live_Node: {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })} IST
+            </span>
+          </motion.div>
+        </motion.div>
       </div>
     </footer>
   );

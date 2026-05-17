@@ -10,18 +10,18 @@ const PageLoader = ({ onComplete }) => {
       setCounter((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(onComplete, 25);
+          setTimeout(onComplete, 10);
           return 100;
         }
-        // Increment by 2 for a snappier feel
-        return prev + 3; 
+        // Much faster increment for ultra-snappy initial load
+        return prev + 8; 
       });
 
       if (Math.random() > 0.95) {
         setGlitch(true);
-        setTimeout(() => setGlitch(false), 30);
+        setTimeout(() => setGlitch(false), 20);
       }
-    }, 25); 
+    }, 15); 
 
     return () => clearInterval(timer);
   }, [onComplete]);
@@ -30,9 +30,9 @@ const PageLoader = ({ onComplete }) => {
     <motion.div
       exit={{ 
         opacity: 0, 
-        scale: 1.1,
-        filter: "blur(20px)",
-        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
+        scale: 1.05,
+        filter: "blur(10px)",
+        transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } 
       }}
       className="fixed inset-0 z-[10000] flex items-center justify-center overflow-hidden font-mono bg-[#050505] text-white"
       style={{ perspective: '1000px' }}

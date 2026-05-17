@@ -7,7 +7,7 @@ import {
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Blog2 = ({ theme }) => {
+const Blog2 = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
@@ -16,18 +16,18 @@ const Blog2 = ({ theme }) => {
   }, []);
 
   const colors = {
-    bg: theme === 'dark' ? '#050505' : '#ffffff',
-    text: theme === 'dark' ? '#f8fafc' : '#0f172a',
-    subtext: theme === 'dark' ? '#94a3b8' : '#475569',
+    bg: 'var(--background)',
+    text: 'var(--text-primary)',
+    subtext: 'var(--text-secondary)',
     accent: '#06b6d4',
-    cardBg: theme === 'dark' ? '#11141b' : '#f8fafc',
-    border: theme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
+    cardBg: 'var(--card-bg)',
+    border: 'var(--card-border)',
   };
 
   return (
     <div
       style={{ backgroundColor: colors.bg, color: colors.text }}
-      className="min-h-screen font-sans selection:bg-cyan-500 selection:text-white transition-colors duration-500"
+      className="min-h-screen font-sans selection:bg-cyan-500 selection:text-white "
     >
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 origin-left z-[100]"
@@ -45,12 +45,12 @@ const Blog2 = ({ theme }) => {
       </nav>
 
       <header
-        className="relative h-screen w-full flex items-center justify-center overflow-hidden border-b transition-colors"
+        className="relative h-screen w-full flex items-center justify-center overflow-hidden border-b "
         style={{ borderColor: colors.border }}
       >
         <motion.img
           initial={{ scale: 1.3, opacity: 0 }}
-          animate={{ scale: 1, opacity: theme === 'dark' ? 0.2 : 0.1 }}
+          animate={{ scale: 1, opacity: 'var(--blog-hero-opacity, 0.15)' }}
           transition={{ duration: 2 }}
           src="https://iili.io/f6Y3Kjs.md.webp"
           className="absolute inset-0 w-full h-full object-cover"
@@ -67,7 +67,7 @@ const Blog2 = ({ theme }) => {
             className="mb-8 inline-block"
           >
             <span
-              className="px-6 py-2 rounded-full text-[10px] font-mono uppercase tracking-[0.5em] border transition-colors"
+              className="px-6 py-2 rounded-full text-[10px] font-mono uppercase tracking-[0.5em] border "
               style={{ borderColor: colors.accent, color: colors.accent }}
             >
               Intelligence // Reshaping_Reality
@@ -81,7 +81,7 @@ const Blog2 = ({ theme }) => {
           >
             The Future <br />
             <span
-              className="text-transparent stroke-current"
+              className="text-transparent stroke-current font-[system-ui]"
               style={{ WebkitTextStroke: `1.5px ${colors.text}`, color: 'transparent' }}
             >
               of AI in Dev
@@ -121,7 +121,7 @@ const Blog2 = ({ theme }) => {
       </section>
 
       <section
-        className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 border-y transition-colors"
+        className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 border-y "
         style={{ backgroundColor: colors.cardBg, borderColor: colors.border }}
       >
         <div className="max-w-6xl mx-auto">
@@ -183,7 +183,7 @@ def transform_data(input_stream):
       </section>
 
       <footer
-        className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 text-center border-t transition-colors"
+        className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 text-center border-t "
         style={{ backgroundColor: colors.bg, borderColor: colors.border }}
       >
         <div className="max-w-4xl mx-auto">

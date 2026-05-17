@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FaEye, FaDownload, FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { Award } from "lucide-react";
 
 // PDFs
 import certificate1Pdf from "../assets/KYP.pdf";
@@ -21,15 +22,15 @@ const certs = [
   { id: 7, title: "Wed Dev", img: "https://iili.io/BpNkLLF.png", pdf: certificate7Pdf, glow: "rgba(239,68,68,.4)" },
 ];
 
-const Certifications = ({ theme }) => {
-  const isDark = theme === "dark";
-
+const Certifications = () => {
   const [rotation, setRotation] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [config, setConfig] = useState({ radius: 520, perspective: 2200, cardWidth: 480 });
 
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
   const touch = useRef({ x: 0, time: 0 });
+  const headerInView = useInView(headerRef, { once: true, amount: 0.4 });
 
   /* ---------------- RESPONSIVE ---------------- */
   useEffect(() => {
@@ -50,20 +51,6 @@ const Certifications = ({ theme }) => {
     setRotation((r) => r + dir * steps * (360 / certs.length));
   };
 
-  /* ---------------- AUTO ROTATE ON SCROLL ---------------- */
-  useEffect(() => {
-    const onWheel = (e) => {
-      const rect = sectionRef.current.getBoundingClientRect();
-      if (rect.top > window.innerHeight || rect.bottom < 0) return;
-      // Threshold to prevent over-sensitive spinning
-      if (Math.abs(e.deltaY) > 10) {
-        rotate(e.deltaY > 0 ? -1 : 1);
-      }
-    };
-    window.addEventListener("wheel", onWheel, { passive: true });
-    return () => window.removeEventListener("wheel", onWheel);
-  }, []);
-
   const onTouchStart = (e) => { touch.current = { x: e.touches[0].clientX, time: Date.now() }; };
   const onTouchEnd = (e) => {
     const dx = touch.current.x - e.changedTouches[0].clientX;
@@ -75,31 +62,34 @@ const Certifications = ({ theme }) => {
     }
   };
 
-  const colors = {
-    bg: isDark ? "#050505" : "#f8fafc",
-    card: isDark ? "rgba(20,20,20,.85)" : "#fff",
-    border: isDark ? "rgba(255,255,255,.1)" : "rgba(0,0,0,.08)",
-    text: isDark ? "#fff" : "#0f172a",
-    accent: "#6366f1"
-  };
-
   return (
     <section
       ref={sectionRef}
       id="certifications"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden transition-colors duration-500"
-      style={{ background: colors.bg, color: colors.text }}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+      style={{ backgroundColor: "var(--background)", color: "var(--text-primary)" }}
     >
       {/* HEADER UNIT */}
-      <div className="absolute top-10 left-6 md:top-16 md:left-16 z-[100]">
-        <span style={{ color: colors.accent }} className="font-mono text-[10px] md:text-[12px] uppercase tracking-[0.5em] font-black block mb-2">
-          / Verification_Nodes
-        </span>
-        <h2 className="text-4xl md:text-7xl font-[1000] italic uppercase tracking-tighter leading-none">
-          Certs<span style={{ color: colors.accent }}>.</span>
-        </h2>
+      <div ref={headerRef} className="absolute top-10 left-6 md:top-16 md:left-16 z-[100]">
+        <motion.span
+          initial={{ opacity: 0, x: -30 }}
+          animate={headerInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          style={{ color: "#6366f1" }}
+          className="font-mono text-[10px] md:text-[12px] uppercase tracking-[0.5em] font-black flex items-center gap-2 mb-2"
+        >
+          <Award size={12} /> / Verification_Nodes
+        </motion.span>
+        <motion.h2
+          initial={{ opacity: 0, y: 40, skewY: 3 }}
+          animate={headerInView ? { opacity: 1, y: 0, skewY: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="text-4xl md:text-7xl font-[1000] italic uppercase tracking-tighter leading-none"
+        >
+          Certs<span style={{ color: "#6366f1" }}>.</span>
+        </motion.h2>
       </div>
 
       {/* GLOW */}
@@ -131,16 +121,17 @@ const Certifications = ({ theme }) => {
                 key={c.id}
                 style={{
                   width: config.cardWidth,
-                  transform: `rotateY(${angle}deg) translateZ(${config.radius}px)`,
-                  opacity: front ? 1 : 0.1,
-                  pointerEvents: front ? "auto" : "none"
+                  transform: `rotateY(${angle}deg) translateZ(${config.radius}px) scale(${front ? 1 : 0.75}) rotateX(${front ? 0 : 6}deg)`,
+                  opacity: front ? 1 : 0.15,
+                  pointerEvents: front ? "auto" : "none",
+                  transition: "transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.8s ease",
+                  willChange: "transform, opacity"
                 }}
-                className="absolute transition-opacity duration-700"
+                className="absolute"
               >
-                <motion.div
-                  animate={{ scale: front ? 1 : 0.7, rotateX: front ? 0 : 5 }}
-                  className="rounded-[2rem] md:rounded-[3rem] p-4 md:p-8 border-2 backdrop-blur-3xl shadow-2xl"
-                  style={{ background: colors.card, borderColor: colors.border }}
+                <div
+                  className="rounded-[2rem] md:rounded-[3rem] p-4 md:p-8 border-2 shadow-2xl"
+                  style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
                 >
                   {/* IMAGE CONTAINER - Sized and constrained */}
                   <div className="w-full aspect-[1.4/1] bg-zinc-950/40 rounded-xl md:rounded-3xl overflow-hidden border border-white/5 mb-6 flex items-center justify-center">
@@ -173,7 +164,7 @@ const Certifications = ({ theme }) => {
                       </motion.a>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             );
           })}

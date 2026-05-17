@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { motion, LayoutGroup, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, LayoutGroup, AnimatePresence, useInView } from "framer-motion";
+import { GraduationCap, BookOpen, Trophy, ChevronDown } from "lucide-react";
 
 const educationData = [
   {
@@ -11,6 +12,7 @@ const educationData = [
     details:
       "Specializing in Software Architecture, Full-stack Web Development, and Advanced Database Systems. Actively involved in building community-driven open-source projects.",
     accent: "#6366f1",
+    icon: GraduationCap,
   },
   {
     id: "inter",
@@ -21,22 +23,42 @@ const educationData = [
     details:
       "Science Stream. Mastery in Mathematics and Physics which formed the logical foundation for my programming career.",
     accent: "#a855f7",
+    icon: BookOpen,
   },
-  // {
-  //   id: "matric",
-  //   degree: "Secondary (10th)",
-  //   college: "R.P.S School, Biharsharif",
-  //   year: "2020 - 2021",
-  //   status: "80%",
-  //   details:
-  //     "Foundational academic training with a distinction in Information Technology and Mathematics.",
-  //   accent: "#3b82f6",
-  // },
 ];
+
+// Reusable animated section heading
+const SectionHeading = ({ label, title, theme }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, amount: 0.3 });
+  return (
+    <div ref={ref} className="mb-16">
+      <motion.h2
+        initial={{ opacity: 0, x: -30 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        style={{ fontSize: '0.75rem', letterSpacing: '0.5em', fontFamily: 'monospace', color: '#6366f1', marginBottom: '1rem', fontWeight: 700 }}
+      >
+        {label}
+      </motion.h2>
+      <motion.h3
+        initial={{ opacity: 0, y: 50, skewY: 3 }}
+        animate={inView ? { opacity: 1, y: 0, skewY: 0 } : {}}
+        transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 900, fontStyle: 'italic', letterSpacing: '-0.03em', lineHeight: 1 }}
+      >
+        {title}
+      </motion.h3>
+    </div>
+  );
+};
 
 const Education = ({ theme }) => {
   const [expandedId, setExpandedId] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: true, amount: 0.1 });
+  const isDark = theme === "dark";
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -45,185 +67,89 @@ const Education = ({ theme }) => {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  const colors = {
-    bg: theme === "dark" ? "#0b0d12" : "#f8fafc",
-    card: theme === "dark" ? "#11131a" : "#ffffff",
-    muted: theme === "dark" ? "#161922" : "#f1f5f9",
-    text: theme === "dark" ? "#e5e7eb" : "#111827",
-    subtext: theme === "dark" ? "#9ca3af" : "#6b7280",
-    border: theme === "dark" ? "#1f2937" : "#e5e7eb",
-    shadowSoft:
-      theme === "dark"
-        ? "0 20px 40px rgba(0,0,0,0.7)"
-        : "10px 10px 20px #e2e8f0, -10px -10px 20px #ffffff",
-    shadowBig:
-      theme === "dark"
-        ? "0 35px 80px rgba(0,0,0,0.9)"
-        : "0 25px 50px -12px rgba(0,0,0,0.08)",
-  };
-
   return (
     <section
       id="education"
-      style={{
-        padding: isMobile ? "5rem 1rem" : "8rem 1.5rem",
-        backgroundColor: colors.bg,
-        color: colors.text,
-        transition: "all 0.5s ease",
-      }}
+      ref={sectionRef}
+      style={{ padding: isMobile ? "5rem 1rem" : "8rem 1.5rem", backgroundColor: "var(--background)", color: "var(--text-primary)", position: 'relative', overflow: 'hidden' }}
     >
-      <div style={{ maxWidth: "72rem", margin: "0 auto" }}>
-        {/* HEADER */}
-        <div
-          style={{
-            marginBottom: "4rem",
-            display: "flex",
-            flexDirection: isMobile ? "column" : "row",
-            justifyContent: "space-between",
-            alignItems: isMobile ? "flex-start" : "flex-end",
-            gap: "2rem",
-          }}
-        >
-          <div>
-            <h2
-              style={{
-                fontSize: "0.75rem",
-                letterSpacing: "0.5em",
-                fontFamily: "monospace",
-                color: "#6366f1",
-                marginBottom: "1rem",
-                fontWeight: 700,
-              }}
-            >
-              / ACADEMIC_TIMELINE
-            </h2>
+      {/* Section glow */}
+      <div
+        className="absolute top-0 right-0 w-[40vw] h-[40vw] max-w-96 max-h-96 rounded-full blur-[120px] pointer-events-none opacity-[0.05] dark:opacity-[0.08]"
+        style={{ background: 'radial-gradient(circle, #a855f7 0%, transparent 70%)' }}
+      />
 
-            <h3
-              style={{
-                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-                fontWeight: 900,
-                fontStyle: "italic",
-                letterSpacing: "-0.03em",
-              }}
-            >
-              Education
-            </h3>
-          </div>
-
-          <div
-            style={{
-              padding: "0.6rem 1.2rem",
-              borderRadius: "0.75rem",
-              fontSize: "0.65rem",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
-              fontFamily: "monospace",
-              backgroundColor: colors.muted,
-              color: colors.subtext,
-            }}
-          >
-            Status: Active_Student
-          </div>
-        </div>
+      <div style={{ maxWidth: "72rem", margin: "0 auto", position: 'relative', zIndex: 1 }}>
+        <SectionHeading label="/ ACADEMIC_TIMELINE" title="Education" theme={theme} />
 
         <LayoutGroup>
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-            {educationData.map((edu) => {
+            {educationData.map((edu, idx) => {
               const expanded = expandedId === edu.id;
+              const IconComp = edu.icon;
 
               return (
                 <motion.div
                   layout
                   key={edu.id}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.1 + idx * 0.15, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   onClick={() => setExpandedId(expanded ? null : edu.id)}
+                  whileHover={!expanded ? { x: 6 } : {}}
                   style={{
                     cursor: "pointer",
                     borderRadius: "2.5rem",
-                    padding: expanded
-                      ? isMobile
-                        ? "2rem"
-                        : "3.5rem"
-                      : "2rem",
-                    backgroundColor: expanded ? colors.card : colors.muted,
-                    boxShadow: expanded ? colors.shadowBig : colors.shadowSoft,
-                    border: `1px solid ${expanded ? colors.border : "transparent"}`,
+                    padding: expanded ? (isMobile ? "2rem" : "3.5rem") : "2rem",
+                    backgroundColor: expanded ? "var(--card-bg)" : "var(--muted)",
+                    boxShadow: expanded ? (isDark ? "0 35px 80px rgba(0,0,0,0.9)" : "0 25px 50px -12px rgba(0,0,0,0.08)") : "none",
+                    border: `1px solid ${expanded ? edu.accent + '40' : "transparent"}`,
                     position: "relative",
                   }}
                 >
+                  {/* Accent bar */}
                   {!expanded && !isMobile && (
-                    <div
+                    <motion.div
                       style={{
-                        position: "absolute",
-                        left: 0,
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        width: "6px",
-                        height: "48px",
-                        borderRadius: "0 999px 999px 0",
-                        backgroundColor: edu.accent,
+                        position: "absolute", left: 0, top: "50%",
+                        transform: "translateY(-50%)", width: "6px", height: "48px",
+                        borderRadius: "0 999px 999px 0", backgroundColor: edu.accent,
                       }}
+                      initial={{ height: 0 }}
+                      animate={{ height: 48 }}
+                      transition={{ duration: 0.4 }}
                     />
                   )}
 
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: isMobile ? "column" : "row",
-                      justifyContent: "space-between",
-                      gap: "2rem",
-                    }}
-                  >
-                    <div>
-                      <span
-                        style={{
-                          fontSize: "10px",
-                          fontFamily: "monospace",
-                          padding: "0.35rem 0.75rem",
-                          borderRadius: "0.5rem",
-                          backgroundColor: colors.card,
-                          border: `1px solid ${colors.border}`,
-                          color: colors.subtext,
-                          letterSpacing: "0.15em",
-                        }}
+                  <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", gap: "2rem" }}>
+                    <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+                      {/* Icon */}
+                      <div
+                        className="hidden md:flex w-12 h-12 rounded-2xl items-center justify-center flex-shrink-0"
+                        style={{ backgroundColor: edu.accent + '20', border: `1px solid ${edu.accent}40` }}
                       >
-                        {edu.year}
-                      </span>
+                        <IconComp size={22} style={{ color: edu.accent }} />
+                      </div>
 
-                      <motion.h4
-                        layout
-                        style={{
-                          fontWeight: 900,
-                          fontStyle: "italic",
-                          textTransform: "uppercase",
-                          fontSize: expanded
-                            ? "clamp(1.8rem, 4vw, 2.8rem)"
-                            : "1.4rem",
-                          marginTop: "1rem",
-                        }}
-                      >
-                        {edu.degree}
-                      </motion.h4>
-
-                      <motion.p layout style={{ color: edu.accent }}>
-                        {edu.college}
-                      </motion.p>
+                      <div>
+                        <span style={{ fontSize: "10px", fontFamily: "monospace", padding: "0.35rem 0.75rem", borderRadius: "0.5rem", backgroundColor: "var(--card-bg)", border: "1px solid var(--card-border)", color: "var(--text-secondary)", letterSpacing: "0.15em" }}>
+                          {edu.year}
+                        </span>
+                        <motion.h4 layout style={{ fontWeight: 900, fontStyle: "italic", textTransform: "uppercase", fontSize: expanded ? "clamp(1.8rem, 4vw, 2.8rem)" : "1.4rem", marginTop: "1rem" }}>
+                          {edu.degree}
+                        </motion.h4>
+                        <motion.p layout style={{ color: edu.accent }}>{edu.college}</motion.p>
+                      </div>
                     </div>
 
-                    <span
-                      style={{
-                        padding: "0.6rem 1.5rem",
-                        borderRadius: "999px",
-                        backgroundColor: expanded ? edu.accent : colors.card,
-                        color: expanded ? "#fff" : colors.text,
-                        fontSize: "10px",
-                        letterSpacing: "0.25em",
-                        fontWeight: 900,
-                        textTransform: "uppercase",
-                        alignSelf: isMobile ? "flex-start" : "center",
-                      }}
-                    >
-                      {edu.status}
-                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexShrink: 0 }}>
+                      <span style={{ padding: "0.6rem 1.5rem", borderRadius: "999px", backgroundColor: expanded ? edu.accent : "var(--card-bg)", color: expanded ? "#fff" : "var(--text-primary)", fontSize: "10px", letterSpacing: "0.25em", fontWeight: 900, textTransform: "uppercase", alignSelf: isMobile ? "flex-start" : "center", transition: 'all 0.4s ease' }}>
+                        {edu.status}
+                      </span>
+                      <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                        <ChevronDown size={20} style={{ color: "var(--text-secondary)" }} />
+                      </motion.div>
+                    </div>
                   </div>
 
                   <AnimatePresence>
@@ -232,47 +158,21 @@ const Education = ({ theme }) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 20 }}
-                        style={{
-                          marginTop: "2.5rem",
-                          paddingTop: "2rem",
-                          borderTop: `1px solid ${colors.border}`,
-                        }}
+                        transition={{ duration: 0.4 }}
+                        style={{ marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid var(--card-border)" }}
                       >
-                        <div
-                          style={{
-                            display: "grid",
-                            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                            gap: "2rem",
-                          }}
-                        >
-                          <p
-                            style={{
-                              fontSize: "1rem",
-                              lineHeight: 1.8,
-                              fontStyle: "italic",
-                              color: colors.subtext,
-                            }}
-                          >
-                            “{edu.details}”
+                        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "2rem" }}>
+                          <p style={{ fontSize: "1rem", lineHeight: 1.8, fontStyle: "italic", color: "var(--text-secondary)" }}>
+                            "{edu.details}"
                           </p>
-
                           <div>
-                            <div
-                              style={{
-                                height: "6px",
-                                backgroundColor: colors.muted,
-                                borderRadius: "999px",
-                                overflow: "hidden",
-                              }}
-                            >
+                            <p style={{ fontSize: '0.75rem', color: "var(--text-secondary)", marginBottom: '0.75rem', fontFamily: 'monospace', textTransform: 'uppercase', letterSpacing: '0.15em' }}>Progress</p>
+                            <div style={{ height: "6px", backgroundColor: "var(--muted)", borderRadius: "999px", overflow: "hidden" }}>
                               <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: "100%" }}
-                                transition={{ duration: 1 }}
-                                style={{
-                                  height: "100%",
-                                  backgroundColor: edu.accent,
-                                }}
+                                transition={{ duration: 1.2, ease: 'easeOut' }}
+                                style={{ height: "100%", backgroundColor: edu.accent, borderRadius: '999px' }}
                               />
                             </div>
                           </div>

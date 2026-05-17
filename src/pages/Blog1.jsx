@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Blog1 = ({ theme }) => {
+const Blog1 = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
@@ -15,17 +15,17 @@ const Blog1 = ({ theme }) => {
   }, []);
 
   const colors = {
-    bg: theme === 'dark' ? '#000000' : '#ffffff',
-    sectionBg: theme === 'dark' ? '#0b0c10' : '#ffffff',
-    cardBg: theme === 'dark' ? '#11141b' : '#f8fafc',
-    text: theme === 'dark' ? '#f8fafc' : '#0f172a',
-    subtext: theme === 'dark' ? '#94a3b8' : '#475569',
-    highlight: theme === 'dark' ? '#818cf8' : '#4f46e5',
-    border: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.06)',
+    bg: 'var(--background)',
+    sectionBg: 'var(--surface)',
+    cardBg: 'var(--card-bg)',
+    text: 'var(--text-primary)',
+    subtext: 'var(--text-secondary)',
+    highlight: 'var(--accent)',
+    border: 'var(--card-border)',
   };
 
   return (
-    <div style={{ backgroundColor: colors.bg, color: colors.text }} className="min-h-screen font-sans selection:bg-indigo-500 selection:text-white transition-colors duration-500">
+    <div style={{ backgroundColor: colors.bg, color: colors.text }} className="min-h-screen font-sans selection:bg-indigo-500 selection:text-white ">
       
       <motion.div 
         className="fixed top-0 left-0 right-0 h-1 origin-left z-50" 
@@ -39,10 +39,10 @@ const Blog1 = ({ theme }) => {
         <FaShareAlt className="cursor-pointer text-white" />
       </nav>
 
-      <header className="relative h-screen w-full flex items-center justify-center overflow-hidden border-b transition-colors" style={{ borderColor: colors.border }}>
+      <header className="relative h-screen w-full flex items-center justify-center overflow-hidden border-b " style={{ borderColor: colors.border }}>
         <motion.img 
           initial={{ scale: 1.2, opacity: 0 }}
-          animate={{ scale: 1, opacity: theme === 'dark' ? 0.3 : 0.15 }}
+          animate={{ scale: 1, opacity: 'var(--blog-hero-opacity, 0.2)' }}
           transition={{ duration: 1.5 }}
           src="https://iili.io/f677edF.md.webp" 
           className="absolute inset-0 w-full h-full object-cover"
@@ -83,7 +83,7 @@ const Blog1 = ({ theme }) => {
         <div className="absolute top-1/2 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-indigo-500/5 blur-[120px] rounded-full" />
       </section>
 
-      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 border-y transition-colors" style={{ backgroundColor: colors.bg, borderColor: colors.border }}>
+      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 border-y " style={{ backgroundColor: colors.bg, borderColor: colors.border }}>
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <div>
             <div className="flex items-center gap-4 mb-8">

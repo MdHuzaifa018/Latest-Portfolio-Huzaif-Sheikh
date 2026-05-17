@@ -6,7 +6,7 @@ import {
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const Blog3 = ({ theme }) => {
+const Blog3 = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
@@ -14,18 +14,17 @@ const Blog3 = ({ theme }) => {
     window.scrollTo(0, 0);
   }, []);
 
-  const isDark = theme === 'dark';
   const colors = {
-    bg: isDark ? '#050505' : '#ffffff',
-    text: isDark ? '#f8fafc' : '#0f172a',
+    bg: 'var(--background)',
+    text: 'var(--text-primary)',
     accent: '#2563eb',
     accentGlass: 'rgba(37, 99, 235, 0.1)',
-    card: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.8)',
-    border: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(37, 99, 235, 0.15)'
+    card: 'var(--card-bg)',
+    border: 'var(--card-border)'
   };
 
   return (
-    <div style={{ backgroundColor: colors.bg, color: colors.text }} className="min-h-screen font-sans selection:bg-blue-600 selection:text-white transition-colors duration-700 overflow-x-hidden">
+    <div style={{ backgroundColor: colors.bg, color: colors.text }} className="min-h-screen font-sans selection:bg-blue-600 selection:text-white  overflow-x-hidden">
       
       {/* GLOBAL PROGRESS BAR */}
       <motion.div className="fixed top-0 left-0 right-0 h-1.5 origin-left z-[100] shadow-[0_0_15px_rgba(37,99,235,0.5)]" style={{ scaleX, background: colors.accent }} />
@@ -42,7 +41,7 @@ const Blog3 = ({ theme }) => {
       <header className="relative min-h-screen w-full flex items-center justify-center overflow-hidden border-b" style={{ borderColor: colors.border }}>
         <motion.img
           initial={{ scale: 1.4, opacity: 0 }}
-          animate={{ scale: 1, opacity: isDark ? 0.2 : 0.1 }}
+          animate={{ scale: 1, opacity: 'var(--blog-hero-opacity, 0.15)' }}
           transition={{ duration: 2 }}
           src="https://iili.io/f6YY5DG.md.webp"
           className="absolute inset-0 w-full h-full object-cover"
@@ -59,7 +58,7 @@ const Blog3 = ({ theme }) => {
           <motion.h1
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] font-[1000] italic uppercase tracking-tighter leading-[0.9] md:leading-[0.8] mb-8 md:mb-12 drop-shadow-2xl"
+            className="text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] font-[1000] italic uppercase tracking-tighter leading-[0.9] md:leading-[0.8] mb-8 md:mb-12 drop-shadow-2xl font-[system-ui]"
           >
             React Server <br />
             <span className="text-transparent stroke-current" style={{ WebkitTextStroke: `clamp(1px, 0.2vw, 2px) ${colors.text}`, color: 'transparent' }}>Components</span>
@@ -84,7 +83,7 @@ const Blog3 = ({ theme }) => {
       </section>
 
       {/* CORE CONCEPTS GRID */}
-      <section className="py-20 md:py-40 px-4 md:px-6 border-y" style={{ backgroundColor: isDark ? '#0a0a0a' : '#f0f4ff', borderColor: colors.border }}>
+      <section className="py-20 md:py-40 px-4 md:px-6 border-y" style={{ backgroundColor: 'var(--surface)', borderColor: colors.border }}>
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 md:gap-24 items-center">
           <div>
             <div className="flex items-center gap-4 mb-8 md:mb-12">
@@ -152,7 +151,7 @@ const Blog3 = ({ theme }) => {
       </section>
 
       {/* CASE STUDY MATRIX */}
-      <section className="py-20 md:py-40 px-4 md:px-6 border-t" style={{ backgroundColor: isDark ? '#000' : '#f8faff' }}>
+      <section className="py-20 md:py-40 px-4 md:px-6 border-t" style={{ backgroundColor: 'var(--background)' }}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6 md:gap-12">
           <div className="p-8 md:p-16 rounded-[2rem] md:rounded-[4rem] bg-white dark:bg-zinc-900 border-2 md:border-4 border-green-500/10 shadow-2xl">
             <h4 className="text-2xl md:text-4xl font-black italic uppercase mb-8 md:mb-12 text-green-600 tracking-tighter">Optimal_Use</h4>
