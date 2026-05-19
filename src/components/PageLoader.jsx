@@ -98,7 +98,7 @@ const PageLoader = ({ onComplete }) => {
       {/* 4. DYNAMIC DATA HUD - Responsive positioning */}
       <div className="absolute top-6 left-6 md:top-10 md:left-10 text-[8px] md:text-[10px] text-zinc-500 space-y-1 md:space-y-2 uppercase tracking-tighter opacity-60 md:opacity-100">
         <p className="font-bold text-indigo-500/50">// IDENTITY_CHECK</p>
-        <p>User: Shivam_S</p>
+        <p>User: Huzaif_Sheikh</p>
         <p>Core: System_v4</p>
       </div>
 
