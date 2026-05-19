@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import React, { useEffect, useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 // =====================================================
-// CUSTOM CURSOR — keeps default cursor visible
-// Just adds a glowing ring & dot follower effect
+// CUSTOM CURSOR — optimized smooth follower
 // =====================================================
 const CustomCursor = () => {
   const cursorRef = useRef(null);
@@ -13,82 +12,89 @@ const CustomCursor = () => {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Ring follows with slight lag
-  const ringX = useSpring(mouseX, { stiffness: 150, damping: 20 });
-  const ringY = useSpring(mouseY, { stiffness: 150, damping: 20 });
+  // Ring follows with smooth lag
+  const ringX = useSpring(mouseX, { stiffness: 200, damping: 25 });
+  const ringY = useSpring(mouseY, { stiffness: 200, damping: 25 });
 
-  // Dot follows tightly
-  const dotX = useSpring(mouseX, { stiffness: 800, damping: 50 });
-  const dotY = useSpring(mouseY, { stiffness: 800, damping: 50 });
-
-
+  // Dot follows very tightly
+  const dotX = useSpring(mouseX, { stiffness: 500, damping: 40 });
+  const dotY = useSpring(mouseY, { stiffness: 500, damping: 40 });
 
   useEffect(() => {
-    let rafId;
+    let ticking = false;
+
     const handleMouseMove = (e) => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        mouseX.set(e.clientX);
-        mouseY.set(e.clientY);
-      });
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          mouseX.set(e.clientX);
+          mouseY.set(e.clientY);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     const handleHoverStart = (e) => {
-      const el = e.target.closest('a, button, [data-cursor]');
-      if (el) {
+      const el = e.target.closest("a, button, [data-cursor]");
+      if (el && !isHovering.current) {
         isHovering.current = true;
         if (ringRef.current) {
-          ringRef.current.style.width = '52px';
-          ringRef.current.style.height = '52px';
-          ringRef.current.style.borderColor = 'rgba(99,102,241,0.9)';
-          ringRef.current.style.backgroundColor = 'rgba(99,102,241,0.1)';
-          ringRef.current.style.boxShadow = '0 0 20px rgba(99,102,241,0.5), 0 0 40px rgba(99,102,241,0.2)';
+          ringRef.current.style.cssText = `
+            width: 52px; 
+            height: 52px; 
+            border-color: rgba(99,102,241,0.9); 
+            background-color: rgba(99,102,241,0.1); 
+            box-shadow: 0 0 20px rgba(99,102,241,0.5), 0 0 40px rgba(99,102,241,0.2);
+            transition: all 150ms ease-out;
+          `;
         }
       }
     };
 
-    const handleHoverEnd = () => {
-      isHovering.current = false;
-      if (ringRef.current) {
-        ringRef.current.style.width = '36px';
-        ringRef.current.style.height = '36px';
-        ringRef.current.style.borderColor = 'rgba(99,102,241,0.55)';
-        ringRef.current.style.backgroundColor = 'transparent';
-        ringRef.current.style.boxShadow = '0 0 10px rgba(99,102,241,0.25)';
+    const handleHoverEnd = (e) => {
+      const el = e.target.closest("a, button, [data-cursor]");
+      if (!el && isHovering.current) {
+        isHovering.current = false;
+        if (ringRef.current) {
+          ringRef.current.style.cssText = `
+            width: 36px; 
+            height: 36px; 
+            border-color: rgba(99,102,241,0.55); 
+            background-color: transparent; 
+            box-shadow: 0 0 10px rgba(99,102,241,0.25);
+            transition: all 150ms ease-out;
+          `;
+        }
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    
-    // Use event delegation on a single container if possible, or throttle
-    // Here we use throttling/passive for performance
-    document.addEventListener('mouseover', handleHoverStart, { passive: true });
-    document.addEventListener('mouseout', handleHoverEnd, { passive: true });
-    
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseover", handleHoverStart, { passive: true });
+    document.addEventListener("mouseout", handleHoverEnd, { passive: true });
+
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseover', handleHoverStart);
-      document.removeEventListener('mouseout', handleHoverEnd);
-      cancelAnimationFrame(rafId);
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseover", handleHoverStart);
+      document.removeEventListener("mouseout", handleHoverEnd);
     };
-  }, []);
+  }, [mouseX, mouseY]);
 
   return (
-    // Only render on desktop (pointer: fine) — don't touch mobile cursors
     <div className="hidden md:block">
-      {/* Outer ring — lagging glow follower */}
+      {/* Outer ring — smooth glow follower */}
       <motion.div
         ref={ringRef}
-        className="fixed pointer-events-none z-[9995] rounded-full border transition-all duration-200"
+        className="fixed pointer-events-none z-[9995] rounded-full border"
         style={{
           x: ringX,
           y: ringY,
           width: 36,
           height: 36,
-          translateX: '-50%',
-          translateY: '-50%',
-          borderColor: 'rgba(99,102,241,0.55)',
-          boxShadow: '0 0 10px rgba(99,102,241,0.25)',
+          translateX: "-50%",
+          translateY: "-50%",
+          borderColor: "rgba(99,102,241,0.55)",
+          boxShadow: "0 0 10px rgba(99,102,241,0.25)",
+          willChange: "transform",
         }}
       />
 
@@ -101,10 +107,11 @@ const CustomCursor = () => {
           y: dotY,
           width: 6,
           height: 6,
-          translateX: '-50%',
-          translateY: '-50%',
-          backgroundColor: '#818cf8',
-          boxShadow: '0 0 8px rgba(129,140,248,0.9)',
+          translateX: "-50%",
+          translateY: "-50%",
+          backgroundColor: "#818cf8",
+          boxShadow: "0 0 8px rgba(129,140,248,0.9)",
+          willChange: "transform",
         }}
       />
     </div>
