@@ -90,7 +90,21 @@ const Hero = () => {
       />
 
       {/* ── 3D CARD + FLOATING ICONS ── */}
-      <div className="relative z-10 mb-10">
+      <div className="relative z-10 mb-10 flex items-center justify-center">
+        
+        {/* 
+          ANIMATED BACKGROUND SHAPE (Card behind the image)
+          Ye wo gradient shape hai jo image ke peeche ghoomta hai.
+        */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: 'linear' }}
+          className="absolute w-56 h-56 md:w-72 md:h-72 rounded-[3rem] z-0 opacity-90"
+          style={{
+            background: 'linear-gradient(135deg, #34d399 0%, #3b82f6 50%, #a855f7 100%)', // Teal -> Blue -> Purple
+          }}
+        />
+
         {/* Orbit icons */}
         {floatingIcons.map((item, i) => {
           const radius = 185;
@@ -127,7 +141,7 @@ const Hero = () => {
         {/* 3D tilt card */}
         <motion.div
           style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-          className="relative group cursor-pointer"
+          className="relative group cursor-pointer z-10"
         >
           {/* Conic spinning border (dark mode) */}
           <motion.div
