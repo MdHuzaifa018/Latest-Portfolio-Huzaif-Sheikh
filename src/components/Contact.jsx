@@ -4,10 +4,25 @@ import { useInView } from "framer-motion";
 import { toast, ToastContainer } from "react-toastify";
 import emailjs from "@emailjs/browser";
 import "react-toastify/dist/ReactToastify.css";
-import { FaTerminal, FaPaperPlane, FaEnvelope, FaCircle, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import {
+  FaTerminal,
+  FaPaperPlane,
+  FaEnvelope,
+  FaCircle,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+} from "react-icons/fa";
 
 // Floating label input component
-const FloatInput = ({ label, type = "text", value, onChange, placeholder, prefix }) => {
+const FloatInput = ({
+  label,
+  type = "text",
+  value,
+  onChange,
+  placeholder,
+  prefix,
+}) => {
   const [focused, setFocused] = useState(false);
   const hasValue = value.length > 0;
 
@@ -77,7 +92,9 @@ const FloatTextarea = ({ label, value, onChange, prefix }) => {
             borderColor: focused ? "#6366f1" : "var(--card-border)",
             backgroundColor: "var(--card-bg)",
             transition: "border-color 0.3s ease, box-shadow 0.3s ease",
-            boxShadow: focused ? `0 0 0 1px #6366f140, 0 0 15px #6366f110` : "none",
+            boxShadow: focused
+              ? `0 0 0 1px #6366f140, 0 0 15px #6366f110`
+              : "none",
           }}
           className="w-full rounded-xl p-4 outline-none font-mono text-sm resize-none border"
         />
@@ -105,36 +122,48 @@ const Contact = () => {
     }
 
     setLoading(true);
-    const templateParams = { name, email, subject, message };
-
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      subject,
+      message,
+    };
     emailjs
       .send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         templateParams,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       )
       .then(
         () => {
           setLoading(false);
           toast.success("Packet sent successfully to Huzaif.");
-          setName(""); setEmail(""); setSubject(""); setMessage("");
+          setName("");
+          setEmail("");
+          setSubject("");
+          setMessage("");
         },
         (error) => {
           console.error(error);
           setLoading(false);
           toast.error("Transmission failed. Check connection.");
-        }
+        },
       );
   };
 
-  const isDarkTheme = typeof document !== "undefined" && document.documentElement.classList.contains("dark");
+  const isDarkTheme =
+    typeof document !== "undefined" &&
+    document.documentElement.classList.contains("dark");
 
   return (
     <section
       id="contact"
       className="py-32 px-6 relative overflow-hidden"
-      style={{ backgroundColor: "var(--background)", color: "var(--text-primary)" }}
+      style={{
+        backgroundColor: "var(--background)",
+        color: "var(--text-primary)",
+      }}
     >
       {/* Animated background glow */}
       <motion.div
@@ -146,16 +175,16 @@ const Contact = () => {
 
       <div className="max-w-5xl mx-auto relative z-10">
         <div ref={headerRef} className="mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, x: -30 }}
             animate={headerInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5 }}
-            style={{ color: "#6366f1" }} 
+            style={{ color: "#6366f1" }}
             className="text-sm font-mono tracking-[0.5em] uppercase mb-4"
           >
             / Communication
           </motion.h2>
-          <motion.h3 
+          <motion.h3
             initial={{ opacity: 0, y: 50, skewY: 3 }}
             animate={headerInView ? { opacity: 1, y: 0, skewY: 0 } : {}}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -174,7 +203,10 @@ const Contact = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
               className="p-8 rounded-3xl border relative overflow-hidden group"
-              style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
+              style={{
+                backgroundColor: "var(--card-bg)",
+                borderColor: "var(--card-border)",
+              }}
               whileHover={{
                 boxShadow: `0 20px 40px rgba(0,0,0,0.15), 0 0 30px rgba(99,102,241,0.1)`,
                 borderColor: `rgba(99,102,241,0.3)`,
@@ -183,14 +215,21 @@ const Contact = () => {
               {/* Hover glow */}
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{ background: "radial-gradient(ellipse at top left, rgba(99,102,241,0.08), transparent 60%)" }}
+                style={{
+                  background:
+                    "radial-gradient(ellipse at top left, rgba(99,102,241,0.08), transparent 60%)",
+                }}
               />
 
               <h4 className="font-bold uppercase italic mb-4 relative z-10">
                 Direct Channel
               </h4>
-              <p style={{ color: "var(--text-secondary)" }} className="text-sm leading-relaxed mb-6 relative z-10">
-                Prefer traditional protocols? Bypass the terminal and send an encrypted packet via email.
+              <p
+                style={{ color: "var(--text-secondary)" }}
+                className="text-sm leading-relaxed mb-6 relative z-10"
+              >
+                Prefer traditional protocols? Bypass the terminal and send an
+                encrypted packet via email.
               </p>
               <motion.a
                 href="mailto:mdhuzaifsh786@gmail.com"
@@ -229,37 +268,54 @@ const Contact = () => {
               className="flex flex-col gap-3"
             >
               {[
-                { label: "GitHub", url: "https://github.com/MdHuzaifa018/", icon: FaGithub },
-                { label: "LinkedIn", url: "https://www.linkedin.com/in/huzaif-sheikh-6443a6330/", icon: FaLinkedin },
-                { label: "Twitter/X", url: "https://x.com/huzaif_sheikh_1", icon: FaTwitter },
+                {
+                  label: "GitHub",
+                  url: "https://github.com/MdHuzaifa018/",
+                  icon: FaGithub,
+                },
+                {
+                  label: "LinkedIn",
+                  url: "https://www.linkedin.com/in/huzaif-sheikh-6443a6330/",
+                  icon: FaLinkedin,
+                },
+                {
+                  label: "Twitter/X",
+                  url: "https://x.com/huzaif_sheikh_1",
+                  icon: FaTwitter,
+                },
               ].map((link, i) => {
                 const Icon = link.icon;
                 return (
-                <motion.a
-                  key={i}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-xl border font-mono text-xs uppercase tracking-wider transition-all group"
-                  style={{ borderColor: "var(--card-border)", color: "var(--text-secondary)", backgroundColor: "var(--card-bg)" }}
-                  whileHover={{
-                    x: 6,
-                    color: "#6366f1",
-                    borderColor: `rgba(99,102,241,0.4)`,
-                    backgroundColor: `rgba(99,102,241,0.05)`,
-                  }}
-                >
-                  <Icon size={16} />
-                  <span>{link.label}</span>
-                  <motion.span
-                    className="ml-auto opacity-0 group-hover:opacity-100"
-                    animate={{ x: [0, 4, 0] }}
-                    transition={{ duration: 1, repeat: Infinity }}
+                  <motion.a
+                    key={i}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 rounded-xl border font-mono text-xs uppercase tracking-wider transition-all group"
+                    style={{
+                      borderColor: "var(--card-border)",
+                      color: "var(--text-secondary)",
+                      backgroundColor: "var(--card-bg)",
+                    }}
+                    whileHover={{
+                      x: 6,
+                      color: "#6366f1",
+                      borderColor: `rgba(99,102,241,0.4)`,
+                      backgroundColor: `rgba(99,102,241,0.05)`,
+                    }}
                   >
-                    →
-                  </motion.span>
-                </motion.a>
-              )})}
+                    <Icon size={16} />
+                    <span>{link.label}</span>
+                    <motion.span
+                      className="ml-auto opacity-0 group-hover:opacity-100"
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                    >
+                      →
+                    </motion.span>
+                  </motion.a>
+                );
+              })}
             </motion.div>
           </div>
 
@@ -273,35 +329,57 @@ const Contact = () => {
           >
             <div
               className="rounded-3xl shadow-2xl overflow-hidden border relative"
-              style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
+              style={{
+                backgroundColor: "var(--card-bg)",
+                borderColor: "var(--card-border)",
+              }}
             >
               {/* Glow top border */}
               <div
                 className="absolute top-0 left-0 right-0 h-[1px] opacity-60"
-                style={{ background: "linear-gradient(90deg, transparent, #6366f1, transparent)" }}
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, #6366f1, transparent)",
+                }}
               />
 
               {/* Terminal Header */}
               <div
                 className="px-6 py-4 flex items-center justify-between border-b"
-                style={{ backgroundColor: "var(--background)", borderColor: "var(--card-border)" }}
+                style={{
+                  backgroundColor: "var(--background)",
+                  borderColor: "var(--card-border)",
+                }}
               >
                 <div className="flex gap-2">
                   <motion.div
                     className="w-3 h-3 rounded-full bg-red-500/60 cursor-pointer"
-                    whileHover={{ scale: 1.2, backgroundColor: "rgba(239,68,68,1)" }}
+                    whileHover={{
+                      scale: 1.2,
+                      backgroundColor: "rgba(239,68,68,1)",
+                    }}
                   />
                   <motion.div
                     className="w-3 h-3 rounded-full bg-yellow-500/60 cursor-pointer"
-                    whileHover={{ scale: 1.2, backgroundColor: "rgba(234,179,8,1)" }}
+                    whileHover={{
+                      scale: 1.2,
+                      backgroundColor: "rgba(234,179,8,1)",
+                    }}
                   />
                   <motion.div
                     className="w-3 h-3 rounded-full bg-green-500/60 cursor-pointer"
-                    whileHover={{ scale: 1.2, backgroundColor: "rgba(34,197,94,1)" }}
+                    whileHover={{
+                      scale: 1.2,
+                      backgroundColor: "rgba(34,197,94,1)",
+                    }}
                   />
                 </div>
-                <div style={{ color: "var(--text-secondary)" }} className="text-[10px] font-mono uppercase tracking-widest flex items-center gap-2">
-                  <FaTerminal style={{ color: "#6366f1" }} /> Huzaif — mail_sender.exe
+                <div
+                  style={{ color: "var(--text-secondary)" }}
+                  className="text-[10px] font-mono uppercase tracking-widest flex items-center gap-2"
+                >
+                  <FaTerminal style={{ color: "#6366f1" }} /> Huzaif —
+                  mail_sender.exe
                 </div>
               </div>
 
@@ -351,7 +429,10 @@ const Contact = () => {
                     color: "var(--text-primary)",
                     opacity: loading ? 0.6 : 1,
                   }}
-                  whileHover={{ scale: 1.03, boxShadow: "0 10px 25px rgba(99,102,241,0.3)" }}
+                  whileHover={{
+                    scale: 1.03,
+                    boxShadow: "0 10px 25px rgba(99,102,241,0.3)",
+                  }}
                   whileTap={{ scale: 0.97 }}
                 >
                   {/* Hover fill */}
@@ -368,7 +449,11 @@ const Contact = () => {
                       <>
                         <motion.span
                           animate={{ rotate: 360 }}
-                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
                           className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
                         />
                         Transmitting...
@@ -376,9 +461,7 @@ const Contact = () => {
                     ) : (
                       <>
                         Execute Send{" "}
-                        <motion.span
-                          className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform inline-block"
-                        >
+                        <motion.span className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform inline-block">
                           <FaPaperPlane />
                         </motion.span>
                       </>
@@ -390,7 +473,10 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
-      <ToastContainer position="bottom-right" theme={isDarkTheme ? "dark" : "light"} />
+      <ToastContainer
+        position="bottom-right"
+        theme={isDarkTheme ? "dark" : "light"}
+      />
     </section>
   );
 };
