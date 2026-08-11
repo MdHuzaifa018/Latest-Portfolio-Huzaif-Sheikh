@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import {
   SiReact, SiFirebase, SiMongodb,
@@ -101,7 +102,7 @@ const Hero = () => {
           transition={{ duration: 4.5, repeat: Infinity, ease: 'linear' }}
           className="absolute w-56 h-56 md:w-72 md:h-72 rounded-[3rem] z-0 opacity-90"
           style={{
-            background: 'linear-gradient(135deg, #34d399 0%, #3b82f6 50%, #a855f7 100%)', // Teal -> Blue -> Purple
+            background: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)', // Blue -> Cyan
           }}
         />
 
@@ -202,38 +203,37 @@ const Hero = () => {
       {/* ── TYPOGRAPHIC CONTENT ── */}
       <div className="text-center z-20 px-4 mb-14 w-full">
 
-        {/* BIG NAME — stagger each letter */}
-        <h1
-          className="font-[1000] tracking-tighter uppercase italic leading-[0.85]
-                     text-6xl md:text-[9rem] lg:text-[11rem] overflow-hidden"
-          style={{ color: 'var(--text-primary)' }}
-        >
-          {/* First name */}
-          <span className="inline-block overflow-hidden">
-            {firstName.split('').map((ch, i) => (
+        {/* BIG NAME — Staggered Letter Reveal Animation */}
+        <h1 className="font-black tracking-tighter uppercase leading-none py-2 text-5xl sm:text-7xl md:text-[8.5rem] lg:text-[10rem] flex flex-wrap items-center justify-center gap-x-4 md:gap-x-8 gap-y-0 md:gap-y-2">
+          {/* First Name: HUZAIF */}
+          <span className="inline-flex overflow-hidden py-1 sm:py-2 md:py-3 px-4 -mx-4">
+            {"HUZAIF".split("").map((ch, i) => (
               <motion.span
                 key={`fn-${i}`}
-                className="inline-block"
-                initial={{ y: 100, opacity: 0 }}
+                initial={{ y: "110%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.05 * i, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.04 * i, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className={`inline-block italic text-slate-900 dark:text-slate-50 ${
+                  i === 5 ? "pr-3" : "pr-[0.08em] -mr-[0.08em]"
+                }`}
               >
                 {ch}
               </motion.span>
             ))}
           </span>
-          {/* Space */}
-          <span className="inline-block w-4 md:w-8" />
-          {/* Last name */}
-          <span className="inline-block overflow-hidden ">
-            {lastName.split('').map((ch, i) => (
+
+          {/* Last Name: SHEIKH. */}
+          <span className="inline-flex overflow-hidden py-1 sm:py-2 md:py-3 px-4 -mx-4">
+            {"SHEIKH.".split("").map((ch, i) => (
               <motion.span
                 key={`ln-${i}`}
-                className="inline-block"
-                style={{ color: 'var(--accent)', fontStyle: ch === '.' ? 'normal' : 'italic' }}
-                initial={{ y: 100, opacity: 0 }}
+                initial={{ y: "110%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.05 * (firstName.length + 1 + i), duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.04 * (6 + i), duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className={`inline-block italic bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400 ${
+                  i === 6 ? "pr-3" : "pr-[0.08em] -mr-[0.08em]"
+                }`}
+                style={{ fontStyle: ch === "." ? "normal" : "italic" }}
               >
                 {ch}
               </motion.span>
@@ -316,56 +316,23 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.3, duration: 0.6 }}
           >
-            <motion.a
-              href="#projects"
-              onClick={e => { 
-                e.preventDefault(); 
-                const element = document.getElementById('projects');
-                if (element) {
-                  const lenis = getLenis();
-                  if (lenis) {
-                    lenis.scrollTo(element, { offset: -80, duration: 1.2 });
-                  } else {
-                    const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-                  }
-                }
-              }}
+            <Link
+              to="/projects"
               className="px-8 py-3.5 rounded-xl font-bold text-sm uppercase tracking-widest
-                         text-white flex items-center gap-2 relative overflow-hidden group"
-              style={{ backgroundColor: 'var(--accent)' }}
-              whileHover={{ scale: 1.05, boxShadow: '0 15px 30px rgba(99,102,241,0.35)' }}
-              whileTap={{ scale: 0.97 }}
+                         text-white flex items-center gap-2 relative overflow-hidden group bg-gradient-to-r from-blue-600 to-cyan-500 shadow-lg shadow-blue-500/25"
             >
               <span className="relative z-10">View Works</span>
               <motion.span className="relative z-10" animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
-              <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-xl" />
-            </motion.a>
+            </Link>
 
-            <motion.a
-              href="#contact"
-              onClick={e => { 
-                e.preventDefault(); 
-                const element = document.getElementById('contact');
-                if (element) {
-                  const lenis = getLenis();
-                  if (lenis) {
-                    lenis.scrollTo(element, { offset: -80, duration: 1.2 });
-                  } else {
-                    const offsetTop = element.getBoundingClientRect().top + window.pageYOffset - 80;
-                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-                  }
-                }
-              }}
+            <Link
+              to="/contact"
               className="px-8 py-3.5 rounded-xl font-bold text-sm uppercase tracking-widest
-                         flex items-center gap-2 relative overflow-hidden group backdrop-blur-xl"
-              style={{ border: '1px solid var(--card-border)', backgroundColor: 'var(--card-bg)', color: 'var(--text-primary)' }}
-              whileHover={{ scale: 1.05, boxShadow: '0 10px 25px rgba(0,0,0,0.15)' }}
-              whileTap={{ scale: 0.97 }}
+                         flex items-center gap-2 relative overflow-hidden group backdrop-blur-xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#111111] text-slate-900 dark:text-slate-50 hover:border-blue-500"
             >
               <span className="relative z-10">Get In Touch</span>
               <span className="relative z-10 text-base"><HiOutlineMail /></span>
-            </motion.a>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

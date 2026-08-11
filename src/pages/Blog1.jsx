@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
-import { 
-  FaClock, FaArrowLeft, FaShareAlt, FaTerminal, FaGithub, 
-  FaRocket, FaUsers, FaCode, FaCodeBranch, FaBrain, FaDollarSign, FaLink, FaLightbulb 
-} from 'react-icons/fa';
+import { FaClock, FaArrowLeft, FaShareAlt, FaRocket, FaCodeBranch, FaCheckCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Blog1 = () => {
@@ -14,136 +11,111 @@ const Blog1 = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const colors = {
-    bg: 'var(--background)',
-    sectionBg: 'var(--surface)',
-    cardBg: 'var(--card-bg)',
-    text: 'var(--text-primary)',
-    subtext: 'var(--text-secondary)',
-    highlight: 'var(--accent)',
-    border: 'var(--card-border)',
-  };
-
   return (
-    <div style={{ backgroundColor: colors.bg, color: colors.text }} className="min-h-screen font-sans selection:bg-indigo-500 selection:text-white ">
+    <div className="min-h-screen pt-24 pb-24 px-4 md:px-8 lg:px-12 bg-transparent text-slate-900 dark:text-slate-50 font-sans transition-colors duration-500">
       
+      {/* Scroll Progress Bar */}
       <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 origin-left z-50" 
-        style={{ scaleX, backgroundColor: colors.highlight }} 
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 origin-left z-50" 
+        style={{ scaleX }} 
       />
 
-      <nav className="fixed top-0 w-full p-4 sm:p-6 md:p-8 flex justify-between items-center z-50 mix-blend-difference">
-        <Link to="/" className="group flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] text-white transition-all">
-          <FaArrowLeft className="group-hover:-translate-x-2 transition-transform" /> BACK TO HOME
-        </Link>
-        <FaShareAlt className="cursor-pointer text-white" />
-      </nav>
-
-      <header className="relative h-screen w-full flex items-center justify-center overflow-hidden border-b " style={{ borderColor: colors.border }}>
-        <motion.img 
-          initial={{ scale: 1.2, opacity: 0 }}
-          animate={{ scale: 1, opacity: 'var(--blog-hero-opacity, 0.2)' }}
-          transition={{ duration: 1.5 }}
-          src="https://iili.io/f677edF.md.webp" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0" style={{ background: `linear-gradient(to bottom, transparent, ${colors.bg})` }} />
+      <div className="max-w-4xl mx-auto flex flex-col gap-12">
         
-        <div className="relative z-10 max-w-6xl px-4 sm:px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-            <span className="font-mono text-[10px] tracking-[0.8em] uppercase opacity-50 block mb-6">Archive_Entry_01</span>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[10rem] font-[1000] italic uppercase tracking-tighter leading-[0.9] mb-12">
-              The Power of <br /> 
-              <span className="text-indigo-600 dark:text-indigo-400 not-italic">Open Source</span>
-            </h1>
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 font-mono text-[10px] uppercase tracking-[0.4em]" style={{ color: colors.subtext }}>
-              <div className="flex items-center gap-2"><FaClock style={{ color: colors.highlight }} /> 12 Min Read</div>
-              <div className="hidden md:block opacity-30">|</div>
-              <div>13 Feb, 2025</div>
-            </div>
-          </motion.div>
+        {/* Navigation Top Bar */}
+        <div className="flex justify-between items-center py-4 border-b border-black/5 dark:border-white/10">
+          <Link to="/blog" className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest font-bold text-blue-500 hover:text-cyan-400 transition-colors">
+            <FaArrowLeft /> Back to Articles
+          </Link>
+          <span className="font-mono text-xs text-slate-500">Archive_Entry_01</span>
         </div>
-      </header>
 
-      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden" style={{ backgroundColor: colors.bg }}>
-        <div className="max-w-3xl mx-auto relative z-10">
-          <h2 style={{ color: colors.highlight }} className="font-mono text-[10px] uppercase tracking-[0.5em] mb-12">/ Executive_Summary</h2>
-          <p className="text-2xl sm:text-3xl md:text-5xl leading-[1.1] font-medium tracking-tight mb-12 italic">
-            "In a world of proprietary walls, <span className="text-indigo-600 dark:text-indigo-400">collaboration</span> is the ultimate competitive advantage."
-          </p>
-          <div className="space-y-8 text-base sm:text-lg md:text-xl leading-relaxed font-light" style={{ color: colors.subtext }}>
-            <p>
-              Developers who actively engage in open-source contributions gain hands-on experience that classrooms cannot simulate. You aren't just writing code; you are participating in a global conversation.
-            </p>
-            <p>
-              Whether you're a student at <span className="text-zinc-900 dark:text-zinc-100 font-bold">Nalanda College</span> or a senior engineer, the projects you build outside your 9-to-5 are the true indicators of your trajectory.
-            </p>
-          </div>
-        </div>
-        <div className="absolute top-1/2 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-indigo-500/5 blur-[120px] rounded-full" />
-      </section>
+        {/* Article Header */}
+        <header className="flex flex-col gap-6 text-center items-center">
+          <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-blue-500/10 text-blue-500 border border-blue-500/20">
+            • Career & Engineering
+          </span>
 
-      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 border-y " style={{ backgroundColor: colors.bg, borderColor: colors.border }}>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <div>
-            <div className="flex items-center gap-4 mb-8">
-              <span className="w-12 h-[1px] bg-indigo-600" />
-              <span className="font-mono text-[10px] tracking-widest uppercase text-indigo-600">Module_01</span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase italic mb-8 tracking-tighter">Real-World <br/> Learning</h2>
-            <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-10 opacity-70">
-              Tutorials are a controlled environment. Open source is the wild. Here is where you learn how to survive.
-            </p>
-            <div className="grid grid-cols-1 gap-4">
-              {['Debugging production-level complexity', 'Implementing clean-code architecture', 'Version control in team environments', 'Mastering the art of Peer Review'].map((t, i) => (
-                <motion.div 
-                  whileHover={{ x: 10 }}
-                  key={t} 
-                  className="flex items-center gap-4 p-4 rounded-xl border group transition-all"
-                  style={{ borderColor: colors.border, backgroundColor: colors.cardBg }}
-                >
-                  <span className="text-indigo-500 font-bold">0{i+1}</span>
-                  <span className="font-mono text-xs uppercase tracking-widest">{t}</span>
-                </motion.div>
-              ))}
-            </div>
+          <h1 className="text-4xl md:text-6xl font-black italic uppercase leading-tight tracking-tight text-slate-900 dark:text-slate-50">
+            Why Every Developer Should Work on <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Open Source</span>
+          </h1>
+
+          <div className="flex items-center gap-6 font-mono text-xs text-slate-500">
+            <span className="flex items-center gap-1.5"><FaClock className="text-blue-500" /> 5 Min Read</span>
+            <span>•</span>
+            <span>Published 13 Feb, 2025</span>
           </div>
 
-          <div className="relative group">
-            <div className="absolute -inset-4 bg-indigo-500/10 rounded-[4rem] blur-2xl group-hover:bg-indigo-500/20 transition-all" />
-            <div className="relative p-8 sm:p-12 rounded-[3.5rem] border shadow-2xl transition-all" style={{ backgroundColor: colors.cardBg, borderColor: colors.border }}>
-              <FaCode className="text-5xl text-indigo-600 mb-8" />
-              <h4 className="font-black text-3xl mb-6 uppercase italic">Unrestricted Stacks</h4>
-              <p className="text-base sm:text-lg leading-relaxed opacity-60">
-                Side projects let you experiment with <span className="text-indigo-600 font-bold">Tailwind v4</span>, <span className="text-indigo-600 font-bold">Framer Motion</span>, or <span className="text-indigo-600 font-bold">Rust</span> without permission from a manager. This is your R&D lab.
-              </p>
-            </div>
+          {/* Featured Cover Image */}
+          <div className="w-full aspect-[16/9] rounded-[2.5rem] overflow-hidden border border-black/5 dark:border-white/10 shadow-2xl mt-4">
+            <img 
+              src="https://iili.io/f677edF.md.webp" 
+              alt="Open Source Growth" 
+              className="w-full h-full object-cover" 
+            />
           </div>
-        </div>
-      </section>
+        </header>
 
-      <footer className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 text-center" style={{ backgroundColor: colors.bg }}>
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-sm font-mono uppercase tracking-[0.6em] text-indigo-600 mb-8">/ Final_Thoughts</h3>
-          <p className="text-3xl sm:text-4xl md:text-6xl font-black uppercase italic mb-16 tracking-tighter leading-none">
-            Your portfolio is your <br/> <span className="text-transparent stroke-current" style={{ WebkitTextStrokeWidth: '1.5px' }}>true resume.</span>
+        {/* Article Body Content */}
+        <article className="flex flex-col gap-8 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+          
+          <div className="p-8 rounded-3xl bg-blue-500/5 border border-blue-500/20 text-slate-900 dark:text-slate-100 font-medium italic text-xl md:text-2xl leading-snug">
+            "In a world of proprietary walls, open collaboration is the ultimate accelerator for software engineering growth."
+          </div>
+
+          <p>
+            Developers who actively engage in open-source contributions gain hands-on experience that classrooms cannot simulate. You aren't just writing code in a bubble; you are participating in a global engineering conversation.
           </p>
 
-          <div className="relative p-8 sm:p-16 md:p-24 rounded-[2.5rem] sm:rounded-[4rem] overflow-hidden bg-zinc-950 text-white shadow-2xl">
-            <div className="absolute top-0 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-indigo-500/20 blur-[100px]" />
-            <div className="relative z-10">
-              <FaLightbulb className="mx-auto text-5xl mb-8 text-indigo-400" />
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-[1000] uppercase italic mb-6 tracking-tighter">What’s Your Next Move?</h3>
-              <p className="text-zinc-400 mb-12 text-base sm:text-lg max-w-xl mx-auto font-light">
-                Don't wait for a job to build. Build to get the job. The community is waiting for your pull request.
-              </p>
-              <Link to="/#contact" className="inline-block bg-white text-black px-10 sm:px-12 py-4 sm:py-5 rounded-2xl font-black uppercase text-[10px] tracking-[0.3em] hover:bg-indigo-400 hover:text-white transition-all shadow-xl active:scale-95">
-                START COLLABORATING
-              </Link>
-            </div>
+          <h2 className="text-2xl md:text-3xl font-black italic uppercase text-slate-900 dark:text-slate-50 pt-4 border-t border-black/5 dark:border-white/10">
+            1. Real-World Codebase Mastery
+          </h2>
+
+          <p>
+            Tutorial projects are controlled environments. Open source is production reality. Reading codebase architectures built by developers across the world teaches you how to debug production-level complexity, implement clean-code patterns, and write maintainable pull requests.
+          </p>
+
+          <div className="grid gap-4 my-4">
+            {[
+              "Debugging production-level codebase complexity",
+              "Implementing scalable architectural patterns",
+              "Git branching workflows & peer code reviews",
+              "Building public proof of competence on GitHub"
+            ].map((point, idx) => (
+              <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-sm">
+                <FaCheckCircle className="text-blue-500 text-lg shrink-0" />
+                <span className="font-bold text-sm text-slate-800 dark:text-slate-200">{point}</span>
+              </div>
+            ))}
           </div>
-        </div>
-      </footer>
+
+          <h2 className="text-2xl md:text-3xl font-black italic uppercase text-slate-900 dark:text-slate-50 pt-4 border-t border-black/5 dark:border-white/10">
+            2. Building Global Credibility
+          </h2>
+
+          <p>
+            Your GitHub contribution green dots and merged pull requests serve as an unforgeable public resume. Engineering leaders and recruiters value active open-source contributors because it proves your initiative, adaptability, and collaboration skills.
+          </p>
+
+          {/* Article Footer CTA */}
+          <div className="p-8 md:p-12 rounded-[2.5rem] bg-gradient-to-r from-blue-600 to-cyan-500 text-white flex flex-col items-center text-center gap-6 mt-8 shadow-2xl">
+            <h3 className="text-3xl font-black italic uppercase">Ready to start contributing?</h3>
+            <p className="text-sm opacity-90 max-w-lg">
+              Explore open-source repositories on GitHub and make your first pull request today.
+            </p>
+            <a 
+              href="https://github.com/MdHuzaifa018" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-8 py-3.5 rounded-xl font-bold uppercase tracking-widest text-xs bg-white text-slate-900 hover:scale-105 transition-all shadow-lg"
+            >
+              Check My GitHub Repositories
+            </a>
+          </div>
+
+        </article>
+
+      </div>
     </div>
   );
 };

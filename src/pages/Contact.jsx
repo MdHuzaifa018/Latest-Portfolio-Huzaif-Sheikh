@@ -190,7 +190,7 @@ const Contact = () => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             className="text-6xl font-black italic uppercase tracking-tighter leading-none"
           >
-            Let's <br /> Interface
+            Let's <br /> <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Interface</span>
           </motion.h3>
         </div>
 

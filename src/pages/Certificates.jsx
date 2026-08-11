@@ -82,14 +82,11 @@ const Certifications = () => {
         >
           <Award size={12} /> / Verification_Nodes
         </motion.span>
-        <motion.h2
-          initial={{ opacity: 0, y: 40, skewY: 3 }}
-          animate={headerInView ? { opacity: 1, y: 0, skewY: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="text-4xl md:text-7xl font-[1000] italic uppercase tracking-tighter leading-none"
-        >
-          Certs<span style={{ color: "#6366f1" }}>.</span>
-        </motion.h2>
+        <div ref={headerRef} className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tight text-slate-900 dark:text-slate-50">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Certifications</span> & Honors
+          </h2>
+        </div>
       </div>
 
       {/* GLOW */}

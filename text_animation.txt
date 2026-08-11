@@ -1,0 +1,12 @@
+HUZAIF SHEIKH. me lagne wale animation ka naam, type aur technical details yeh hain:
+
+🎬 Animation Details
+Animation Name: Staggered Character Mask Reveal (Staggered Vertical Slide-Up & Fade-In Animation)
+Animation Type: UI Entrance Reveal (Sequential Kinetic Typography)
+Library Used: Framer Motion (framer-motion)
+⚙️ Yeh Kaise Kaam Karta Hai (Technical Parameters):
+Mask Container (overflow-hidden): Parent element me ek invisible "parda" (curtain mask) hota hai.
+Initial Position (y: "110%", opacity: 0): Page load hone par har letter apne mask ke niche 110% daba hota hai aur 0% opacity par hota hai.
+Target Position (y: 0, opacity: 1): Animate hote hi letter niche se upar slide karta hai aur full visible hota hai.
+Stagger Delay (delay: 0.04 * i): Har ek letter ke aane me 0.04 second ka gap hota hai, jisse ek beautiful wave / pop-up effect banta hai.
+Easing Curve (cubic-bezier): ease: [0.22, 1, 0.36, 1] cubic-bezier curve ki wajah se animation shuru me fast aur end me ekdum smooth slow-down hota hai
