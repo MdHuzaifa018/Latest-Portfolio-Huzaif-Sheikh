@@ -274,7 +274,7 @@ const Projects = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="p-6 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col justify-between gap-6 group hover:-translate-y-2 transition-all duration-300"
+                className="p-6 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col justify-between gap-6 group gradient-card-hover hover:-translate-y-2 transition-all duration-300"
               >
                 {/* Browser Frame Window */}
                 <div className="rounded-xl overflow-hidden border border-black/5 dark:border-white/10 shadow-md">

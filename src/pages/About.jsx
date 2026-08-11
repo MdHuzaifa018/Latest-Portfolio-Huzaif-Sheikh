@@ -80,7 +80,7 @@ const About = () => {
           >
             <div className="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden bg-slate-100 dark:bg-[#1a1a1a]">
               <img 
-                src="https://iili.io/BPezpDl.jpg" 
+                src="https://res.cloudinary.com/qpxxnswd/image/upload/v1786433302/techugrow/nyhu86z23ho6skxvz1rd.jpg" 
                 alt="Huzaif Sheikh" 
                 className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />

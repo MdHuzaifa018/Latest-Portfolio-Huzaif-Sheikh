@@ -166,8 +166,11 @@ const Home = () => {
       </section>
 
       {/* 5. ENGINEERING VALUE ADDED (3 Cards) */}
-      <section className="py-16 px-4 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto flex flex-col gap-10">
+      <section className="py-16 px-4 md:px-8 lg:px-12 relative">
+        {/* Spot Light Glow */}
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-500/10 dark:bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto flex flex-col gap-10 relative z-10">
           
           <div>
             <h2 className="text-3xl md:text-4xl font-black italic uppercase text-slate-900 dark:text-slate-50">
@@ -183,7 +186,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-5 hover:-translate-y-2 transition-all duration-300"
+              className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-5 gradient-card-hover hover:-translate-y-2 transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-xl">
                 <FaServer />
@@ -201,7 +204,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-5 hover:-translate-y-2 transition-all duration-300"
+              className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-5 gradient-card-hover hover:-translate-y-2 transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center text-xl">
                 <FaCode />
@@ -219,7 +222,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-5 hover:-translate-y-2 transition-all duration-300"
+              className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-5 gradient-card-hover hover:-translate-y-2 transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-xl">
                 <FaDatabase />

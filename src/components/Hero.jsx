@@ -174,7 +174,7 @@ const Hero = () => {
                        group-hover:shadow-indigo-500/20 z-10"
           >
             <img
-              src="https://iili.io/BPezpDl.jpg"
+              src="https://res.cloudinary.com/qpxxnswd/image/upload/v1786433302/techugrow/nyhu86z23ho6skxvz1rd.jpg"
               alt="Huzaif Sheikh"
               className="w-full h-full object-cover transition-transform duration-700
                          group-hover:scale-110 grayscale-[0.1] group-hover:grayscale-0"
