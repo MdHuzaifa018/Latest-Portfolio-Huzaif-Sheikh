@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaHome, FaUser, FaBriefcase, FaPenNib, FaEnvelope, FaSun, FaMoon, FaBars, FaTimes, FaCode } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { getLenis } from './SmoothScroll';
 
 const navLinks = [
   { name: "Home", path: "/", icon: <FaHome /> },
@@ -54,13 +55,23 @@ const Navbar = () => {
   const handleNavClick = (path) => {
     navigate(path);
     setIsMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.0 });
+    } else {
+      window.scrollTo(0, 0);
+    }
   };
 
   const handleBrandClick = () => {
     navigate('/');
     setIsMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.0 });
+    } else {
+      window.scrollTo(0, 0);
+    }
   };
 
   return (

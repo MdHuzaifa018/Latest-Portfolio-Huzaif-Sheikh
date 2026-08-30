@@ -160,12 +160,31 @@ body {
 }
 
 /* --------------------------------------------------
-   SMOOTH TEXT RENDERING
+   SMOOTH TEXT RENDERING & LENIS INTEGRATION
 -------------------------------------------------- */
 html {
   font-feature-settings: "ss01", "ss02", "cv01", "cv11";
   -webkit-font-smoothing: antialiased;
-  /* Note: scroll-behavior smooth is handled by Lenis */
+}
+
+html.lenis, html.lenis-smooth {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* --------------------------------------------------

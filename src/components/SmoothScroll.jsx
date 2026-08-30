@@ -17,21 +17,21 @@ const SmoothScroll = ({ children }) => {
 
   useEffect(() => {
     lenisInstance = new Lenis({
-      duration: 1.4,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
+      lerp: 0.075,
+      wheelMultiplier: 0.85,
+      touchMultiplier: 1.0,
+      smoothWheel: true,
       smoothTouch: false,
-      touchMultiplier: 2,
+      syncTouch: false,
+      autoResize: true,
     });
 
     let rafId;
     function raf(time) {
       if (lenisInstance) {
         lenisInstance.raf(time);
-        rafId = requestAnimationFrame(raf);
       }
+      rafId = requestAnimationFrame(raf);
     }
 
     rafId = requestAnimationFrame(raf);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 // Core Components (Loaded immediately for instant paint & perfect scroll triggers)
@@ -19,18 +19,29 @@ import Home from './pages/Home';
 import Footer from './components/Footer';
 
 // Enhancement Components
-
-import SmoothScroll from './components/SmoothScroll';
+import SmoothScroll, { getLenis } from './components/SmoothScroll';
 import AnimatedBackground from './components/AnimatedBackground';
 import LazySection from './components/LazySection';
 import WhatsAppButton from './components/WhatsAppButton';
 import BackToTop from './components/BackToTop';
 
-
 // Lazy Loaded Pages
 const Blog1 = lazy(() => import('./pages/Blog1'));
 const Blog2 = lazy(() => import('./pages/Blog2'));
 const Blog3 = lazy(() => import('./pages/Blog3'));
+
+// Smooth Route Change Scroll Reset
+const ScrollToTopOnNav = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
+  }, [pathname]);
+  return null;
+};
 
 const PageLayout = ({ children }) => (
   <main className="bg-transparent text-black dark:text-white pt-24 min-h-screen flex flex-col">
@@ -59,11 +70,10 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTopOnNav />
       <SmoothScroll>
         {/* Global animated background - always present */}
         <AnimatedBackground />
-
-
 
         <AnimatePresence mode="wait">
           {isLoading ? (

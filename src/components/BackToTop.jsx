@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowUp } from 'react-icons/fa';
+import { getLenis } from './SmoothScroll';
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,15 +15,17 @@ const BackToTop = () => {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    const lenis = getLenis();
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (

@@ -68,45 +68,48 @@ const Certifications = () => {
       id="certifications"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
-      style={{ backgroundColor: "var(--background)", color: "var(--text-primary)" }}
+      className="relative w-full py-12 md:py-20 flex flex-col items-center justify-start overflow-hidden rounded-[2.5rem]"
+      style={{ backgroundColor: "transparent", color: "var(--text-primary)" }}
     >
-      {/* HEADER UNIT */}
-      <div ref={headerRef} className="absolute top-10 left-6 md:top-16 md:left-16 z-[100]">
-        <motion.span
-          initial={{ opacity: 0, x: -30 }}
-          animate={headerInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          style={{ color: "#6366f1" }}
-          className="font-mono text-[10px] md:text-[12px] uppercase tracking-[0.5em] font-black flex items-center gap-2 mb-2"
-        >
-          <Award size={12} /> / Verification_Nodes
-        </motion.span>
-        <div ref={headerRef} className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tight text-slate-900 dark:text-slate-50">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Certifications</span> & Honors
-          </h2>
-        </div>
-      </div>
-
-      {/* GLOW */}
+      {/* GLOW BACKGROUND AURA */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activeIndex}
-          className="absolute w-[70vw] h-[70vw] rounded-full blur-[120px] pointer-events-none opacity-40 md:opacity-100"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75vw] max-w-[600px] h-[75vw] max-h-[600px] rounded-full blur-[140px] pointer-events-none opacity-30 dark:opacity-60"
           style={{ background: certs[activeIndex].glow }}
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: 0.5, scale: 1 }}
           exit={{ opacity: 0, scale: 1.1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
         />
       </AnimatePresence>
 
-      {/* STAGE */}
-      <div className="relative w-full h-[25rem] md:h-[45rem] mt-20 md:mt-0" style={{ perspective: config.perspective }}>
+      {/* HEADER UNIT - Clean flow in normal document flow (NO OVERLAP) */}
+      <div ref={headerRef} className="w-full max-w-7xl px-4 md:px-8 mb-8 md:mb-12 flex flex-col items-center text-center z-20">
+        <motion.span
+          initial={{ opacity: 0, y: -10 }}
+          animate={headerInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="font-mono text-[10px] md:text-[12px] uppercase tracking-[0.4em] font-black flex items-center justify-center gap-2 mb-3 text-indigo-500"
+        >
+          <Award size={14} /> / VERIFICATION_NODES
+        </motion.span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black italic uppercase tracking-tight text-slate-900 dark:text-slate-50">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Certifications</span> & Honors
+        </h2>
+        <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-lg">
+          Accredited credentials and verified diplomas in software engineering and cloud fundamentals.
+        </p>
+      </div>
+
+      {/* 3D CAROUSEL STAGE - Clean spacing with zero collision */}
+      <div 
+        className="relative w-full h-[24rem] sm:h-[28rem] md:h-[34rem] flex items-center justify-center my-4" 
+        style={{ perspective: config.perspective }}
+      >
         <motion.div
           animate={{ rotateY: rotation }}
-          transition={{ type: "spring", stiffness: 35, damping: 22 }}
+          transition={{ type: "spring", stiffness: 40, damping: 24 }}
           className="absolute inset-0 flex items-center justify-center"
           style={{ transformStyle: "preserve-3d" }}
         >
@@ -121,43 +124,45 @@ const Certifications = () => {
                   transform: `rotateY(${angle}deg) translateZ(${config.radius}px) scale(${front ? 1 : 0.75}) rotateX(${front ? 0 : 6}deg)`,
                   opacity: front ? 1 : 0.15,
                   pointerEvents: front ? "auto" : "none",
-                  transition: "transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.8s ease",
+                  transition: "transform 0.7s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.7s ease",
                   willChange: "transform, opacity"
                 }}
                 className="absolute"
               >
                 <div
-                  className="rounded-[2rem] md:rounded-[3rem] p-4 md:p-8 border-2 shadow-2xl"
+                  className="rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-6 border shadow-2xl gradient-card-hover backdrop-blur-md"
                   style={{ backgroundColor: "var(--card-bg)", borderColor: "var(--card-border)" }}
                 >
                   {/* IMAGE CONTAINER - Sized and constrained */}
-                  <div className="w-full aspect-[1.4/1] bg-zinc-950/40 rounded-xl md:rounded-3xl overflow-hidden border border-white/5 mb-6 flex items-center justify-center">
+                  <div className="w-full aspect-[1.4/1] bg-zinc-950/20 dark:bg-zinc-950/60 rounded-xl md:rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 mb-4 flex items-center justify-center p-2">
                     <img 
                       src={c.img} 
                       alt={c.title} 
-                      className="max-w-full max-h-full object-contain p-2 md:p-4" 
+                      className="max-w-full max-h-full object-contain drop-shadow-md transition-transform duration-500 group-hover:scale-105" 
                     />
                   </div>
 
-                  <div className="flex justify-between items-center px-2">
+                  <div className="flex justify-between items-center px-2 pt-1">
                     <div className="flex flex-col">
-                      <span className="font-mono text-[9px] uppercase tracking-widest opacity-40 mb-1">{c.id}</span>
-                      <span className="font-black italic uppercase text-xs md:text-xl tracking-tight leading-none">{c.title}</span>
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-indigo-500 font-bold mb-0.5">CERTIFICATE 0{c.id}</span>
+                      <span className="font-black italic uppercase text-sm md:text-lg tracking-tight text-slate-900 dark:text-slate-100">{c.title}</span>
                     </div>
-                    <div className="flex gap-2 md:gap-4">
+                    <div className="flex gap-2 md:gap-3">
                       <motion.a 
                         whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
-                        href={c.pdf} target="_blank" 
-                        className="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center bg-indigo-600 text-white shadow-lg"
+                        href={c.pdf} target="_blank" rel="noopener noreferrer"
+                        className="w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition-colors"
+                        title="View Certificate"
                       >
-                        <FaEye size={18} />
+                        <FaEye size={14} />
                       </motion.a>
                       <motion.a 
                         whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
                         href={c.pdf} download 
-                        className="w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center bg-emerald-600 text-white shadow-lg"
+                        className="w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center bg-cyan-600 hover:bg-cyan-500 text-white shadow-lg shadow-cyan-600/30 transition-colors"
+                        title="Download PDF"
                       >
-                        <FaDownload size={18} />
+                        <FaDownload size={14} />
                       </motion.a>
                     </div>
                   </div>
@@ -168,34 +173,39 @@ const Certifications = () => {
         </motion.div>
       </div>
 
-      {/* CONTROLS */}
-      <div className="absolute bottom-12 md:bottom-20 flex items-center gap-10 z-[110]">
+      {/* CONTROLS - Clean flow placement */}
+      <div className="flex items-center gap-6 md:gap-10 mt-6 z-20">
         <motion.button 
-          whileTap={{ scale: 0.8 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
           onClick={() => rotate(1)} 
-          className="w-14 h-14 md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center bg-white/5 backdrop-blur-lg"
+          className="w-12 h-12 md:w-14 md:h-14 rounded-2xl border border-black/10 dark:border-white/10 flex items-center justify-center bg-white/70 dark:bg-[#111111]/70 backdrop-blur-xl shadow-md text-slate-900 dark:text-slate-100 hover:border-indigo-500/40 transition-colors"
+          aria-label="Previous Certificate"
         >
-          <FaArrowLeft />
+          <FaArrowLeft size={14} />
         </motion.button>
         
         <div className="flex flex-col items-center">
-          <span className="font-mono text-2xl font-black text-indigo-500 leading-none">
-            {String(activeIndex + 1).padStart(2, "0")}
+          <span className="font-mono text-xl md:text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400 leading-none">
+            {String(activeIndex + 1).padStart(2, "0")} <span className="text-xs text-slate-400 font-normal">/ {String(certs.length).padStart(2, "0")}</span>
           </span>
-          <div className="w-12 h-1 bg-indigo-500/20 rounded-full mt-2 overflow-hidden">
+          <div className="w-16 h-1.5 bg-slate-200 dark:bg-zinc-800 rounded-full mt-2.5 overflow-hidden">
              <motion.div 
-               className="h-full bg-indigo-500"
+               className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full"
                animate={{ width: `${((activeIndex + 1) / certs.length) * 100}%` }}
+               transition={{ ease: "easeOut", duration: 0.3 }}
              />
           </div>
         </div>
 
         <motion.button 
-          whileTap={{ scale: 0.8 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
           onClick={() => rotate(-1)} 
-          className="w-14 h-14 md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center bg-white/5 backdrop-blur-lg"
+          className="w-12 h-12 md:w-14 md:h-14 rounded-2xl border border-black/10 dark:border-white/10 flex items-center justify-center bg-white/70 dark:bg-[#111111]/70 backdrop-blur-xl shadow-md text-slate-900 dark:text-slate-100 hover:border-indigo-500/40 transition-colors"
+          aria-label="Next Certificate"
         >
-          <FaArrowRight />
+          <FaArrowRight size={14} />
         </motion.button>
       </div>
     </section>
