@@ -23,7 +23,7 @@ const projectData = [
     url: "https://techugrow.vercel.app/",
     repo: "#",
     featured: true,
-    tags: ["React", "Tailwind.CSS", "JavaScript","Node.js","Express.js","cloudinary" ,"multer","Animations", "Vercel"],
+    tags: ["React.js", "Tailwind.CSS", "JavaScript","Node.js","Express.js","cloudinary" ,"multer","Animations", "Vercel"],
     description: "TechUGrow is a comprehensive, client-centric Digital Services Agency platform designed to help startups and businesses scale their online presence. The platform acts as a one-stop hub where clients can explore, choose, and manage services ranging from high-performance Web Development and Web Management to creative Video Editing and digital branding solutions. ",
     metrics: "Client-Centric Digital Services Hub"
   },
@@ -35,19 +35,19 @@ const projectData = [
     url: "https://inspector-coaching-web.vercel.app/",
     repo: "",
     featured: false,
-    tags: ["HTML", "CSS", "JavaScript", "MongoDB", "Express"],
-    description: "Responsive web platform for educational course management. Features user registration, course enrollment dashboard, and MongoDB Atlas database integration.",
+    tags: ["React.js", "CSS","Tailwind CSS", "JavaScript", "MongoDB", "Express","Node.js", "Responsive Design", "cloudinary"],
+    description: "Responsive web platform for institute course management. Features user registration, course enrollment dashboard, and MongoDB Atlas database integration.",
     metrics: "Course Dashboard"
   },
   {
     id: 4,
     title: "Atmospheric Intelligence",
     category: "Frontend",
-    image: "https://iili.io/BQ90Mhv.png",
-    url: "https://weather-tracker-app.vercel.app/",
-    repo: "https://github.com/MdHuzaifa018/Weather-App",
+    image: "https://iili.io/BQ901pa.md.png",
+    url: "https://adnan-affiliate-web.vercel.app/",
+    repo: "https://github.com/MdHuzaifa018/Affiliate-Marketing-web.git",
     featured: false,
-    tags: ["React.js", "OpenWeather API", "Tailwind CSS", "Glassmorphism"],
+    tags: ["React.js", "YouTube API","React-icons","Email JS","Framer Motion","Swiper", "Tailwind CSS", "Glassmorphism"],
     description: "Real-time meteorological monitoring app. Combines asynchronous OpenWeather API fetching with an elegant glassmorphism UI for global weather tracking.",
     metrics: "Live Weather API"
   },
@@ -59,7 +59,7 @@ const projectData = [
     url: "https://divyanshbhadauriya-portfolio.vercel.app/",
     repo: "https://github.com/MdHuzaifa018/Latest-Portfolio-Huzaif-Sheikh",
     featured: false,
-    tags: ["React", "Tailwind CSS", "Framer Motion", "Vite"],
+    tags: ["React.js", "Tailwind CSS", "Framer Motion", "Node.js","Express.js","MongoDB", "claudinary" ,"multer"],
     description: "Modern developer portfolio featuring 3D tilt cards, kinetic letter-by-letter reveal animations, native dark/light mode toggle, and sticky WhatsApp chat.",
     metrics: "Kinetic UI Architecture"
   },
