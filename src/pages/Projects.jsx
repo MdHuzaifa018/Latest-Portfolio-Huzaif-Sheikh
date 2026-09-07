@@ -55,13 +55,13 @@ const projectData = [
     id: 5,
     title: "Interactive Portfolio v4",
     category: "Frontend",
-    image: "https://iili.io/BQ901pa.png",
-    url: "https://divyanshbhadauriya-portfolio.vercel.app/",
+    image: "https://iili.io/n3Jp7Gs.md.png",
+    url: "https://flybitagencyf.vercel.app/",
     repo: "https://github.com/MdHuzaifa018/Latest-Portfolio-Huzaif-Sheikh",
     featured: false,
-    tags: ["React.js", "Tailwind CSS", "Framer Motion", "Node.js","Express.js","MongoDB", "claudinary" ,"multer"],
-    description: "Modern developer portfolio featuring 3D tilt cards, kinetic letter-by-letter reveal animations, native dark/light mode toggle, and sticky WhatsApp chat.",
-    metrics: "Kinetic UI Architecture"
+    tags: ["React.js", "Tailwind CSS", "Framer Motion", ],
+    description: "Modern developer portfolio featuring 3D tilt cards, kinetic letter-by-letter reveal animations, and sticky WhatsApp chat.",
+    metrics: "modern UI Architecture"
   },
   {
     id: 6,
