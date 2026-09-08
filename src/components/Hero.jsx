@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React, { useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
+import secondImage from '../assets/huzaif123.jpg';
 import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import { HiOutlineMail } from 'react-icons/hi';
@@ -64,6 +65,7 @@ const Hero = () => {
   const y = useMotionValue(0);
   const heroRef = useRef(null);
 
+  // Floating background parallax
   const mouseXSpring = useSpring(x, { stiffness: 100, damping: 20 });
   const mouseYSpring = useSpring(y, { stiffness: 100, damping: 20 });
 
@@ -78,6 +80,19 @@ const Hero = () => {
     y.set((e.clientY - rect.top)  / rect.height - 0.5);
   };
   const handleMouseLeave = () => { x.set(0); y.set(0); };
+
+  // ── Image Hover Reveal Mask Animation (Shery.js style)
+  const maskX = useSpring(0, { stiffness: 200, damping: 20 });
+  const maskY = useSpring(0, { stiffness: 200, damping: 20 });
+  const maskSize = useSpring(0, { stiffness: 200, damping: 20 });
+  
+  const handleImageMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    maskX.set(e.clientX - rect.left);
+    maskY.set(e.clientY - rect.top);
+  };
+
+  const maskImageTemplate = useMotionTemplate`radial-gradient(circle at ${maskX}px ${maskY}px, black 0px, black calc(${maskSize}px * 0.4), transparent ${maskSize}px)`;
 
   return (
     <section
@@ -215,16 +230,35 @@ const Hero = () => {
                        dark:shadow-[0_0_40px_rgba(200,255,0,0.25),_0_0_20px_rgba(255,255,255,0.15)]
                        group-hover:dark:shadow-[0_0_60px_rgba(200,255,0,0.4),_0_0_30px_rgba(255,255,255,0.25)]
                        group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-10"
+            onMouseMove={handleImageMouseMove}
+            onMouseEnter={() => maskSize.set(200)}
+            onMouseLeave={() => maskSize.set(0)}
           >
+            {/* Base Image (Darker / Grayscale) */}
             <img
               src="https://res.cloudinary.com/qpxxnswd/image/upload/v1786433302/techugrow/nyhu86z23ho6skxvz1rd.jpg"
               alt="Huzaif Sheikh"
               className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
                          group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
             />
+
+            {/* Revealed Second Image (Follows cursor on hover) */}
+            <motion.div
+              className="absolute inset-0 z-10 pointer-events-none transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+              style={{
+                backgroundImage: `url(${secondImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                WebkitMaskImage: maskImageTemplate,
+                maskImage: maskImageTemplate,
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+              }}
+            />
+
             {/* Cinematic dark vignette */}
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-20 pointer-events-none"
               style={{
                 background: 'radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.6) 100%)',
               }}
