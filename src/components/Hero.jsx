@@ -2,8 +2,6 @@ import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import secondImage from '../assets/huzaif123.jpg';
 import profileImage from '../assets/huzaif_profile.png';
-import { Link } from 'react-router-dom';
-import { TypeAnimation } from 'react-type-animation';
 import { HiOutlineMail } from 'react-icons/hi';
 import {
   SiReact, SiFirebase, SiMongodb,
