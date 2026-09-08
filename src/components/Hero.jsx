@@ -92,7 +92,9 @@ const Hero = () => {
     maskY.set(e.clientY - rect.top);
   };
 
-  const maskImageTemplate = useMotionTemplate`radial-gradient(circle at ${maskX}px ${maskY}px, black 0px, black calc(${maskSize}px * 0.4), transparent ${maskSize}px)`;
+  const blobMaskUrl = "url(\"data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M42.7,-73.4C55.9,-65.4,67.6,-53.4,75.9,-39.3C84.1,-25.2,88.9,-9,88.3,7.2C87.6,23.4,81.4,39.6,71.2,52.4C60.9,65.2,46.6,74.5,30.8,80.1C15,85.6,-2.3,87.4,-19.1,83.8C-35.9,80.3,-52.2,71.3,-64.1,58.5C-76,45.8,-83.5,29.3,-86.3,12C-89.1,-5.3,-87.3,-23.4,-79.6,-38.4C-71.9,-53.4,-58.3,-65.3,-43.3,-72.6C-28.3,-79.9,-14.1,-82.6,0.9,-84C15.9,-85.4,31.8,-85.4,42.7,-73.4Z' transform='translate(100 100)' /%3E%3C/svg%3E\")";
+  const maskPositionTemplate = useMotionTemplate`calc(${maskX}px - ${maskSize}px / 2) calc(${maskY}px - ${maskSize}px / 2)`;
+  const maskSizeTemplate = useMotionTemplate`${maskSize}px ${maskSize}px`;
 
   return (
     <section
@@ -249,10 +251,14 @@ const Hero = () => {
                 backgroundImage: `url(${secondImage})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                WebkitMaskImage: maskImageTemplate,
-                maskImage: maskImageTemplate,
+                WebkitMaskImage: blobMaskUrl,
+                maskImage: blobMaskUrl,
                 WebkitMaskRepeat: 'no-repeat',
                 maskRepeat: 'no-repeat',
+                WebkitMaskPosition: maskPositionTemplate,
+                maskPosition: maskPositionTemplate,
+                WebkitMaskSize: maskSizeTemplate,
+                maskSize: maskSizeTemplate,
               }}
             />
 
