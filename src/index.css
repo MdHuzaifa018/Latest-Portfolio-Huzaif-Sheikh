@@ -424,20 +424,23 @@ html.lenis, html.lenis-smooth { height: auto; }
 ========================= */
 .gradient-card-hover {
   position: relative;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.gradient-card-hover *:not(.no-invert):not(.no-invert *) {
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .gradient-card-hover:hover {
-  transform: translateY(-5px) scale(1.01) !important;
+  transform: translateY(-6px) scale(1.01) !important;
   border-color: var(--accent-border) !important;
   background-color: var(--accent) !important;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--accent-border), 0 10px 20px -10px var(--accent-muted) !important;
+  box-shadow: 0 24px 48px -15px rgba(0, 0, 0, 0.15), 0 0 0 1px var(--accent-border), 0 12px 24px -10px var(--accent-muted) !important;
 }
 .gradient-card-hover:hover *:not(.no-invert):not(.no-invert *) {
   color: var(--accent-fg) !important;
   border-color: var(--accent-fg) !important;
 }
 .dark .gradient-card-hover:hover {
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--accent-border), 0 10px 20px -10px var(--accent-muted) !important;
+  box-shadow: 0 24px 48px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--accent-border), 0 12px 24px -10px var(--accent-muted) !important;
 }
 
 /* =========================
