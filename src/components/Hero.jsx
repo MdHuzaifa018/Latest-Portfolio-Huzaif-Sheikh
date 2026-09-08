@@ -163,8 +163,10 @@ const Hero = () => {
               backgroundColor: 'var(--card-bg)',
             }}
             className="relative w-56 h-56 md:w-72 md:h-72 rounded-[3rem] overflow-hidden
-                       shadow-2xl transition-all duration-700
-                       group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-10"
+                       shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-all duration-700
+                       dark:shadow-[0_0_40px_rgba(200,255,0,0.25),_0_0_20px_rgba(255,255,255,0.15)]
+                       group-hover:dark:shadow-[0_0_60px_rgba(200,255,0,0.4),_0_0_30px_rgba(255,255,255,0.25)]
+                       group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-10"
           >
             <img
               src="https://res.cloudinary.com/qpxxnswd/image/upload/v1786433302/techugrow/nyhu86z23ho6skxvz1rd.jpg"
