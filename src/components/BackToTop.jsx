@@ -38,7 +38,10 @@ const BackToTop = () => {
           whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-24 right-6 z-40 w-12 h-12 rounded-full bg-white dark:bg-[#111111] text-slate-900 dark:text-white border border-black/10 dark:border-white/10 shadow-2xl backdrop-blur-xl flex items-center justify-center cursor-pointer transition-colors hover:border-blue-500 text-sm"
+          className="fixed bottom-24 right-6 z-40 w-12 h-12 rounded-full border shadow-lg backdrop-blur-xl flex items-center justify-center cursor-pointer transition-all text-sm"
+          style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--card-border)', color: 'var(--text-primary)' }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)'; }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--card-border)'; e.currentTarget.style.color = 'var(--text-primary)'; }}
           aria-label="Back to top"
           title="Scroll back to top"
         >

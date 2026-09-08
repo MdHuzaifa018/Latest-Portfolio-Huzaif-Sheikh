@@ -68,7 +68,7 @@ const Hero = () => {
         }}
       />
 
-      {/* ── ORBIT RINGS ── */}
+      {/* ── ORBIT RINGS — neutral, barely visible ── */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
@@ -76,7 +76,7 @@ const Hero = () => {
         style={{
           width: '70vw', height: '70vw', maxWidth: 600, maxHeight: 600,
           translateX: '-50%', translateY: '-50%',
-          border: '1px solid rgba(99,102,241,0.08)', borderRadius: '50%',
+          border: '1px solid rgba(255,255,255,0.05)', borderRadius: '50%',
         }}
       />
       <motion.div
@@ -86,7 +86,7 @@ const Hero = () => {
         style={{
           width: '90vw', height: '90vw', maxWidth: 800, maxHeight: 800,
           translateX: '-50%', translateY: '-50%',
-          border: '1px solid rgba(45,212,191,0.05)', borderRadius: '50%',
+          border: '1px solid rgba(255,255,255,0.03)', borderRadius: '50%',
         }}
       />
 
@@ -100,10 +100,8 @@ const Hero = () => {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 4.5, repeat: Infinity, ease: 'linear' }}
-          className="absolute w-56 h-56 md:w-72 md:h-72 rounded-[3rem] z-0 opacity-90"
-          style={{
-            background: 'linear-gradient(135deg, #2563eb 0%, #06b6d4 100%)', // Blue -> Cyan
-          }}
+          className="absolute w-56 h-56 md:w-72 md:h-72 rounded-[3rem] z-0 opacity-80"
+          style={{ background: 'var(--accent)' }}
         />
 
         {/* Orbit icons */}
@@ -144,21 +142,17 @@ const Hero = () => {
           style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
           className="relative group cursor-pointer z-10"
         >
-          {/* Conic spinning border (dark mode) */}
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-            className="absolute -inset-[3px] rounded-[3.2rem] opacity-0 dark:opacity-60 pointer-events-none"
-            style={{
-              background: 'conic-gradient(from 0deg, #6366f1, #818cf8, #2dd4bf, #6366f1)',
-            }}
+          {/* Accent border — solid single-color, no conic rainbow */}
+          <div
+            className="absolute -inset-[2px] rounded-[3.2rem] opacity-0 dark:opacity-100 pointer-events-none"
+            style={{ backgroundColor: 'var(--accent)' }}
           />
 
           {/* Pulsing aura */}
           <motion.div
-            animate={{ scale: [1, 1.08, 1], opacity: [0.08, 0.22, 0.08] }}
+            animate={{ scale: [1, 1.06, 1], opacity: [0.06, 0.18, 0.06] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute inset-0 rounded-[2.5rem] blur-lg hidden dark:block pointer-events-none"
+            className="absolute inset-0 rounded-[2.5rem] blur-xl hidden dark:block pointer-events-none"
             style={{ backgroundColor: 'var(--accent)' }}
           />
 
@@ -171,7 +165,7 @@ const Hero = () => {
             }}
             className="relative w-56 h-56 md:w-72 md:h-72 rounded-[3rem] overflow-hidden
                        border shadow-2xl transition-all duration-500
-                       group-hover:shadow-indigo-500/20 z-10"
+                       group-hover:shadow-violet-500/20 z-10"
           >
             <img
               src="https://res.cloudinary.com/qpxxnswd/image/upload/v1786433302/techugrow/nyhu86z23ho6skxvz1rd.jpg"
@@ -188,10 +182,10 @@ const Hero = () => {
             />
             {/* Scan line shimmer */}
             <motion.div
-              className="absolute inset-x-0 h-[2px]"
+              className="absolute inset-x-0 h-[1.5px]"
               style={{
-                background: 'linear-gradient(90deg, transparent, rgba(99,102,241,0.8), transparent)',
-                opacity: 0.7,
+                background: 'linear-gradient(90deg, transparent, var(--accent), transparent)',
+                opacity: 0.6,
               }}
               animate={{ top: ['0%', '100%'] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: 'linear' }}
@@ -222,7 +216,7 @@ const Hero = () => {
             ))}
           </span>
 
-          {/* Last Name: SHEIKH. */}
+          {/* Last Name: SHEIKH. — single accent color, no rainbow */}
           <span className="inline-flex overflow-hidden py-1 sm:py-2 md:py-3 px-4 -mx-4">
             {"SHEIKH.".split("").map((ch, i) => (
               <motion.span
@@ -230,10 +224,10 @@ const Hero = () => {
                 initial={{ y: "110%", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.04 * (6 + i), duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className={`inline-block italic bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400 ${
+                className={`inline-block ${
                   i === 6 ? "pr-3" : "pr-[0.08em] -mr-[0.08em]"
                 }`}
-                style={{ fontStyle: ch === "." ? "normal" : "italic" }}
+                style={{ color: 'var(--accent)', fontStyle: ch === "." ? "normal" : "italic" }}
               >
                 {ch}
               </motion.span>
@@ -257,9 +251,9 @@ const Hero = () => {
               color: 'var(--text-primary)',
             }}
             whileHover={{
-              boxShadow: '0 0 30px rgba(99,102,241,0.3)',
-              borderColor: 'rgba(99,102,241,0.4)',
-              scale: 1.03,
+              boxShadow: '0 0 24px rgba(200,255,0,0.2)',
+              borderColor: 'var(--accent-border)',
+              scale: 1.02,
             }}
           >
             Full Stack Developer // System_v4
@@ -270,7 +264,7 @@ const Hero = () => {
             className="hidden md:flex items-center gap-2 justify-center rounded-2xl
                        px-6 py-3 backdrop-blur-xl border"
             style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--card-border)' }}
-            whileHover={{ borderColor: 'rgba(99,102,241,0.35)' }}
+            whileHover={{ borderColor: 'var(--accent-border)' }}
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_#22c55e]" />
             <TypeAnimation
@@ -319,19 +313,27 @@ const Hero = () => {
             <Link
               to="/projects"
               className="px-8 py-3.5 rounded-xl font-bold text-sm uppercase tracking-widest
-                         text-white flex items-center gap-2 relative overflow-hidden group bg-gradient-to-r from-blue-600 to-cyan-500 shadow-lg shadow-blue-500/25"
+                         flex items-center gap-2 transition-all hover:-translate-y-0.5 active:translate-y-0"
+              style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-fg)' }}
             >
-              <span className="relative z-10">View Works</span>
-              <motion.span className="relative z-10" animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
+              <span>View Works</span>
+              <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
             </Link>
 
             <Link
               to="/contact"
               className="px-8 py-3.5 rounded-xl font-bold text-sm uppercase tracking-widest
-                         flex items-center gap-2 relative overflow-hidden group backdrop-blur-xl border border-black/5 dark:border-white/10 bg-white dark:bg-[#111111] text-slate-900 dark:text-slate-50 hover:border-blue-500"
+                         flex items-center gap-2 border transition-all hover:-translate-y-0.5 active:translate-y-0"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                borderColor: 'var(--card-border)',
+                color: 'var(--text-primary)',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--card-border)'; }}
             >
-              <span className="relative z-10">Get In Touch</span>
-              <span className="relative z-10 text-base"><HiOutlineMail /></span>
+              <span>Get In Touch</span>
+              <span className="text-base"><HiOutlineMail /></span>
             </Link>
           </motion.div>
         </motion.div>

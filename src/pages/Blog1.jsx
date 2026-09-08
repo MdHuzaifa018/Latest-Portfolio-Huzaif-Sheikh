@@ -16,7 +16,7 @@ const Blog1 = () => {
       
       {/* Scroll Progress Bar */}
       <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 origin-left z-50" 
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r  origin-left z-50" 
         style={{ scaleX }} 
       />
 
@@ -24,7 +24,7 @@ const Blog1 = () => {
         
         {/* Navigation Top Bar */}
         <div className="flex justify-between items-center py-4 border-b border-black/5 dark:border-white/10">
-          <Link to="/blog" className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest font-bold text-blue-500 hover:text-cyan-400 transition-colors">
+          <Link to="/blog" className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest font-bold accent hover:text-fuchsia-400 transition-colors">
             <FaArrowLeft /> Back to Articles
           </Link>
           <span className="font-mono text-xs text-slate-500">Archive_Entry_01</span>
@@ -32,16 +32,16 @@ const Blog1 = () => {
 
         {/* Article Header */}
         <header className="flex flex-col gap-6 text-center items-center">
-          <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-blue-500/10 text-blue-500 border border-blue-500/20">
+          <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-violet-500/10 accent border border-violet-500/20">
             • Career & Engineering
           </span>
 
           <h1 className="text-4xl md:text-6xl font-black italic uppercase leading-tight tracking-tight text-slate-900 dark:text-slate-50">
-            Why Every Developer Should Work on <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Open Source</span>
+            Why Every Developer Should Work on <span style={{ color: 'var(--accent)' }}>Open Source</span>
           </h1>
 
           <div className="flex items-center gap-6 font-mono text-xs text-slate-500">
-            <span className="flex items-center gap-1.5"><FaClock className="text-blue-500" /> 5 Min Read</span>
+            <span className="flex items-center gap-1.5"><FaClock className="text-violet-500" /> 5 Min Read</span>
             <span>•</span>
             <span>Published 13 Feb, 2025</span>
           </div>
@@ -59,7 +59,7 @@ const Blog1 = () => {
         {/* Article Body Content */}
         <article className="flex flex-col gap-8 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
           
-          <div className="p-8 rounded-3xl bg-blue-500/5 border border-blue-500/20 text-slate-900 dark:text-slate-100 font-medium italic text-xl md:text-2xl leading-snug">
+          <div className="p-8 rounded-3xl bg-violet-500/5 border border-violet-500/20 text-slate-900 dark:text-slate-100 font-medium italic text-xl md:text-2xl leading-snug">
             "In a world of proprietary walls, open collaboration is the ultimate accelerator for software engineering growth."
           </div>
 
@@ -83,7 +83,7 @@ const Blog1 = () => {
               "Building public proof of competence on GitHub"
             ].map((point, idx) => (
               <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-sm">
-                <FaCheckCircle className="text-blue-500 text-lg shrink-0" />
+                <FaCheckCircle className="text-violet-500 text-lg shrink-0" />
                 <span className="font-bold text-sm text-slate-800 dark:text-slate-200">{point}</span>
               </div>
             ))}
@@ -98,7 +98,7 @@ const Blog1 = () => {
           </p>
 
           {/* Article Footer CTA */}
-          <div className="p-8 md:p-12 rounded-[2.5rem] bg-gradient-to-r from-blue-600 to-cyan-500 text-white flex flex-col items-center text-center gap-6 mt-8 shadow-2xl">
+          <div className="p-8 md:p-12 rounded-[2.5rem] accent-bg via-purple-600 to-fuchsia-600 text-white flex flex-col items-center text-center gap-6 mt-8 shadow-2xl shadow-violet-500/25">
             <h3 className="text-3xl font-black italic uppercase">Ready to start contributing?</h3>
             <p className="text-sm opacity-90 max-w-lg">
               Explore open-source repositories on GitHub and make your first pull request today.

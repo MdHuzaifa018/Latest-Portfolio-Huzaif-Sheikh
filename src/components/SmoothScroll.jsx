@@ -52,8 +52,8 @@ const SmoothScroll = ({ children }) => {
         className="fixed top-0 left-0 right-0 h-[2px] z-[9997] origin-left"
         style={{
           scaleX,
-          background: 'linear-gradient(to right, #6366f1, #818cf8, #2dd4bf)',
-          boxShadow: '0 0 8px rgba(99,102,241,0.8)',
+          backgroundColor: 'var(--accent)',
+          boxShadow: '0 0 8px var(--accent)',
         }}
       />
       {children}

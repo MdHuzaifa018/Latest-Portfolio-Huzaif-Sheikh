@@ -137,11 +137,11 @@ const Projects = () => {
         {/* 1. Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="flex flex-col gap-4">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.3em] text-blue-500">
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.3em] accent">
               / SELECTED_WORKS
             </span>
             <h1 className="text-4xl md:text-6xl font-black italic uppercase text-slate-900 dark:text-slate-50 transition-colors duration-500">
-              Selected <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Projects</span>
+              Selected <span style={{ color: 'var(--accent)' }}>Projects</span>
             </h1>
             <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-xl transition-colors duration-500">
               Production-ready web applications built with modern frontend frameworks, backend architecture, and clean UI engineering.
@@ -156,7 +156,10 @@ const Projects = () => {
               placeholder="Search projects or tech..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 rounded-2xl bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 text-sm font-medium outline-none focus:border-blue-500 text-slate-900 dark:text-slate-100 transition-all shadow-md"
+              className="w-full pl-11 pr-4 py-3 rounded-2xl border text-sm font-medium outline-none transition-all shadow-md"
+              style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--card-border)', color: 'var(--text-primary)' }}
+              onFocus={e => e.currentTarget.style.borderColor = 'var(--accent)'}
+              onBlur={e => e.currentTarget.style.borderColor = 'var(--card-border)'}
             />
           </div>
         </div>
@@ -170,7 +173,7 @@ const Projects = () => {
             className="p-8 md:p-12 rounded-[2.5rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-2xl relative overflow-hidden group grid lg:grid-cols-12 gap-8 items-center"
           >
             {/* Background Glow */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none" style={{ backgroundColor: 'var(--accent)', opacity: 0.05 }} />
 
             {/* Left Image Preview */}
             <div className="lg:col-span-7 relative rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-xl group">
@@ -192,7 +195,7 @@ const Projects = () => {
             <div className="lg:col-span-5 flex flex-col justify-between gap-6 relative z-10">
               <div className="flex flex-col gap-4">
                 <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-blue-500/10 text-blue-500 border border-blue-500/20">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider border" style={{ backgroundColor: 'var(--accent-muted)', color: 'var(--accent)', borderColor: 'var(--accent-border)' }}>
                     ★ Featured Project
                   </span>
                   <span className="text-xs font-mono text-slate-400">• {featuredProject.category}</span>
@@ -223,7 +226,8 @@ const Projects = () => {
                     href={featuredProject.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/20 hover:scale-105 transition-transform"
+                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs hover:scale-105 transition-transform"
+                    style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-fg)' }}
                   >
                     Live Demo <FaExternalLinkAlt />
                   </a>
@@ -232,7 +236,7 @@ const Projects = () => {
                   href={featuredProject.repo || "https://github.com/MdHuzaifa018"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs bg-slate-100 dark:bg-[#1a1a1a] text-slate-900 dark:text-white border border-black/5 dark:border-white/10 hover:border-blue-500 hover:scale-105 transition-transform"
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-widest text-xs bg-slate-100 dark:bg-[#1a1a1a] text-slate-900 dark:text-white border border-black/5 dark:border-white/10 hover:border-[var(--accent)] hover:scale-105 transition-transform"
                 >
                   GitHub Code <FaGithub />
                 </a>
@@ -253,9 +257,13 @@ const Projects = () => {
                 onClick={() => setActiveFilter(filter)}
                 className={`px-5 py-2.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 ${
                   activeFilter === filter
-                    ? "bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-lg shadow-blue-500/30"
-                    : "bg-white dark:bg-[#111111] text-slate-600 dark:text-slate-400 border border-black/5 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-[#1a1a1a]"
+                    ? ""
+                    : "border"
                 }`}
+                style={activeFilter === filter
+                  ? { backgroundColor: 'var(--accent)', color: 'var(--accent-fg)' }
+                  : { backgroundColor: 'var(--card-bg)', color: 'var(--text-secondary)', borderColor: 'var(--card-border)' }
+                }
               >
                 {filter}
               </button>
@@ -303,7 +311,7 @@ const Projects = () => {
                 {/* Content */}
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-blue-500/10 text-blue-500">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-violet-500/10 accent">
                       • {project.category}
                     </span>
                     <span className="text-xs font-mono text-slate-400">{project.metrics}</span>
@@ -333,7 +341,7 @@ const Projects = () => {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold uppercase tracking-widest text-xs bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-md hover:scale-[1.02] transition-transform"
+                      className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold uppercase tracking-widest text-xs  hover:scale-[1.02] transition-transform"
                     >
                       Live Demo <FaExternalLinkAlt size={12} />
                     </a>
@@ -347,7 +355,7 @@ const Projects = () => {
                     href={project.repo || "https://github.com/MdHuzaifa018"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold uppercase tracking-widest text-xs bg-slate-100 dark:bg-[#1a1a1a] text-slate-900 dark:text-white border border-black/5 dark:border-white/10 hover:border-blue-500 hover:scale-[1.02] transition-transform"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold uppercase tracking-widest text-xs bg-slate-100 dark:bg-[#1a1a1a] text-slate-900 dark:text-white border border-black/5 dark:border-white/10 hover:border-[var(--accent)] hover:scale-[1.02] transition-transform"
                   >
                     GitHub <FaGithub size={14} />
                   </a>
@@ -362,7 +370,7 @@ const Projects = () => {
         <div className="p-8 md:p-12 rounded-[2.5rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div className="flex flex-col gap-2">
             <h3 className="text-2xl md:text-3xl font-black italic uppercase text-slate-900 dark:text-slate-50">
-              Want to see more <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Open Source Code?</span>
+              Want to see more <span style={{ color: 'var(--accent)' }}>Open Source Code?</span>
             </h3>
             <p className="text-sm text-slate-600 dark:text-slate-400">
               Check out my GitHub profile for open-source contributions, repositories, and experimental projects.

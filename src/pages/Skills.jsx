@@ -60,10 +60,10 @@ const Skills = () => {
       skills: [
         { name: "Problem-Solving", icon: <FaLightbulb className="text-amber-500" />, percentage: 95 },
         { name: "Leadership", icon: <FaProjectDiagram className="text-purple-500" />, percentage: 85 },
-        { name: "Time Management", icon: <FaClock className="text-blue-500" />, percentage: 90 },
+        { name: "Time Management", icon: <FaClock className="accent" />, percentage: 90 },
         { name: "Collaboration", icon: <FaUsers className="text-green-500" />, percentage: 95 },
       ]
-    }
+    },
   ];
 
   const highlights = [
@@ -87,7 +87,7 @@ const Skills = () => {
     { name: "C", icon: <SiC className="text-[#A8B9CC]" /> },
     { name: "GIT", icon: <FaGitAlt className="text-[#F05032]" /> },
     { name: "GITHUB", icon: <FaGithub className="text-slate-900 dark:text-white" /> },
-    { name: "MARKDOWN", icon: <SiMarkdown className="text-blue-400" /> },
+    { name: "MARKDOWN", icon: <SiMarkdown className="accent" /> },
     { name: "VS CODE", icon: <FaLaptopCode className="text-[#007ACC]" /> },
     { name: "HTML5", icon: <FaHtml5 className="text-[#E34F26]" /> },
     { name: "CSS3", icon: <FaCss3Alt className="text-[#1572B6]" /> },
@@ -118,17 +118,17 @@ const Skills = () => {
     {
       title: "FRONTEND ENGINE",
       desc: "Architecture-first React & Next.js apps optimized with Vercel & Vite deployment pipelines.",
-      icon: <FaLaptopCode className="text-blue-500 text-2xl" />
+      icon: <FaLaptopCode className="text-violet-500 text-2xl" />
     },
     {
       title: "REAL-TIME BACKENDS",
       desc: "Scalable Node.js, Express & REST APIs with database modeling and authentication.",
-      icon: <FaServer className="text-cyan-500 text-2xl" />
+      icon: <FaServer className="accent text-2xl" />
     },
     {
       title: "CLOUD STRATEGY",
       desc: "Hybrid storage using MongoDB Atlas, SQL & Firebase cloud infrastructure.",
-      icon: <FaDatabase className="text-indigo-500 text-2xl" />
+      icon: <FaDatabase className="text-pink-500 text-2xl" />
     }
   ];
 
@@ -141,11 +141,11 @@ const Skills = () => {
         {/* Left Column: Sticky Header */}
         <div className="lg:w-1/3 flex flex-col gap-8 lg:sticky lg:top-32 h-fit">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 bg-blue-500/10 text-blue-500">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 bg-violet-500/10 accent">
               • Tech Stack
             </span>
             <h1 className="text-5xl md:text-6xl font-black tracking-tight leading-tight mb-6 text-slate-900 dark:text-slate-50 transition-colors duration-500">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Skills &</span> <br className="hidden lg:block"/> Technologies
+              <span style={{ color: 'var(--accent)' }}>Skills &</span> <br className="hidden lg:block"/> Technologies
             </h1>
             <p className="text-base md:text-lg leading-relaxed mb-10 text-slate-600 dark:text-slate-400 transition-colors duration-500">
               I am a passionate MERN Stack Web Developer with a strong foundation in modern web technologies, eager to apply my skills to real-world projects.
@@ -161,7 +161,7 @@ const Skills = () => {
                   transition={{ delay: idx * 0.1 }}
                   className="flex items-center gap-4 p-4 rounded-2xl border transition-all duration-500 bg-white dark:bg-[#111111] border-black/5 dark:border-white/10"
                 >
-                  <FaCheckCircle className="text-blue-500 text-lg" />
+                  <FaCheckCircle className="text-violet-500 text-lg" />
                   <span className="font-bold text-sm text-slate-900 dark:text-slate-50 transition-colors duration-500">{item}</span>
                 </motion.div>
               ))}
@@ -183,12 +183,12 @@ const Skills = () => {
               {/* Category Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-inner bg-blue-500/10 text-blue-500">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-inner ">
                     {category.icon}
                   </div>
                   <h3 className="text-2xl font-black text-slate-900 dark:text-slate-50 transition-colors duration-500">{category.title}</h3>
                 </div>
-                <span className="inline-block px-3 py-1 text-xs font-bold rounded-full w-fit bg-blue-500/10 text-blue-500">
+                <span className="inline-block px-3 py-1 text-xs font-bold rounded-full w-fit bg-violet-500/10 accent">
                   • {category.badge}
                 </span>
               </div>
@@ -203,7 +203,7 @@ const Skills = () => {
                         <span className="text-lg p-2 rounded-lg bg-slate-50 dark:bg-[#050505] transition-colors duration-500">{skill.icon}</span>
                         <span className="font-bold text-sm text-slate-900 dark:text-slate-50 transition-colors duration-500">{skill.name}</span>
                       </div>
-                      <span className="text-xs font-mono font-bold text-blue-500">{skill.percentage}%</span>
+                      <span className="text-xs font-mono font-bold accent">{skill.percentage}%</span>
                     </div>
                     
                     {/* Progress Bar */}
@@ -213,7 +213,7 @@ const Skills = () => {
                         whileInView={{ width: `${skill.percentage}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.2, delay: 0.2 + (skillIdx * 0.1), ease: "easeOut" }}
-                        className="h-full rounded-full bg-gradient-to-r from-blue-600 to-cyan-400"
+                        className="h-full rounded-full bg-gradient-to-r "
                       />
                     </div>
                   </div>
@@ -230,11 +230,11 @@ const Skills = () => {
         
         {/* Header */}
         <div className="text-center flex flex-col items-center gap-2">
-          <span className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-blue-500">
+          <span className="text-xs font-mono font-bold uppercase tracking-[0.4em] accent">
             / DATABASE_STACK_V2
           </span>
           <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tight text-slate-900 dark:text-slate-50">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">DIGITAL ARSENALS</span>
+            <span style={{ color: 'var(--accent)' }}>DIGITAL ARSENALS</span>
           </h2>
         </div>
 
@@ -281,7 +281,7 @@ const Skills = () => {
               transition={{ delay: idx * 0.1 }}
               className="p-8 rounded-3xl bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-4 hover:-translate-y-2 transition-transform duration-300"
             >
-              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center">
+              <div className="w-12 h-12 rounded-2xl bg-violet-500/10 flex items-center justify-center">
                 {card.icon}
               </div>
               <h3 className="font-black text-lg text-slate-900 dark:text-slate-50 uppercase tracking-wide">

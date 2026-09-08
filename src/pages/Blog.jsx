@@ -7,7 +7,7 @@ const blogPosts = [
   { 
     id: "open-source-growth", 
     category: "Career", 
-    icon: <FaRocket className="text-blue-500" />,
+    icon: <FaRocket className="accent" />,
     image: "https://iili.io/f677edF.md.webp", 
     title: "Why Every Developer Should Work on Open Source", 
     desc: "Open source is not just code — it's collaboration, accelerated learning, and building your global engineering reputation.", 
@@ -18,7 +18,7 @@ const blogPosts = [
   { 
     id: "ai-future", 
     category: "AI & Tech", 
-    icon: <FaRobot className="text-cyan-500" />,
+    icon: <FaRobot className="text-fuchsia-400" />,
     image: "https://iili.io/f6Y3Kjs.md.webp", 
     title: "Future of AI in Web Development", 
     desc: "How generative AI, autonomous coding tools, and LLMs are reshaping full-stack web engineering workflows.", 
@@ -29,7 +29,7 @@ const blogPosts = [
   { 
     id: "react-performance", 
     category: "React Architecture", 
-    icon: <FaCode className="text-indigo-500" />,
+    icon: <FaCode className="text-pink-400" />,
     image: "https://iili.io/f6YY5DG.md.webp", 
     title: "React Server Components & Performance Optimization", 
     desc: "A deep dive into RSC, zero-bundle-size components, and optimizing rendering latency in modern web apps.", 
@@ -47,11 +47,11 @@ const Blog = () => {
         {/* 1. Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-black/5 dark:border-white/10 pb-12">
           <div className="flex flex-col gap-4">
-            <span className="text-xs font-mono font-bold uppercase tracking-[0.3em] text-blue-500">
+            <span className="text-xs font-mono font-bold uppercase tracking-[0.3em] accent">
               / TECHNICAL_INSIGHTS
             </span>
             <h1 className="text-4xl md:text-6xl font-black italic uppercase tracking-tight text-slate-900 dark:text-slate-50">
-              Latest <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Articles & Stories</span>
+              Latest <span style={{ color: 'var(--accent)' }}>Articles & Stories</span>
             </h1>
             <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl">
               Thoughts, tutorials, and architectural deep-dives on full-stack development, modern web standards, and software engineering.
@@ -59,7 +59,7 @@ const Blog = () => {
           </div>
 
           <div className="flex items-center gap-3 px-5 py-3 rounded-2xl bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-md text-xs font-mono text-slate-600 dark:text-slate-300">
-            <FaTerminal className="text-blue-500" />
+            <FaTerminal className="accent" />
             <span>System.logs(writing)</span>
           </div>
         </div>
@@ -91,7 +91,7 @@ const Blog = () => {
                 </div>
 
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-slate-300 z-10">
-                  <span className="flex items-center gap-1.5"><FaClock className="text-blue-400" /> {post.readTime}</span>
+                  <span className="flex items-center gap-1.5"><FaClock className="accent" /> {post.readTime}</span>
                   <span>{post.date}</span>
                 </div>
               </div>
@@ -99,7 +99,7 @@ const Blog = () => {
               {/* Content Body */}
               <div className="p-8 flex flex-col justify-between flex-1 gap-6">
                 <div className="flex flex-col gap-3">
-                  <h3 className="text-2xl font-black italic uppercase leading-snug text-slate-900 dark:text-slate-50 group-hover:text-blue-500 transition-colors">
+                  <h3 className="text-2xl font-black italic uppercase leading-snug text-slate-900 dark:text-slate-50 group-hover:text-violet-600 dark:group-hover:accent transition-colors">
                     {post.title}
                   </h3>
 
@@ -120,7 +120,7 @@ const Blog = () => {
 
                   <Link 
                     to={`/blog/${post.id}`}
-                    className="flex items-center justify-between py-3 px-5 rounded-xl font-bold uppercase tracking-widest text-xs bg-slate-100 dark:bg-[#1a1a1a] text-slate-900 dark:text-white border border-black/5 dark:border-white/10 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-cyan-500 group-hover:text-white transition-all duration-300"
+                    className="flex items-center justify-between py-3 px-5 rounded-xl font-bold uppercase tracking-widest text-xs bg-slate-100 dark:bg-[#1a1a1a] text-slate-900 dark:text-white border border-black/5 dark:border-white/10 group-hover:bg-gradient-to-r group-hover:from-violet-600 group-hover:via-purple-600 group-hover:to-fuchsia-600 group-hover:text-white group-hover:shadow-lg group-hover:shadow-violet-500/25 transition-all duration-300"
                   >
                     <span>Read Full Article</span>
                     <FaArrowRight className="group-hover:translate-x-1 transition-transform" />

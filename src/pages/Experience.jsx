@@ -59,7 +59,7 @@ export default function Experience() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-mono font-bold uppercase tracking-[0.3em] text-blue-500"
+            className="text-xs font-mono font-bold uppercase tracking-[0.3em] accent"
           >
             / PROFESSIONAL_ARCHIVE
           </motion.span>
@@ -87,11 +87,11 @@ export default function Experience() {
                   onClick={() => setActiveId(work.id)}
                   className={`flex items-center gap-4 p-5 rounded-2xl text-left font-bold transition-all duration-300 whitespace-nowrap shrink-0 border ${
                     isActive
-                      ? "bg-white dark:bg-[#111111] text-blue-500 border-blue-500 shadow-lg shadow-blue-500/10"
+                      ? "bg-white dark:bg-[#111111] accent border-violet-500 shadow-lg shadow-violet-500/15"
                       : "bg-white/50 dark:bg-[#111111]/50 text-slate-600 dark:text-slate-400 border-black/5 dark:border-white/10 hover:bg-white dark:hover:bg-[#111111]"
                   }`}
                 >
-                  <div className={`p-2.5 rounded-xl ${isActive ? "bg-blue-500 text-white" : "bg-slate-100 dark:bg-[#1a1a1a] text-slate-500"}`}>
+                  <div className={`p-2.5 rounded-xl ${isActive ? "accent-bg text-white" : "bg-slate-100 dark:bg-[#1a1a1a] text-slate-500"}`}>
                     <IconComp size={18} />
                   </div>
                   <div>
@@ -118,10 +118,10 @@ export default function Experience() {
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-black/5 dark:border-white/10">
                     <div>
                       <h3 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-slate-50">
-                        {activeWork.title} <span className="text-blue-500">@ {activeWork.company}</span>
+                        {activeWork.title} <span className="accent">@ {activeWork.company}</span>
                       </h3>
                     </div>
-                    <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-blue-500/10 text-blue-500 shrink-0 w-fit">
+                    <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-violet-500/10 accent border border-violet-500/20 shrink-0 w-fit">
                       {activeWork.yearsActive}
                     </span>
                   </div>
@@ -130,7 +130,7 @@ export default function Experience() {
                   <ul className="flex flex-col gap-4 mb-8">
                     {activeWork.information.map((point, i) => (
                       <li key={i} className="flex items-start gap-3 text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed">
-                        <span className="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0" />
+                        <span className="w-2 h-2 rounded-full accent-bg mt-2 shrink-0" />
                         <span>{point}</span>
                       </li>
                     ))}

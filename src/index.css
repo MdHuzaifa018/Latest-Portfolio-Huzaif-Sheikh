@@ -6,7 +6,7 @@
    THEME CONFIG
 -------------------------------------------------- */
 @theme {
-  --color-brand: #3b82f6;
+  --color-brand: #7C3AED;
   --font-sans: "Inter", system-ui, sans-serif;
 
   /* Floating animation */
@@ -34,6 +34,7 @@
 
 /* --------------------------------------------------
    LIGHT THEME VARIABLES (DEFAULT)
+   Accent: Deep Violet #7C3AED — readable on white
 -------------------------------------------------- */
 :root {
   --background: #ffffff;
@@ -48,16 +49,18 @@
   --text-primary: #0f172a;
   --text-secondary: #64748b;
 
-  --accent: #4f46e5;
-  --accent-2: #06b6d4;
-  --accent-3: #121212c6;
+  /* Single accent — Deep Violet for light mode */
+  --accent: #7C3AED;
+  --accent-fg: #ffffff;       /* text ON accent background */
+  --accent-muted: rgba(124, 58, 237, 0.08);
+  --accent-border: rgba(124, 58, 237, 0.3);
 
   /* Blog Hero Opacity */
   --blog-hero-opacity: 0.15;
 
   /* Navbar Variables */
   --dock-bg: rgba(255, 255, 255, 0.7);
-  --nav-hover-bg: rgba(79, 70, 229, 0.08);
+  --nav-hover-bg: rgba(124, 58, 237, 0.06);
   --nav-shadow: 0 10px 30px rgba(0,0,0,0.04);
   --navbar-blur-border: rgba(0, 0, 0, 0.04);
   --navbar-blur-bg: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
@@ -65,64 +68,49 @@
 
 /* --------------------------------------------------
    DARK THEME VARIABLES
-   -------------------------------------------------- */
+   Accent: Electric Lime #C8FF00 — Awwwards 2024-25 standard
+   Maximum contrast on dark. Zero AI-template feel.
+-------------------------------------------------- */
 .dark {
-  --background: #050505;
-  --foreground: #ffffff;
+  --background: #0A0A0A;
+  --foreground: #F8FAFB;
 
-  --surface: #0b0c10;
-  --muted: #11141b;
+  --surface: #0f0f0f;
+  --muted: #141414;
 
-  --card-bg: #0d1117;
-  --card-border: rgba(255, 255, 255, 0.08);
+  --card-bg: #111111;
+  --card-border: rgba(255, 255, 255, 0.07);
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --text-primary: #F8FAFB;
+  --text-secondary: #888888;
 
-  --accent: #818cf8;
-  --accent-2: #2dd4bf;
+  /* Single accent — Electric Lime for dark mode */
+  --accent: #C8FF00;
+  --accent-fg: #0A0A0A;       /* dark text ON lime background */
+  --accent-muted: rgba(200, 255, 0, 0.08);
+  --accent-border: rgba(200, 255, 0, 0.25);
 
   /* Blog Hero Opacity */
   --blog-hero-opacity: 0.3;
 
   /* Navbar Variables */
-  --dock-bg: rgba(0, 0, 0, 0.4);
-  --nav-hover-bg: rgba(99, 102, 241, 0.1);
-  --nav-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  --navbar-blur-border: rgba(255, 255, 255, 0.06);
-  --navbar-blur-bg: linear-gradient(to bottom, rgba(5,5,5,0.85), rgba(5,5,5,0.6));
+  --dock-bg: rgba(0, 0, 0, 0.5);
+  --nav-hover-bg: rgba(200, 255, 0, 0.06);
+  --nav-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  --navbar-blur-border: rgba(255, 255, 255, 0.05);
+  --navbar-blur-bg: linear-gradient(to bottom, rgba(10,10,10,0.9), rgba(10,10,10,0.7));
 }
 
 /* --------------------------------------------------
-   UTILITY HELPERS (TAILWIND FRIENDLY)
+   UTILITY HELPERS
 -------------------------------------------------- */
-.bg-surface {
-  background-color: var(--surface);
-}
-
-.bg-card {
-  background-color: var(--card-bg);
-}
-
-.border-card {
-  border-color: var(--card-border);
-}
-
-.text-primary {
-  color: var(--text-primary);
-}
-
-.text-secondary {
-  color: var(--text-secondary);
-}
-
-.accent {
-  color: var(--accent);
-}
-
-.accent-bg {
-  background-color: var(--accent);
-}
+.bg-surface  { background-color: var(--surface); }
+.bg-card     { background-color: var(--card-bg); }
+.border-card { border-color: var(--card-border); }
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.accent         { color: var(--accent); }
+.accent-bg      { background-color: var(--accent); }
 
 /* --------------------------------------------------
    BASE STYLES
@@ -139,56 +127,36 @@ body {
    TEXT SELECTION
 -------------------------------------------------- */
 ::selection {
-  background: var(--color-brand);
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--accent-fg);
 }
 
 /* --------------------------------------------------
    SCROLLBAR (THEME AWARE)
 -------------------------------------------------- */
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--background); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #6366f1, #818cf8);
+  background: var(--accent);
   border-radius: 10px;
 }
 
 /* --------------------------------------------------
-   SMOOTH TEXT RENDERING & LENIS INTEGRATION
+   SMOOTH TEXT RENDERING & LENIS
 -------------------------------------------------- */
 html {
   font-feature-settings: "ss01", "ss02", "cv01", "cv11";
   -webkit-font-smoothing: antialiased;
 }
 
-html.lenis, html.lenis-smooth {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
+html.lenis, html.lenis-smooth { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
 
 /* --------------------------------------------------
-   OPTIONAL: REMOVE BLUE TAP HIGHLIGHT (MOBILE)
+   MOBILE TAP HIGHLIGHT
 -------------------------------------------------- */
 * {
   -webkit-tap-highlight-color: transparent;
@@ -196,13 +164,12 @@ html.lenis, html.lenis-smooth {
 }
 
 /* =========================
-   TEXT STROKE (FIXES "WORKS")
+   TEXT STROKE
 ========================= */
 .text-stroke {
   -webkit-text-stroke: 2px var(--accent);
   color: transparent;
 }
-
 .text-stroke-3 {
   -webkit-text-stroke: 3px var(--accent);
   color: transparent;
@@ -214,69 +181,46 @@ html.lenis, html.lenis-smooth {
 .skeleton {
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
 }
-
 .skeleton::after {
   content: "";
   position: absolute;
   inset: 0;
   transform: translateX(-100%);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.15),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
   animation: shimmer 1.4s infinite;
 }
+@keyframes shimmer { 100% { transform: translateX(100%); } }
 
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-
+/* Type animation text */
 .type-text {
   font-family: monospace;
   font-weight: 800;
   font-size: clamp(1rem, 1.5vw, 1.4rem);
-  color: var(--accent-3);
+  color: var(--accent);
   transition: color 0.3s ease;
-}
-
-.dark .type-text {
-  color: cyan;
 }
 
 /* =========================
    PREMIUM GLASSMORPHISM
 ========================= */
 .glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.07);
 }
-
 .dark .glass {
   background: rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
 /* =========================
-   GLOW EFFECTS
+   GLOW EFFECTS — single accent
 ========================= */
-.glow-indigo {
-  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(99, 102, 241, 0.1);
-}
-
-.glow-teal {
-  box-shadow: 0 0 20px rgba(45, 212, 191, 0.3), 0 0 40px rgba(45, 212, 191, 0.1);
-}
-
-.glow-orange {
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3), 0 0 40px rgba(249, 115, 22, 0.1);
+.glow-accent {
+  box-shadow: 0 0 20px rgba(200,255,0,0.2), 0 0 40px rgba(200,255,0,0.08);
 }
 
 /* =========================
@@ -287,36 +231,24 @@ html.lenis, html.lenis-smooth {
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
-
-.btn-ripple:hover {
-  transform: translateY(-2px);
-}
-
-.btn-ripple:active {
-  transform: translateY(0) scale(0.98);
-}
+.btn-ripple:hover { transform: translateY(-2px); }
+.btn-ripple:active { transform: translateY(0) scale(0.98); }
 
 /* =========================
    ANIMATED UNDERLINE
 ========================= */
-.animated-underline {
-  position: relative;
-}
-
+.animated-underline { position: relative; }
 .animated-underline::after {
   content: '';
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 0;
-  height: 2px;
+  height: 1.5px;
   background: var(--accent);
   transition: width 0.3s ease;
 }
-
-.animated-underline:hover::after {
-  width: 100%;
-}
+.animated-underline:hover::after { width: 100%; }
 
 /* =========================
    SECTION REVEAL
@@ -326,7 +258,6 @@ html.lenis, html.lenis-smooth {
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
 .reveal-on-scroll.revealed {
   opacity: 1;
   transform: translateY(0);
@@ -339,14 +270,13 @@ html.lenis, html.lenis-smooth {
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
   will-change: transform;
 }
-
 .card-lift:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
 }
 
 /* =========================
-   GPU ACCELERATED BASE
+   GPU ACCELERATED
 ========================= */
 .gpu-accelerated {
   transform: translateZ(0);
@@ -355,100 +285,71 @@ html.lenis, html.lenis-smooth {
 }
 
 /* =========================
-   CURSOR — additive overlay only (default cursor preserved)
-   CustomCursor.jsx adds a glow ring WITHOUT hiding native pointer
-========================= */
-/* No cursor:none here — the native cursor is always shown */
-
-/* =========================
-   FOCUS VISIBLE STYLES
+   FOCUS VISIBLE
 ========================= */
 :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: 1.5px solid var(--accent);
+  outline-offset: 3px;
   border-radius: 4px;
 }
 
 /* =========================
-   HERO ANIMATION KEYFRAMES
+   HERO KEYFRAMES
 ========================= */
 @keyframes aurora-pulse {
-  0%, 100% { opacity: 0.05; transform: scale(1); }
-  50% { opacity: 0.12; transform: scale(1.1); }
+  0%, 100% { opacity: 0.04; transform: scale(1); }
+  50% { opacity: 0.10; transform: scale(1.08); }
 }
-
 @keyframes float-gentle {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   33% { transform: translateY(-12px) rotate(2deg); }
   66% { transform: translateY(-6px) rotate(-1deg); }
 }
-
 @keyframes gradient-shift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
-.animate-aurora-pulse {
-  animation: aurora-pulse 4s ease-in-out infinite;
-}
-
-.animate-float-gentle {
-  animation: float-gentle 6s ease-in-out infinite;
-}
-
-.animate-gradient-shift {
-  background-size: 200% 200%;
-  animation: gradient-shift 5s ease infinite;
-}
+.animate-aurora-pulse  { animation: aurora-pulse 4s ease-in-out infinite; }
+.animate-float-gentle  { animation: float-gentle 6s ease-in-out infinite; }
+.animate-gradient-shift { background-size: 200% 200%; animation: gradient-shift 5s ease infinite; }
 
 /* =========================
-   MAGNETIC HOVER EFFECT
+   MAGNETIC HOVER
 ========================= */
-.magnetic {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
+.magnetic { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
 /* =========================
-   SCROLLBAR HIDE UTILITY
+   SCROLLBAR HIDE
 ========================= */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
 
 /* =========================
-   TEXT GRADIENT
+   ACCENT TEXT (single color, no gradient)
 ========================= */
 .text-gradient {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--accent);
 }
 
 /* =========================
-   BORDER GRADIENT
+   BORDER ACCENT LINE
 ========================= */
 .border-gradient {
   position: relative;
 }
-
 .border-gradient::before {
   content: '';
   position: absolute;
   inset: 0;
   padding: 1px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2), transparent);
+  background: var(--accent);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   border-radius: inherit;
   pointer-events: none;
+  opacity: 0.35;
 }
 
 /* =========================
@@ -458,78 +359,74 @@ html.lenis, html.lenis-smooth {
   opacity: 0;
   transform: translateY(20px);
 }
-
 .stagger-children.animated > *:nth-child(1) { animation: fadeUp 0.5s 0.1s ease forwards; }
 .stagger-children.animated > *:nth-child(2) { animation: fadeUp 0.5s 0.2s ease forwards; }
 .stagger-children.animated > *:nth-child(3) { animation: fadeUp 0.5s 0.3s ease forwards; }
 .stagger-children.animated > *:nth-child(4) { animation: fadeUp 0.5s 0.4s ease forwards; }
 .stagger-children.animated > *:nth-child(5) { animation: fadeUp 0.5s 0.5s ease forwards; }
-
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
 /* =========================
-   ANIMATED BACKGROUND STYLES
+   BACKGROUND EFFECTS
+   Minimal, neutral — no AI purple blobs
 ========================= */
-.spotlight-bg {
-  background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, rgba(37,99,235,0.06) 40%, transparent 70%);
-}
-.dark .spotlight-bg {
-  background: radial-gradient(circle, rgba(6,182,212,0.22) 0%, rgba(37,99,235,0.14) 40%, transparent 70%);
-}
 
+/* Subtle dot grid — neutral white */
 .bg-grid-pattern {
   background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(79,70,229,0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(79,70,229,0.08) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
 }
 .dark .bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(6,182,212,0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(6,182,212,0.12) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
 }
 
+/* Spotlight — uses accent color, single radial */
+.spotlight-bg {
+  background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+}
+.dark .spotlight-bg {
+  background: radial-gradient(circle, rgba(200,255,0,0.06) 0%, transparent 70%);
+}
+
+/* Scanline — accent line */
 .scanline-bg {
-  background: linear-gradient(90deg, transparent, rgba(6,182,212,0.4), transparent);
-  box-shadow: 0 0 12px rgba(6,182,212,0.4);
-}
-.dark .scanline-bg {
-  background: linear-gradient(90deg, transparent, rgba(6,182,212,0.6), transparent);
-  box-shadow: 0 0 15px rgba(6,182,212,0.6);
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.5;
 }
 
+/* Ambient blobs — single color, very subtle */
 .aurora-blob-1 {
-  background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, rgba(6,182,212,0.05) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
 }
 .dark .aurora-blob-1 {
-  background: radial-gradient(circle, rgba(37,99,235,0.22) 0%, rgba(6,182,212,0.08) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(200,255,0,0.07) 0%, transparent 70%);
 }
-
 .aurora-blob-2 {
-  background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, rgba(37,99,235,0.04) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(124,58,237,0.06) 0%, transparent 70%);
 }
 .dark .aurora-blob-2 {
-  background: radial-gradient(circle, rgba(6,182,212,0.22) 0%, rgba(37,99,235,0.08) 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(200,255,0,0.04) 0%, transparent 70%);
 }
 
 .bg-overlay-grad {
-  background: radial-gradient(ellipse at top center, rgba(238,242,255,0.7) 0%, var(--background) 80%);
+  background: radial-gradient(ellipse at top center, rgba(245,243,255,0.6) 0%, var(--background) 80%);
 }
 .dark .bg-overlay-grad {
-  background: radial-gradient(ellipse at top center, rgba(15,23,42,0.6) 0%, var(--background) 80%);
+  background: radial-gradient(ellipse at top center, rgba(200,255,0,0.025) 0%, var(--background) 80%);
 }
 
 /* =========================
-   GLOBAL GRADIENT BORDER CARD HOVER
+   CARD HOVER — accent tint
 ========================= */
 .gradient-card-hover {
   position: relative;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, box-shadow 0.4s ease !important;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
-
 .gradient-card-hover:hover {
-  border-color: rgba(6, 182, 212, 0.5) !important;
-  box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.3), 0 0 30px rgba(37, 99, 235, 0.2) !important;
+  border-color: var(--accent-border) !important;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--accent-border) !important;
 }

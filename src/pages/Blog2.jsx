@@ -16,7 +16,7 @@ const Blog2 = () => {
       
       {/* Scroll Progress Bar */}
       <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 origin-left z-50" 
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r  origin-left z-50" 
         style={{ scaleX }} 
       />
 
@@ -24,7 +24,7 @@ const Blog2 = () => {
         
         {/* Navigation Top Bar */}
         <div className="flex justify-between items-center py-4 border-b border-black/5 dark:border-white/10">
-          <Link to="/blog" className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest font-bold text-blue-500 hover:text-cyan-400 transition-colors">
+          <Link to="/blog" className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest font-bold accent hover:text-fuchsia-400 transition-colors">
             <FaArrowLeft /> Back to Articles
           </Link>
           <span className="font-mono text-xs text-slate-500">Archive_Entry_02</span>
@@ -32,16 +32,16 @@ const Blog2 = () => {
 
         {/* Article Header */}
         <header className="flex flex-col gap-6 text-center items-center">
-          <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-500 border border-cyan-500/20">
+          <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-fuchsia-500/10 text-fuchsia-600 dark:text-fuchsia-400 border border-fuchsia-500/20">
             • AI & Artificial Intelligence
           </span>
 
           <h1 className="text-4xl md:text-6xl font-black italic uppercase leading-tight tracking-tight text-slate-900 dark:text-slate-50">
-            Future of AI in <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Web Development</span>
+            Future of AI in <span style={{ color: 'var(--accent)' }}>Web Development</span>
           </h1>
 
           <div className="flex items-center gap-6 font-mono text-xs text-slate-500">
-            <span className="flex items-center gap-1.5"><FaClock className="text-cyan-500" /> 4 Min Read</span>
+            <span className="flex items-center gap-1.5"><FaClock className="accent" /> 4 Min Read</span>
             <span>•</span>
             <span>Published 14 Feb, 2025</span>
           </div>
@@ -59,7 +59,7 @@ const Blog2 = () => {
         {/* Article Body Content */}
         <article className="flex flex-col gap-8 text-base md:text-lg leading-relaxed text-slate-700 dark:text-slate-300">
           
-          <div className="p-8 rounded-3xl bg-cyan-500/5 border border-cyan-500/20 text-slate-900 dark:text-slate-100 font-medium italic text-xl md:text-2xl leading-snug">
+          <div className="p-8 rounded-3xl bg-fuchsia-500/5 border border-fuchsia-500/20 text-slate-900 dark:text-slate-100 font-medium italic text-xl md:text-2xl leading-snug">
             "AI is not replacing full-stack developers; it is empowering them to build 10x faster with higher precision."
           </div>
 
@@ -79,7 +79,7 @@ const Blog2 = () => {
               "Natural Language Database Queries & Indexing"
             ].map((point, idx) => (
               <div key={idx} className="flex items-center gap-3 p-4 rounded-2xl bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-sm">
-                <FaCheckCircle className="text-cyan-500 text-lg shrink-0" />
+                <FaCheckCircle className="accent text-lg shrink-0" />
                 <span className="font-bold text-sm text-slate-800 dark:text-slate-200">{point}</span>
               </div>
             ))}

@@ -38,7 +38,7 @@ const Education = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-mono font-bold uppercase tracking-[0.3em] text-blue-500"
+            className="text-xs font-mono font-bold uppercase tracking-[0.3em] accent"
           >
             / ACADEMIC_TIMELINE
           </motion.span>
@@ -68,13 +68,13 @@ const Education = () => {
                 onClick={() => setExpandedId(isExpanded ? null : edu.id)}
                 className={`p-6 md:p-8 rounded-3xl border cursor-pointer transition-all duration-300 ${
                   isExpanded 
-                    ? "bg-white dark:bg-[#111111] border-blue-500/50 shadow-xl shadow-blue-500/5" 
-                    : "bg-white/80 dark:bg-[#111111]/80 border-black/5 dark:border-white/10 hover:border-blue-500/30"
+                    ? "bg-white dark:bg-[#111111] border-violet-500/50 shadow-xl shadow-violet-500/10" 
+                    : "bg-white/80 dark:bg-[#111111]/80 border-black/5 dark:border-white/10 hover:border-[var(--accent)]/30"
                 }`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl bg-blue-500/10 text-blue-500 shrink-0">
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl bg-violet-500/10 accent border border-violet-500/20 shrink-0">
                       <IconComponent size={24} />
                     </div>
                     <div>
@@ -88,7 +88,7 @@ const Education = () => {
                   </div>
 
                   <div className="flex items-center gap-4 self-end sm:self-center">
-                    <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-slate-100 dark:bg-[#1a1a1a] text-blue-500 border border-black/5 dark:border-white/10">
+                    <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider bg-slate-100 dark:bg-[#1a1a1a] accent border border-black/5 dark:border-white/10">
                       {edu.year}
                     </span>
                     <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
@@ -108,9 +108,9 @@ const Education = () => {
                     >
                       <div className="pt-6 mt-6 border-t border-black/5 dark:border-white/10 text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
                         <p>{edu.details}</p>
-                        <div className="mt-4 flex items-center gap-2 text-xs font-bold text-blue-500">
+                        <div className="mt-4 flex items-center gap-2 text-xs font-bold accent">
                           <span>Status:</span>
-                          <span className="px-2.5 py-0.5 rounded-md bg-blue-500/10">{edu.status}</span>
+                          <span className="px-2.5 py-0.5 rounded-md bg-violet-500/10 border border-violet-500/20">{edu.status}</span>
                         </div>
                       </div>
                     </motion.div>

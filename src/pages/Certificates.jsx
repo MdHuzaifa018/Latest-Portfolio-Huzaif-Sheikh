@@ -90,12 +90,12 @@ const Certifications = () => {
           initial={{ opacity: 0, y: -10 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="font-mono text-[10px] md:text-[12px] uppercase tracking-[0.4em] font-black flex items-center justify-center gap-2 mb-3 text-indigo-500"
+          className="font-mono text-[10px] md:text-[12px] uppercase tracking-[0.4em] font-black flex items-center justify-center gap-2 mb-3 accent"
         >
           <Award size={14} /> / VERIFICATION_NODES
         </motion.span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black italic uppercase tracking-tight text-slate-900 dark:text-slate-50">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Certifications</span> & Honors
+          <span style={{ color: 'var(--accent)' }}>Certifications</span> & Honors
         </h2>
         <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-lg">
           Accredited credentials and verified diplomas in software engineering and cloud fundamentals.
@@ -144,14 +144,14 @@ const Certifications = () => {
 
                   <div className="flex justify-between items-center px-2 pt-1">
                     <div className="flex flex-col">
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-indigo-500 font-bold mb-0.5">CERTIFICATE 0{c.id}</span>
+                      <span className="font-mono text-[9px] uppercase tracking-widest accent font-bold mb-0.5">CERTIFICATE 0{c.id}</span>
                       <span className="font-black italic uppercase text-sm md:text-lg tracking-tight text-slate-900 dark:text-slate-100">{c.title}</span>
                     </div>
                     <div className="flex gap-2 md:gap-3">
                       <motion.a 
                         whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
                         href={c.pdf} target="_blank" rel="noopener noreferrer"
-                        className="w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition-colors"
+                        className="w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center accent-bg hover:from-violet-500 hover:to-purple-500 text-white shadow-lg shadow-violet-600/30 transition-all"
                         title="View Certificate"
                       >
                         <FaEye size={14} />
@@ -159,7 +159,7 @@ const Certifications = () => {
                       <motion.a 
                         whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
                         href={c.pdf} download 
-                        className="w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center bg-cyan-600 hover:bg-cyan-500 text-white shadow-lg shadow-cyan-600/30 transition-colors"
+                        className="w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center bg-gradient-to-r from-fuchsia-600 to-pink-600 hover:from-fuchsia-500 hover:to-pink-500 text-white shadow-lg shadow-fuchsia-600/30 transition-all"
                         title="Download PDF"
                       >
                         <FaDownload size={14} />
@@ -179,19 +179,19 @@ const Certifications = () => {
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
           onClick={() => rotate(1)} 
-          className="w-12 h-12 md:w-14 md:h-14 rounded-2xl border border-black/10 dark:border-white/10 flex items-center justify-center bg-white/70 dark:bg-[#111111]/70 backdrop-blur-xl shadow-md text-slate-900 dark:text-slate-100 hover:border-indigo-500/40 transition-colors"
+          className="w-12 h-12 md:w-14 md:h-14 rounded-2xl border border-black/10 dark:border-white/10 flex items-center justify-center bg-white/70 dark:bg-[#111111]/70 backdrop-blur-xl shadow-md text-slate-900 dark:text-slate-100 hover:border-[var(--accent-border)] transition-colors"
           aria-label="Previous Certificate"
         >
           <FaArrowLeft size={14} />
         </motion.button>
         
         <div className="flex flex-col items-center">
-          <span className="font-mono text-xl md:text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400 leading-none">
+          <span style={{ color: 'var(--accent)' }}>
             {String(activeIndex + 1).padStart(2, "0")} <span className="text-xs text-slate-400 font-normal">/ {String(certs.length).padStart(2, "0")}</span>
           </span>
           <div className="w-16 h-1.5 bg-slate-200 dark:bg-zinc-800 rounded-full mt-2.5 overflow-hidden">
              <motion.div 
-               className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 rounded-full"
+               className="h-full bg-gradient-to-r  rounded-full"
                animate={{ width: `${((activeIndex + 1) / certs.length) * 100}%` }}
                transition={{ ease: "easeOut", duration: 0.3 }}
              />
@@ -202,7 +202,7 @@ const Certifications = () => {
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.92 }}
           onClick={() => rotate(-1)} 
-          className="w-12 h-12 md:w-14 md:h-14 rounded-2xl border border-black/10 dark:border-white/10 flex items-center justify-center bg-white/70 dark:bg-[#111111]/70 backdrop-blur-xl shadow-md text-slate-900 dark:text-slate-100 hover:border-indigo-500/40 transition-colors"
+          className="w-12 h-12 md:w-14 md:h-14 rounded-2xl border border-black/10 dark:border-white/10 flex items-center justify-center bg-white/70 dark:bg-[#111111]/70 backdrop-blur-xl shadow-md text-slate-900 dark:text-slate-100 hover:border-[var(--accent-border)] transition-colors"
           aria-label="Next Certificate"
         >
           <FaArrowRight size={14} />

@@ -51,11 +51,11 @@ const Footer = () => {
         animate={{ scale: [1, 1.1, 1], opacity: [0.03, 0.06, 0.03] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] max-w-[800px] max-h-[800px] rounded-full blur-[150px] pointer-events-none"
-        style={{ backgroundColor: "#6366f1" }}
+        style={{ backgroundColor: "var(--accent)", opacity: 0.04 }}
       />
 
-      {/* Top gradient divider */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none" style={{ background: "linear-gradient(90deg, transparent, rgba(99,102,241,0.4), rgba(45,212,191,0.3), transparent)" }} />
+      {/* Top accent divider — single color hairline */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] pointer-events-none" style={{ background: "linear-gradient(90deg, transparent, var(--accent), transparent)", opacity: 0.4 }} />
 
       {/* Large Background Watermark */}
       <div className="absolute bottom-[-2vw] left-1/2 -translate-x-1/2 pointer-events-none select-none w-full text-center">
@@ -70,14 +70,14 @@ const Footer = () => {
             <div className="flex items-center gap-4 mb-8">
               <motion.div
                 className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-black italic shadow-2xl"
-                style={{ backgroundColor: "#6366f1" }}
-                animate={{ boxShadow: ["0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(99,102,241,0.3)", "0 20px 40px rgba(0,0,0,0.4), 0 0 35px rgba(99,102,241,0.5)", "0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(99,102,241,0.3)"] }}
+                style={{ background: "linear-gradient(135deg, #8b5cf6, #d946ef)" }}
+                animate={{ boxShadow: ["0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(139,92,246,0.35)", "0 20px 40px rgba(0,0,0,0.4), 0 0 35px rgba(217,70,239,0.5)", "0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(139,92,246,0.35)"] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 whileHover={{ scale: 1.1, rotate: 10 }}
               >
                 H
               </motion.div>
-              <h2 className="text-4xl font-[1000] italic uppercase tracking-tighter">Sheikh<span style={{ color: "#6366f1" }}>.</span></h2>
+              <h2 className="text-4xl font-[1000] italic uppercase tracking-tighter">Sheikh<span style={{ color: "#8b5cf6" }}>.</span></h2>
             </div>
             <p className="text-sm max-w-sm leading-relaxed font-mono uppercase tracking-[0.1em] font-bold" style={{ color: "var(--text-secondary)" }}>
               Engineering high-performance digital architectures. Bihar_IN // Global_Ops.
@@ -86,12 +86,12 @@ const Footer = () => {
 
           {/* Column 2: Navigation Map */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.1 }}>
-            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8" style={{ color: "#6366f1" }}>/ Navigation</h4>
+            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8" style={{ color: "#8b5cf6" }}>/ Navigation</h4>
             <ul className="space-y-4 font-mono text-[11px] uppercase tracking-widest">
               {navItems.map((item) => (
                 <li key={item.id}>
-                  <motion.button onClick={() => scrollToSection(item.id)} className="flex items-center gap-2 group font-bold" style={{ color: "var(--text-secondary)" }} whileHover={{ x: 8, color: "#6366f1" }} transition={{ type: "spring", stiffness: 400 }}>
-                    <motion.span className="h-[2px]" style={{ backgroundColor: "#6366f1" }} initial={{ width: 0 }} whileHover={{ width: 16 }} transition={{ duration: 0.2 }} />
+                  <motion.button onClick={() => scrollToSection(item.id)} className="flex items-center gap-2 group font-bold" style={{ color: "var(--text-secondary)" }} whileHover={{ x: 8, color: "#8b5cf6" }} transition={{ type: "spring", stiffness: 400 }}>
+                    <motion.span className="h-[2px]" style={{ backgroundColor: "#8b5cf6" }} initial={{ width: 0 }} whileHover={{ width: 16 }} transition={{ duration: 0.2 }} />
                     {item.label}
                   </motion.button>
                 </li>
@@ -101,7 +101,7 @@ const Footer = () => {
 
           {/* Column 3: Social Bridge */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }}>
-            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8" style={{ color: "#6366f1" }}>/ Social_Bridge</h4>
+            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8" style={{ color: "#8b5cf6" }}>/ Social_Bridge</h4>
             <div className="grid grid-cols-4 gap-y-6 gap-x-2">
               {socialLinks.map((social, i) => (
                 <motion.a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="text-2xl relative group" style={{ color: "var(--text-secondary)" }} whileHover={{ y: -6, scale: 1.25, color: social.color, filter: `drop-shadow(0 0 8px ${social.color}60)` }} whileTap={{ scale: 0.9 }} aria-label={social.label} title={social.label}>
@@ -121,7 +121,7 @@ const Footer = () => {
           </div>
 
           {/* Status Well */}
-          <motion.div className="px-6 py-3 rounded-full border backdrop-blur-xl flex items-center gap-3" style={{ backgroundColor: "var(--muted)", borderColor: "var(--card-border)" }} whileHover={{ borderColor: 'rgba(99,102,241,0.3)', boxShadow: '0 0 20px rgba(99,102,241,0.1)' }}>
+          <motion.div className="px-6 py-3 rounded-full border backdrop-blur-xl flex items-center gap-3" style={{ backgroundColor: "var(--muted)", borderColor: "var(--card-border)" }} whileHover={{ borderColor: 'rgba(139,92,246,0.4)', boxShadow: '0 0 20px rgba(139,92,246,0.15)' }}>
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]" />
             <span className="text-[10px] font-bold font-mono uppercase tracking-[0.2em]" style={{ color: "var(--text-secondary)" }}>
               Live_Node: {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })} IST

@@ -75,25 +75,25 @@ const Home = () => {
       <section className="py-12 border-y border-black/5 dark:border-white/10 bg-white/50 dark:bg-[#111111]/50 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-black/5 dark:divide-white/10">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col items-center gap-1">
-            <h3 className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">
+            <h3 className="text-4xl font-black" style={{ color: 'var(--accent)' }}>
               <AnimatedCounter to={15} suffix="+" />
             </h3>
             <p className="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">Projects Built</p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="flex flex-col items-center gap-1">
-            <h3 className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-600">
+            <h3 className="text-4xl font-black" style={{ color: 'var(--accent)' }}>
               <AnimatedCounter to={1} suffix="+" />
             </h3>
             <p className="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">Years Experience</p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="flex flex-col items-center gap-1">
-            <h3 className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500">
+            <h3 className="text-4xl font-black" style={{ color: 'var(--accent)' }}>
               <AnimatedCounter to={repoCount} suffix="+" />
             </h3>
             <p className="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">Public Repositories</p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="flex flex-col items-center gap-1">
-            <h3 className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-500">
+            <h3 className="text-4xl font-black" style={{ color: 'var(--accent)' }}>
               <AnimatedCounter to={3} suffix="+" />
             </h3>
             <p className="text-xs font-mono font-bold uppercase tracking-widest text-slate-500">Certifications</p>
@@ -105,7 +105,7 @@ const Home = () => {
       <section className="py-16 px-4 md:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto p-8 md:p-12 rounded-[2.5rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="flex flex-col gap-2 max-w-xl">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em] text-blue-500">
+            <span className="text-[11px] font-mono font-bold uppercase tracking-[0.3em]" style={{ color: 'var(--accent)' }}>
               TARGET ENGINEERING STANDARDS
             </span>
             <h3 className="text-xl md:text-2xl font-black text-slate-900 dark:text-slate-50 leading-snug">
@@ -134,7 +134,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <h2 className="text-3xl md:text-4xl font-black italic uppercase text-slate-900 dark:text-slate-50">
-                Primary <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Technologies</span>
+                Primary <span style={{ color: 'var(--accent)' }}>Technologies</span>
               </h2>
               <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">
                 Production-grade languages, backend frameworks, and relational/NoSQL databases.
@@ -143,7 +143,8 @@ const Home = () => {
 
             <Link 
               to="/skills" 
-              className="text-xs font-mono font-bold uppercase tracking-wider text-blue-500 hover:text-cyan-400 flex items-center gap-1.5 transition-colors shrink-0"
+              className="text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors shrink-0"
+              style={{ color: 'var(--accent)' }}
             >
               See All 20+ Skills <FaArrowRight size={10} />
             </Link>
@@ -154,7 +155,10 @@ const Home = () => {
             {primaryTechStack.map((tech) => (
               <span 
                 key={tech.name} 
-                className="flex items-center gap-2.5 px-5 py-3 rounded-2xl text-xs font-mono font-bold bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-md text-slate-800 dark:text-slate-200 hover:border-blue-500/40 transition-colors"
+                className="flex items-center gap-2.5 px-5 py-3 rounded-2xl text-xs font-mono font-bold border shadow-md transition-all"
+                style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--card-border)', color: 'var(--text-primary)' }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--accent-border)'}
+                onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--card-border)'}
               >
                 <span className="text-base">{tech.icon}</span>
                 <span>{tech.name}</span>
@@ -168,13 +172,13 @@ const Home = () => {
       {/* 5. ENGINEERING VALUE ADDED (3 Cards) */}
       <section className="py-16 px-4 md:px-8 lg:px-12 relative">
         {/* Spot Light Glow */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-blue-500/10 dark:bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: 'var(--accent)', opacity: 0.04 }} />
 
         <div className="max-w-7xl mx-auto flex flex-col gap-10 relative z-10">
           
           <div>
             <h2 className="text-3xl md:text-4xl font-black italic uppercase text-slate-900 dark:text-slate-50">
-              Engineering <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Value Added</span>
+              Engineering <span style={{ color: 'var(--accent)' }}>Value Added</span>
             </h2>
             <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">
               Combining robust backend fundamentals with product-oriented frontend delivery.
@@ -188,7 +192,7 @@ const Home = () => {
               viewport={{ once: true }}
               className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-5 gradient-card-hover hover:-translate-y-2 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center text-xl">
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl" style={{ backgroundColor: 'var(--accent-muted)', color: 'var(--accent)' }}>
                 <FaServer />
               </div>
               <h3 className="text-xl font-black italic uppercase text-slate-900 dark:text-slate-50">
@@ -206,7 +210,7 @@ const Home = () => {
               transition={{ delay: 0.1 }}
               className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-5 gradient-card-hover hover:-translate-y-2 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center text-xl">
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl" style={{ backgroundColor: 'var(--accent-muted)', color: 'var(--accent)' }}>
                 <FaCode />
               </div>
               <h3 className="text-xl font-black italic uppercase text-slate-900 dark:text-slate-50">
@@ -224,7 +228,7 @@ const Home = () => {
               transition={{ delay: 0.2 }}
               className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col gap-5 gradient-card-hover hover:-translate-y-2 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-xl">
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl" style={{ backgroundColor: 'var(--accent-muted)', color: 'var(--accent)' }}>
                 <FaDatabase />
               </div>
               <h3 className="text-xl font-black italic uppercase text-slate-900 dark:text-slate-50">
@@ -246,7 +250,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <h2 className="text-3xl md:text-4xl font-black italic uppercase text-slate-900 dark:text-slate-50">
-                Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Case Studies</span>
+                Featured <span style={{ color: 'var(--accent)' }}>Case Studies</span>
               </h2>
               <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">
                 Select technical implementations architected from ground up.
@@ -255,7 +259,8 @@ const Home = () => {
 
             <Link 
               to="/projects" 
-              className="text-xs font-mono font-bold uppercase tracking-wider text-blue-500 hover:text-cyan-400 flex items-center gap-1.5 transition-colors shrink-0"
+              className="text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors shrink-0"
+              style={{ color: 'var(--accent)' }}
             >
               All Repositories ({repoCount}+) <FaArrowRight size={10} />
             </Link>
@@ -279,7 +284,10 @@ const Home = () => {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-slate-400 hover:text-blue-500 transition-colors"
+                      className="transition-colors"
+                      style={{ color: 'var(--text-secondary)' }}
+                      onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+                      onMouseLeave={e => e.currentTarget.style.color = 'var(--text-secondary)'}
                       title="Open Live App"
                     >
                       <FaExternalLinkAlt size={14} />
@@ -305,7 +313,8 @@ const Home = () => {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 text-center py-2.5 rounded-xl font-bold uppercase tracking-wider text-[11px] bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-sm hover:scale-[1.02] transition-transform"
+                      className="flex-1 text-center py-2.5 rounded-xl font-bold uppercase tracking-wider text-[11px] hover:scale-[1.02] transition-all"
+                      style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-fg)' }}
                     >
                       Live Demo
                     </a>
@@ -313,7 +322,10 @@ const Home = () => {
                       href={project.repo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-xl bg-slate-100 dark:bg-[#1a1a1a] text-slate-900 dark:text-white border border-black/5 dark:border-white/10 hover:border-blue-500 hover:scale-105 transition-transform"
+                      className="p-2.5 rounded-xl border hover:scale-105 transition-all"
+                      style={{ backgroundColor: 'var(--card-bg)', color: 'var(--text-primary)', borderColor: 'var(--card-border)' }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--accent)'}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--card-border)'}
                       title="View GitHub Code"
                     >
                       <FaGithub size={14} />
@@ -335,7 +347,7 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <h2 className="text-3xl md:text-4xl font-black italic uppercase text-slate-900 dark:text-slate-50">
-                Background <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Highlights</span>
+                Background <span style={{ color: 'var(--accent)' }}>Highlights</span>
               </h2>
               <p className="text-xs md:text-sm text-slate-600 dark:text-slate-400 mt-1">
                 Academic grounding coupled with hands-on commercial web platform delivery.
@@ -344,7 +356,8 @@ const Home = () => {
 
             <Link 
               to="/about" 
-              className="text-xs font-mono font-bold uppercase tracking-wider text-blue-500 hover:text-cyan-400 flex items-center gap-1.5 transition-colors shrink-0"
+              className="text-xs font-mono font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors shrink-0"
+              style={{ color: 'var(--accent)' }}
             >
               See Full Timeline <FaArrowRight size={10} />
             </Link>
@@ -359,7 +372,7 @@ const Home = () => {
               className="p-8 rounded-[2rem] bg-white dark:bg-[#111111] border border-black/5 dark:border-white/10 shadow-xl flex flex-col justify-between gap-6"
             >
               <div className="flex flex-col gap-3">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-blue-500">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider" style={{ color: 'var(--accent)' }}>
                   EDUCATION • 2024 - PRESENT
                 </span>
                 <h3 className="text-2xl font-black text-slate-900 dark:text-slate-50">
@@ -403,7 +416,8 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="w-full rounded-[3rem] p-10 md:p-20 text-center flex flex-col items-center gap-8 border shadow-2xl relative overflow-hidden transition-all duration-500 bg-gradient-to-r from-blue-600 to-cyan-500 text-white"
+            className="w-full rounded-[3rem] p-10 md:p-20 text-center flex flex-col items-center gap-8 border shadow-2xl relative overflow-hidden transition-all duration-500"
+            style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-fg)' }}
           >
             {/* Background Glow Overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/20 via-transparent to-transparent pointer-events-none" />

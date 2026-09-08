@@ -20,9 +20,9 @@ const About = () => {
   }, []);
 
   const stats = [
-    { label: "Projects Built", value: 15, icon: <RiFireLine />, color: "text-blue-500", bg: "bg-blue-500/10" },
-    { label: "Years Exp.", value: 1, icon: <RiCupLine />, color: "text-cyan-500", bg: "bg-cyan-500/10" },
-    { label: "GitHub Repos", value: repoCount, icon: <RiGithubFill />, color: "text-indigo-500", bg: "bg-indigo-500/10" },
+    { label: "Projects Built", value: 15, icon: <RiFireLine />, color: "text-violet-500", bg: "bg-violet-500/10" },
+    { label: "Years Exp.", value: 1, icon: <RiCupLine />, color: "accent", bg: "bg-fuchsia-500/10" },
+    { label: "GitHub Repos", value: repoCount, icon: <RiGithubFill />, color: "text-pink-500", bg: "bg-pink-500/10" },
     { label: "Certifications", value: 3, icon: <RiTrophyLine />, color: "text-purple-500", bg: "bg-purple-500/10" },
   ];
 
@@ -43,8 +43,8 @@ const About = () => {
     <div className="min-h-screen pt-28 pb-20 px-4 md:px-8 lg:px-12 transition-colors duration-500 font-sans bg-transparent relative overflow-hidden">
       
       {/* Background Glows */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none -z-10" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-fuchsia-500/10 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto flex flex-col gap-16 md:gap-24">
         
@@ -56,7 +56,7 @@ const About = () => {
               className="text-5xl md:text-[clamp(3rem,6vw,5rem)] font-black leading-tight tracking-tighter text-slate-900 dark:text-slate-50 transition-colors duration-500"
             >
               Who is <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">Huzaif Sheikh?</span>
+              <span style={{ color: 'var(--accent)' }}>Huzaif Sheikh?</span>
             </motion.h2>
           </div>
           
@@ -64,7 +64,7 @@ const About = () => {
             initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
             href={Resume}
             download="Huzaif_Sheikh_Resume"
-            className="flex items-center gap-3 px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all hover:scale-105 bg-gradient-to-r from-blue-600 to-cyan-500 text-white shadow-xl hover:shadow-[0_10px_30px_rgba(6,182,212,0.4)]"
+            className="flex items-center gap-3 px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all hover:scale-105  hover:shadow-[0_10px_30px_rgba(168,85,247,0.4)]"
           >
             <RiDownloadLine className="text-xl" /> Download Resume
           </motion.a>
@@ -88,7 +88,7 @@ const About = () => {
               <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between text-white z-10">
                 <div>
                   <h4 className="font-black text-xl">Huzaif Sheikh</h4>
-                  <p className="text-xs text-cyan-300 font-medium">MERN Stack Developer</p>
+                  <p className="text-xs text-fuchsia-300 font-medium">MERN Stack Developer</p>
                 </div>
                 <span className="w-3 h-3 rounded-full bg-green-400 animate-pulse shadow-[0_0_12px_#22c55e]" title="Available for hire" />
               </div>
@@ -100,11 +100,11 @@ const About = () => {
             variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }}
             className="lg:col-span-8 p-8 md:p-12 rounded-[2.5rem] border shadow-2xl bg-white dark:bg-[#111111] border-black/5 dark:border-white/10 transition-colors duration-500 relative overflow-hidden group flex flex-col justify-between"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-fuchsia-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
             <div>
               <h3 className="text-3xl font-black mb-6 text-slate-900 dark:text-slate-50">
-                Transforming ideas into <span className="italic bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-400">digital reality.</span>
+                Transforming ideas into <span style={{ color: 'var(--accent)' }}>digital reality.</span>
               </h3>
               
               <div className="flex flex-col gap-5 text-base md:text-lg text-slate-600 dark:text-slate-400 leading-relaxed relative z-10 mb-8">

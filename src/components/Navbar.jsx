@@ -42,7 +42,7 @@ const Navbar = () => {
     textPrimary: 'var(--text-primary)',
     textSecondary: 'var(--text-secondary)',
     hoverBg: 'var(--nav-hover-bg)',
-    accent: '#6366f1', 
+    accent: 'var(--accent)',
     shadow: 'var(--nav-shadow)',
   };
 
@@ -85,14 +85,15 @@ const Navbar = () => {
           onClick={handleBrandClick}
           className="flex items-center gap-3 px-3 md:px-5 py-2 md:py-3 rounded-2xl border cursor-pointer transition-all duration-500 shadow-xl relative overflow-hidden group"
           style={{ backgroundColor: themeColors.dockBg, borderColor: themeColors.dockBorder, backdropFilter: 'blur(24px)' }}
-          whileHover={{ scale: 1.03, boxShadow: '0 15px 30px rgba(99,102,241,0.15)' }}
+          whileHover={{ scale: 1.03, boxShadow: '0 15px 30px var(--accent-muted)' }}
           whileTap={{ scale: 0.97 }}
         >
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-            style={{ background: `radial-gradient(ellipse at center, rgba(99,102,241,0.08), transparent)` }}
+            style={{ background: `radial-gradient(ellipse at center, var(--accent-muted), transparent)` }}
           />
           <motion.div
-            className="w-8 h-8 md:w-10 md:h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-black italic shadow-lg relative z-10"
+            className="w-8 h-8 md:w-10 md:h-10 rounded-lg flex items-center justify-center font-black italic shadow-lg relative z-10"
+            style={{ backgroundColor: 'var(--accent)', color: 'var(--accent-fg)' }}
             whileHover={{ rotate: [0, -10, 10, 0] }}
             transition={{ duration: 0.4 }}
           >
@@ -168,7 +169,7 @@ const Navbar = () => {
           {/* Theme Toggle */}
           <motion.button
             onClick={toggleTheme}
-            className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl border backdrop-blur-3xl transition-all hover:bg-indigo-500/10 relative overflow-hidden group shadow-lg"
+            className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-xl border backdrop-blur-3xl transition-all relative overflow-hidden group shadow-lg"
             style={{ color: themeColors.textSecondary, backgroundColor: themeColors.dockBg, borderColor: themeColors.dockBorder }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -216,7 +217,7 @@ const Navbar = () => {
               exit={{ x: '100%' }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               className="fixed top-0 right-0 h-full w-4/5 max-w-sm z-[102] flex flex-col p-6 shadow-2xl border-l"
-              style={{ backgroundColor: isDark ? '#0b0f19' : '#ffffff', borderColor: themeColors.dockBorder }}
+              style={{ backgroundColor: 'var(--card-bg)', borderColor: themeColors.dockBorder }}
             >
               <div className="flex justify-between items-center mb-10">
                 <div className="flex flex-col">
@@ -243,8 +244,8 @@ const Navbar = () => {
                       onClick={() => handleNavClick(link.path)}
                       className="flex items-center gap-4 p-4 rounded-2xl border text-left transition-all"
                       style={{ 
-                        backgroundColor: isActive ? 'rgba(99,102,241,0.1)' : 'transparent',
-                        borderColor: isActive ? 'rgba(99,102,241,0.3)' : themeColors.dockBorder,
+                        backgroundColor: isActive ? 'var(--accent-muted)' : 'transparent',
+                        borderColor: isActive ? 'var(--accent-border)' : themeColors.dockBorder,
                       }}
                       whileHover={{ x: 5 }}
                       whileTap={{ scale: 0.98 }}
