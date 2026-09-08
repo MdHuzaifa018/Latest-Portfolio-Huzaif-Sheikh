@@ -325,7 +325,7 @@ const Projects = () => {
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 no-invert">
                     {project.tags.map((tag) => (
                       <span key={tag} className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-slate-100 dark:bg-[#1a1a1a] text-slate-600 dark:text-slate-400">
                         #{tag}
@@ -346,7 +346,7 @@ const Projects = () => {
                       Live Demo <FaExternalLinkAlt size={12} />
                     </a>
                   ) : (
-                    <span className="flex-1 text-center text-xs font-mono text-slate-400 py-3 bg-slate-100 dark:bg-[#1a1a1a] rounded-xl">
+                    <span className="flex-1 text-center text-xs font-mono text-slate-400 py-3 bg-slate-100 dark:bg-[#1a1a1a] rounded-xl no-invert">
                       Live Preview N/A
                     </span>
                   )}
@@ -355,7 +355,7 @@ const Projects = () => {
                     href={project.repo || "https://github.com/MdHuzaifa018"}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold uppercase tracking-widest text-xs bg-slate-100 dark:bg-[#1a1a1a] text-slate-900 dark:text-white border border-black/5 dark:border-white/10 hover:border-[var(--accent)] hover:scale-[1.02] transition-transform"
+                    className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold uppercase tracking-widest text-xs bg-slate-100 dark:bg-[#1a1a1a] text-slate-900 dark:text-white border border-black/5 dark:border-white/10 hover:border-[var(--accent)] hover:scale-[1.02] transition-transform no-invert"
                   >
                     GitHub <FaGithub size={14} />
                   </a>

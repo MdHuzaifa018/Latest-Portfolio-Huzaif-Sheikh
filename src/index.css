@@ -432,7 +432,7 @@ html.lenis, html.lenis-smooth { height: auto; }
   background-color: var(--accent) !important;
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--accent-border), 0 10px 20px -10px var(--accent-muted) !important;
 }
-.gradient-card-hover:hover * {
+.gradient-card-hover:hover *:not(.no-invert):not(.no-invert *) {
   color: var(--accent-fg) !important;
   border-color: var(--accent-fg) !important;
 }
