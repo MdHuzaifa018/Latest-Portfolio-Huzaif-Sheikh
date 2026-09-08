@@ -111,6 +111,20 @@ const Hero = () => {
           className="absolute w-56 h-56 md:w-72 md:h-72 rounded-[3rem] z-0 opacity-40 blur-3xl"
           style={{ background: 'var(--accent)' }}
         />
+        {/* Dashed Orbit Ring */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+          className="absolute hidden md:block rounded-full border-[1.5px] border-dashed border-black/10 dark:border-white/10 pointer-events-none"
+          style={{
+            width: '370px',
+            height: '370px',
+            left: '50%',
+            top: '50%',
+            x: '-50%',
+            y: '-50%',
+          }}
+        />
 
         {/* Orbit icons */}
         {floatingIcons.map((item, i) => {
