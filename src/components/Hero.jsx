@@ -1,8 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import secondImage from '../assets/huzaif123.jpg';
 import profileImage from '../assets/huzaif_profile.png';
-import Shery from "sheryjs";
 import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import { HiOutlineMail } from 'react-icons/hi';
@@ -83,42 +82,20 @@ const Hero = () => {
   };
   const handleMouseLeave = () => { x.set(0); y.set(0); };
 
-  // ── Image Hover Reveal Mask Animation (Shery.js style)
-  const sheryInit = useRef(false);
+  // ── Image Hover Reveal Mask Animation (Framer Motion Water Blob)
+  const maskX = useSpring(0, { stiffness: 200, damping: 20 });
+  const maskY = useSpring(0, { stiffness: 200, damping: 20 });
+  const maskSize = useSpring(0, { stiffness: 200, damping: 20 });
   
-  useEffect(() => {
-    if (!sheryInit.current) {
-      Shery.imageEffect(".shery-image-container", {
-        style: 5,
-        gooey: true,
-        config: {
-          a: { value: 2, range: [0, 30] },
-          b: { value: 0.75, range: [-1, 1] },
-          zindex: { value: -9996999, range: [-9999999, 9999999] },
-          aspect: { value: 1 },
-          gooey: { value: true },
-          infiniteGooey: { value: true },
-          growSize: { value: 4, range: [1, 15] },
-          durationOut: { value: 1, range: [0.1, 5] },
-          durationIn: { value: 1.5, range: [0.1, 5] },
-          displaceAmount: { value: 0.5 },
-          masker: { value: true },
-          maskVal: { value: 1.2, range: [1, 5] },
-          scrollType: { value: 0 },
-          geoVertex: { range: [1, 64], value: 1 },
-          noEffectGooey: { value: true },
-          onMouse: { value: 1 },
-          noise_speed: { value: 0.2, range: [0, 10] },
-          metaball: { value: 0.2, range: [0, 2] },
-          discard_threshold: { value: 0.5, range: [0, 1] },
-          antialias_threshold: { value: 0.002, range: [0, 0.1] },
-          noise_height: { value: 0.5, range: [0, 2] },
-          noise_scale: { value: 10, range: [0, 100] }
-        }
-      });
-      sheryInit.current = true;
-    }
-  }, []);
+  const handleImageMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    maskX.set(e.clientX - rect.left);
+    maskY.set(e.clientY - rect.top);
+  };
+
+  const blobMaskUrl = "url(\"data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M42.7,-73.4C55.9,-65.4,67.6,-53.4,75.9,-39.3C84.1,-25.2,88.9,-9,88.3,7.2C87.6,23.4,81.4,39.6,71.2,52.4C60.9,65.2,46.6,74.5,30.8,80.1C15,85.6,-2.3,87.4,-19.1,83.8C-35.9,80.3,-52.2,71.3,-64.1,58.5C-76,45.8,-83.5,29.3,-86.3,12C-89.1,-5.3,-87.3,-23.4,-79.6,-38.4C-71.9,-53.4,-58.3,-65.3,-43.3,-72.6C-28.3,-79.9,-14.1,-82.6,0.9,-84C15.9,-85.4,31.8,-85.4,42.7,-73.4Z' transform='translate(100 100)' /%3E%3C/svg%3E\")";
+  const maskPositionTemplate = useMotionTemplate`calc(${maskX}px - ${maskSize}px / 2) calc(${maskY}px - ${maskSize}px / 2)`;
+  const maskSizeTemplate = useMotionTemplate`${maskSize}px ${maskSize}px`;
 
   return (
     <section
@@ -251,24 +228,39 @@ const Hero = () => {
               transform: 'translateZ(60px)',
               backgroundColor: 'var(--card-bg)',
             }}
-            className="shery-image-container relative w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-[2.2rem] sm:rounded-[3rem] overflow-hidden
+            className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-[2.2rem] sm:rounded-[3rem] overflow-hidden
                        shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-all duration-700
                        dark:shadow-[0_0_40px_rgba(200,255,0,0.25),_0_0_20px_rgba(255,255,255,0.15)]
                        group-hover:dark:shadow-[0_0_60px_rgba(200,255,0,0.4),_0_0_30px_rgba(255,255,255,0.25)]
                        group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-10"
+            onMouseMove={handleImageMouseMove}
+            onMouseEnter={() => maskSize.set(200)}
+            onMouseLeave={() => maskSize.set(0)}
           >
             {/* Base Image (Darker / Grayscale) */}
             <img
               src={profileImage}
               alt="Huzaif Sheikh"
-              className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0"
+              className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
+                         group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
             />
 
             {/* Revealed Second Image (Follows cursor on hover) */}
-            <img
-              src={secondImage}
-              alt="Huzaif Sheikh Reveal"
-              className="w-full h-full object-cover"
+            <motion.div
+              className="absolute inset-0 z-10 pointer-events-none transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+              style={{
+                backgroundImage: `url(${secondImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                WebkitMaskImage: blobMaskUrl,
+                maskImage: blobMaskUrl,
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskPosition: maskPositionTemplate,
+                maskPosition: maskPositionTemplate,
+                WebkitMaskSize: maskSizeTemplate,
+                maskSize: maskSizeTemplate,
+              }}
             />
 
             {/* Cinematic dark vignette */}
