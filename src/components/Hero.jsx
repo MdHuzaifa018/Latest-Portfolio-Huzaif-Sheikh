@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
+import { Link } from 'react-router-dom';
+import { TypeAnimation } from 'react-type-animation';
 import secondImage from '../assets/huzaif123.jpg';
 import profileImage from '../assets/huzaif_profile.png';
 import { HiOutlineMail } from 'react-icons/hi';
 import {
-  SiReact, SiFirebase, SiMongodb,
-  SiGooglecloud, SiVercel, SiTailwindcss
+  SiReact, SiFirebase, SiMongodb, SiGooglecloud, SiVercel, SiTailwindcss
 } from 'react-icons/si';
 import { FaJs, FaNodeJs } from 'react-icons/fa';
 
