@@ -48,15 +48,15 @@ const MagneticButton = ({ children, className, style, onClick, to }) => {
   );
 };
 
-// ── Floating tech icon definitions (react-icons, no emojis)
+// ── Floating tech icon definitions (react-icons, high-contrast palette)
 const floatingIcons = [
-  { icon: SiReact,       label: 'React',        angle: 0,   color: '#61dafb' },
-  { icon: FaNodeJs,      label: 'Node.js',      angle: 51,  color: '#68a063' },
-  { icon: SiFirebase,    label: 'Firebase',     angle: 102, color: '#ffca28' },
-  { icon: SiMongodb,     label: 'MongoDB',      angle: 154, color: '#47a248' },
-  { icon: SiGooglecloud, label: 'Google Cloud', angle: 205, color: '#4285f4' },
-  { icon: FaJs,          label: 'JavaScript',   angle: 257, color: '#f7df1e' },
-  { icon: SiVercel,      label: 'Vercel',       angle: 308, color: '#888888' },
+  { icon: SiReact,       label: 'React',        angle: 0,     color: '#0284c7' },
+  { icon: FaNodeJs,      label: 'Node.js',      angle: 51.4,  color: '#16a34a' },
+  { icon: SiFirebase,    label: 'Firebase',     angle: 102.8, color: '#f59e0b' },
+  { icon: SiMongodb,     label: 'MongoDB',      angle: 154.2, color: '#15803d' },
+  { icon: SiGooglecloud, label: 'Google Cloud', angle: 205.7, color: '#2563eb' },
+  { icon: FaJs,          label: 'JavaScript',   angle: 257.1, color: '#ca8a04' },
+  { icon: SiVercel,      label: 'Vercel',       angle: 308.5, color: '#09090b' },
 ];
 
 const Hero = () => {
@@ -102,62 +102,96 @@ const Hero = () => {
       />
 
       {/* ── 3D CARD + GEOMETRIC SVGS ── */}
-      <div className="relative z-10 mb-10 flex items-center justify-center">
+      {/* ── 3D CARD + ORBIT SYSTEM ── */}
+      <div className="relative z-10 mb-10 flex items-center justify-center [--orbit-diameter:310px] sm:[--orbit-diameter:410px] md:[--orbit-diameter:510px] lg:[--orbit-diameter:550px]">
         
         {/* Animated Background Shape */}
         <motion.div
           animate={{ rotate: 360, scale: [1, 1.05, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-          className="absolute w-56 h-56 md:w-72 md:h-72 rounded-[3rem] z-0 opacity-40 blur-3xl"
+          className="absolute w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-[3rem] z-0 opacity-40 blur-3xl pointer-events-none"
           style={{ background: 'var(--accent)' }}
         />
-        {/* Dashed Orbit Ring */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-          className="absolute hidden md:block rounded-full border-[1.5px] border-dashed border-black/10 dark:border-white/10 pointer-events-none"
+
+        {/* Dashed Orbit Ring - Dark & Sharp */}
+        <div
+          className="absolute rounded-full border-2 border-dashed border-neutral-600/70 dark:border-zinc-300/70 pointer-events-none transition-all duration-300"
           style={{
-            width: '370px',
-            height: '370px',
+            width: 'var(--orbit-diameter)',
+            height: 'var(--orbit-diameter)',
             left: '50%',
             top: '50%',
-            x: '-50%',
-            y: '-50%',
+            transform: 'translate(-50%, -50%)',
           }}
         />
 
-        {/* Orbit icons */}
-        {floatingIcons.map((item, i) => {
-          const radius = 185;
-          const rad = (item.angle * Math.PI) / 180;
-          const IconComp = item.icon;
-          return (
-            <motion.div
-              key={i}
-              className="absolute hidden md:flex items-center justify-center"
-              style={{
-                left: `calc(50% + ${Math.cos(rad) * radius}px)`,
-                top:  `calc(50% + ${Math.sin(rad) * radius}px)`,
-                translateX: '-50%', translateY: '-50%',
-              }}
-              animate={{ y: [0, -10, 0], rotate: [0, 6, -6, 0] }}
-              transition={{
-                duration: 3 + i * 0.5, repeat: Infinity,
-                ease: 'easeInOut', delay: i * 0.35,
-              }}
-            >
-              <div
-                className="w-11 h-11 rounded-full flex items-center justify-center
-                           backdrop-blur-xl shadow-lg border border-white/10
-                           transition-all duration-300 hover:scale-125"
-                style={{ backgroundColor: 'var(--card-bg)' }}
-                title={item.label}
-              >
-                <IconComp size={20} style={{ color: item.color }} />
-              </div>
-            </motion.div>
-          );
-        })}
+        {/* Outer Subtle Concentric Guide Ring for radar depth */}
+        <div
+          className="absolute rounded-full border border-neutral-400/25 dark:border-white/10 pointer-events-none"
+          style={{
+            width: 'calc(var(--orbit-diameter) + 24px)',
+            height: 'calc(var(--orbit-diameter) + 24px)',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+
+        {/* Revolving Orbiting Icons (Works on all screen sizes including mobile) */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-20"
+          style={{
+            width: 'var(--orbit-diameter)',
+            height: 'var(--orbit-diameter)',
+          }}
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
+            className="relative w-full h-full"
+            style={{ transformOrigin: 'center center' }}
+          >
+            {floatingIcons.map((item, i) => {
+              const IconComp = item.icon;
+              const isDarkVercel = item.label === 'Vercel';
+              return (
+                <div
+                  key={i}
+                  className="absolute top-1/2 left-1/2 w-0 h-0 flex items-center justify-center pointer-events-none"
+                  style={{
+                    transform: `rotate(${item.angle}deg) translateX(calc(var(--orbit-diameter) / 2))`,
+                  }}
+                >
+                  {/* Counter-rotation keeps each icon perfectly upright while orbiting */}
+                  <motion.div
+                    animate={{ rotate: [-item.angle, -item.angle - 360] }}
+                    transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
+                    className="pointer-events-auto"
+                  >
+                    <div
+                      className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center
+                                 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl
+                                 shadow-[0_4px_16px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.7)]
+                                 border border-neutral-300/90 dark:border-neutral-700/90
+                                 transition-all duration-300 hover:scale-130 hover:border-[var(--accent)] hover:shadow-xl cursor-pointer"
+                      title={item.label}
+                    >
+                      <IconComp
+                        className={`text-[17px] sm:text-[19px] md:text-[22px] transition-transform duration-300 ${
+                          isDarkVercel ? 'text-zinc-900 dark:text-white' : ''
+                        }`}
+                        style={{
+                          color: isDarkVercel ? undefined : item.color,
+                          filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.25))',
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+                </div>
+              );
+            })}
+          </motion.div>
+        </div>
 
         {/* Premium 3D tilt card */}
         <motion.div
@@ -166,7 +200,7 @@ const Hero = () => {
         >
           {/* Card Border Glow */}
           <div
-            className="absolute -inset-[1px] rounded-[3.2rem] pointer-events-none opacity-50"
+            className="absolute -inset-[1px] rounded-[2.5rem] sm:rounded-[3.2rem] pointer-events-none opacity-50"
             style={{ backgroundColor: 'var(--card-border)' }}
           />
 
@@ -176,7 +210,7 @@ const Hero = () => {
               transform: 'translateZ(60px)',
               backgroundColor: 'var(--card-bg)',
             }}
-            className="relative w-56 h-56 md:w-72 md:h-72 rounded-[3rem] overflow-hidden
+            className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-[2.2rem] sm:rounded-[3rem] overflow-hidden
                        shadow-[0_0_30px_rgba(0,0,0,0.1)] transition-all duration-700
                        dark:shadow-[0_0_40px_rgba(200,255,0,0.25),_0_0_20px_rgba(255,255,255,0.15)]
                        group-hover:dark:shadow-[0_0_60px_rgba(200,255,0,0.4),_0_0_30px_rgba(255,255,255,0.25)]
