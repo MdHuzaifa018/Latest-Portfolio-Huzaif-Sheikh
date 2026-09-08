@@ -213,7 +213,8 @@ const Skills = () => {
                         whileInView={{ width: `${skill.percentage}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.2, delay: 0.2 + (skillIdx * 0.1), ease: "easeOut" }}
-                        className="h-full rounded-full bg-gradient-to-r "
+                        className="h-full rounded-full"
+                        style={{ backgroundColor: 'var(--accent)' }}
                       />
                     </div>
                   </div>

@@ -41,27 +41,27 @@ const projectData = [
   },
   {
     id: 4,
-    title: "Atmospheric Intelligence",
+    title: "Adnan Affiliate Web",
     category: "Frontend",
     image: "https://iili.io/BQ901pa.md.png",
     url: "https://adnan-affiliate-web.vercel.app/",
     repo: "https://github.com/MdHuzaifa018/Affiliate-Marketing-web.git",
     featured: false,
     tags: ["React.js", "YouTube API","React-icons","Email JS","Framer Motion","Swiper", "Tailwind CSS", "Glassmorphism"],
-    description: "Real-time meteorological monitoring app. Combines asynchronous OpenWeather API fetching with an elegant glassmorphism UI for global weather tracking.",
-    metrics: "Live Weather API"
+    description: "A modern affiliate marketing platform with dynamic routing, email integration, and an elegant glassmorphism UI built with React and Tailwind CSS.",
+    metrics: "Dynamic Affiliate UI"
   },
   {
     id: 5,
-    title: "Interactive Portfolio v4",
+    title: "FlyBit Agency",
     category: "Frontend",
     image: "https://iili.io/n3Jp7Gs.md.png",
     url: "https://flybitagencyf.vercel.app/",
     repo: "https://github.com/MdHuzaifa018/Latest-Portfolio-Huzaif-Sheikh",
     featured: false,
     tags: ["React.js", "Tailwind CSS", "Framer Motion", ],
-    description: "Modern developer portfolio featuring 3D tilt cards, kinetic letter-by-letter reveal animations, and sticky WhatsApp chat.",
-    metrics: "modern UI Architecture"
+    description: "A sleek, high-performance agency website built for a digital service provider, featuring interactive animations, responsive design, and modern UI architecture.",
+    metrics: "Modern UI Architecture"
   },
   {
     id: 6,

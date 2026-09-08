@@ -37,7 +37,7 @@
    Accent: Deep Violet #7C3AED — readable on white
 -------------------------------------------------- */
 :root {
-  --background: #ffffff;
+  --background: #fafafa;
   --foreground: #09090b;
 
   --surface: #f8fafc;
@@ -375,8 +375,8 @@ html.lenis, html.lenis-smooth { height: auto; }
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
 }
 .dark .bg-grid-pattern {
   background-image:
@@ -413,10 +413,10 @@ html.lenis, html.lenis-smooth { height: auto; }
 }
 
 .bg-overlay-grad {
-  background: radial-gradient(ellipse at top center, rgba(245,243,255,0.6) 0%, var(--background) 80%);
+  background: radial-gradient(ellipse at top center, rgba(124,58,237,0.05) 0%, var(--background) 80%);
 }
 .dark .bg-overlay-grad {
-  background: radial-gradient(ellipse at top center, rgba(200,255,0,0.025) 0%, var(--background) 80%);
+  background: radial-gradient(ellipse at top center, rgba(200,255,0,0.03) 0%, var(--background) 80%);
 }
 
 /* =========================
@@ -427,6 +427,10 @@ html.lenis, html.lenis-smooth { height: auto; }
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 .gradient-card-hover:hover {
+  transform: translateY(-5px) scale(1.01) !important;
   border-color: var(--accent-border) !important;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--accent-border) !important;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--accent-border), 0 10px 20px -10px var(--accent-muted) !important;
+}
+.dark .gradient-card-hover:hover {
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border), 0 10px 20px -10px var(--accent-muted) !important;
 }
