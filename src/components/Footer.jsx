@@ -59,7 +59,7 @@ const Footer = () => {
 
       {/* Large Background Watermark */}
       <div className="absolute bottom-[-2vw] left-1/2 -translate-x-1/2 pointer-events-none select-none w-full text-center">
-        <h1 className="text-[22vw] font-[1000] leading-none italic uppercase tracking-tighter" style={{ color: "var(--muted)", opacity: 0.4 }}>HUZAIF</h1>
+        <h1 className="text-[22vw] font-[1000] leading-none italic uppercase tracking-tighter" style={{ WebkitTextStroke: "2px var(--card-border)", color: "transparent", opacity: 0.5 }}>HUZAIF</h1>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -69,15 +69,15 @@ const Footer = () => {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="lg:col-span-2">
             <div className="flex items-center gap-4 mb-8">
               <motion.div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-black italic shadow-2xl"
-                style={{ background: "linear-gradient(135deg, #8b5cf6, #d946ef)" }}
-                animate={{ boxShadow: ["0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(139,92,246,0.35)", "0 20px 40px rgba(0,0,0,0.4), 0 0 35px rgba(217,70,239,0.5)", "0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(139,92,246,0.35)"] }}
+                className="w-12 h-12 rounded-xl flex items-center justify-center font-black italic shadow-2xl"
+                style={{ backgroundColor: "var(--accent)", color: "var(--accent-fg)" }}
+                animate={{ boxShadow: ["0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-muted)", "0 20px 40px rgba(0,0,0,0.4), 0 0 35px var(--accent-border)", "0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-muted)"] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 whileHover={{ scale: 1.1, rotate: 10 }}
               >
                 H
               </motion.div>
-              <h2 className="text-4xl font-[1000] italic uppercase tracking-tighter">Sheikh<span style={{ color: "#8b5cf6" }}>.</span></h2>
+              <h2 className="text-4xl font-[1000] italic uppercase tracking-tighter">Sheikh<span className="accent">.</span></h2>
             </div>
             <p className="text-sm max-w-sm leading-relaxed font-mono uppercase tracking-[0.1em] font-bold" style={{ color: "var(--text-secondary)" }}>
               Engineering high-performance digital architectures. Bihar_IN // Global_Ops.
@@ -86,12 +86,12 @@ const Footer = () => {
 
           {/* Column 2: Navigation Map */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.1 }}>
-            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8" style={{ color: "#8b5cf6" }}>/ Navigation</h4>
+            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8 accent">/ Navigation</h4>
             <ul className="space-y-4 font-mono text-[11px] uppercase tracking-widest">
               {navItems.map((item) => (
                 <li key={item.id}>
-                  <motion.button onClick={() => scrollToSection(item.id)} className="flex items-center gap-2 group font-bold" style={{ color: "var(--text-secondary)" }} whileHover={{ x: 8, color: "#8b5cf6" }} transition={{ type: "spring", stiffness: 400 }}>
-                    <motion.span className="h-[2px]" style={{ backgroundColor: "#8b5cf6" }} initial={{ width: 0 }} whileHover={{ width: 16 }} transition={{ duration: 0.2 }} />
+                  <motion.button onClick={() => scrollToSection(item.id)} className="flex items-center gap-2 group font-bold" style={{ color: "var(--text-secondary)" }} whileHover={{ x: 8, color: "var(--accent)" }} transition={{ type: "spring", stiffness: 400 }}>
+                    <motion.span className="h-[2px]" style={{ backgroundColor: "var(--accent)" }} initial={{ width: 0 }} whileHover={{ width: 16 }} transition={{ duration: 0.2 }} />
                     {item.label}
                   </motion.button>
                 </li>
@@ -101,7 +101,7 @@ const Footer = () => {
 
           {/* Column 3: Social Bridge */}
           <motion.div initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, delay: 0.2 }}>
-            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8" style={{ color: "#8b5cf6" }}>/ Social_Bridge</h4>
+            <h4 className="text-[11px] font-black font-mono uppercase tracking-[0.5em] mb-8 accent">/ Social_Bridge</h4>
             <div className="grid grid-cols-4 gap-y-6 gap-x-2">
               {socialLinks.map((social, i) => (
                 <motion.a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="text-2xl relative group" style={{ color: "var(--text-secondary)" }} whileHover={{ y: -6, scale: 1.25, color: social.color, filter: `drop-shadow(0 0 8px ${social.color}60)` }} whileTap={{ scale: 0.9 }} aria-label={social.label} title={social.label}>
@@ -121,7 +121,7 @@ const Footer = () => {
           </div>
 
           {/* Status Well */}
-          <motion.div className="px-6 py-3 rounded-full border backdrop-blur-xl flex items-center gap-3" style={{ backgroundColor: "var(--muted)", borderColor: "var(--card-border)" }} whileHover={{ borderColor: 'rgba(139,92,246,0.4)', boxShadow: '0 0 20px rgba(139,92,246,0.15)' }}>
+          <motion.div className="px-6 py-3 rounded-full border backdrop-blur-xl flex items-center gap-3" style={{ backgroundColor: "var(--muted)", borderColor: "var(--card-border)" }} whileHover={{ borderColor: 'var(--accent-border)', boxShadow: '0 0 20px var(--accent-muted)' }}>
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]" />
             <span className="text-[10px] font-bold font-mono uppercase tracking-[0.2em]" style={{ color: "var(--text-secondary)" }}>
               Live_Node: {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })} IST

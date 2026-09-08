@@ -72,17 +72,17 @@
    Maximum contrast on dark. Zero AI-template feel.
 -------------------------------------------------- */
 .dark {
-  --background: #0A0A0A;
+  --background: #050505;
   --foreground: #F8FAFB;
 
-  --surface: #0f0f0f;
-  --muted: #141414;
+  --surface: #0a0a0a;
+  --muted: #111111;
 
-  --card-bg: #111111;
-  --card-border: rgba(255, 255, 255, 0.07);
+  --card-bg: #0c0c0c;
+  --card-border: rgba(255, 255, 255, 0.1);
 
   --text-primary: #F8FAFB;
-  --text-secondary: #888888;
+  --text-secondary: #999999;
 
   /* Single accent — Electric Lime for dark mode */
   --accent: #C8FF00;
@@ -380,8 +380,8 @@ html.lenis, html.lenis-smooth { height: auto; }
 }
 .dark .bg-grid-pattern {
   background-image:
-    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
 }
 
 /* Spotlight — uses accent color, single radial */
@@ -424,13 +424,33 @@ html.lenis, html.lenis-smooth { height: auto; }
 ========================= */
 .gradient-card-hover {
   position: relative;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 .gradient-card-hover:hover {
   transform: translateY(-5px) scale(1.01) !important;
   border-color: var(--accent-border) !important;
+  background-color: var(--accent) !important;
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), 0 0 0 1px var(--accent-border), 0 10px 20px -10px var(--accent-muted) !important;
 }
+.gradient-card-hover:hover * {
+  color: var(--accent-fg) !important;
+  border-color: var(--accent-fg) !important;
+}
 .dark .gradient-card-hover:hover {
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--accent-border), 0 10px 20px -10px var(--accent-muted) !important;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--accent-border), 0 10px 20px -10px var(--accent-muted) !important;
+}
+
+/* =========================
+   NOISE FILTER
+========================= */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+.dark .noise-overlay {
+  opacity: 0.06;
 }
