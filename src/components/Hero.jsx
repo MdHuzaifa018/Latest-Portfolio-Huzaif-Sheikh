@@ -1,13 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
-import secondImage from '../assets/huzaif1234.png';
-import profileImage from '../assets/huzaif_profile.png';
 import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
+import secondImage from '../assets/huzaif1234.jpg';
+import profileImage from '../assets/huzaif_profile.png';
 import { HiOutlineMail } from 'react-icons/hi';
 import {
-  SiReact, SiFirebase, SiMongodb,
-  SiGooglecloud, SiVercel, SiTailwindcss
+  SiReact, SiFirebase, SiMongodb, SiGooglecloud, SiVercel, SiTailwindcss
 } from 'react-icons/si';
 import { FaJs, FaNodeJs } from 'react-icons/fa';
 
@@ -242,7 +241,7 @@ const Hero = () => {
               src={profileImage}
               alt="Huzaif Sheikh"
               className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
-                         group-hover:scale-110  group-hover:grayscale-0"
+                         group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
             />
 
             {/* Revealed Second Image (Follows cursor on hover) */}
