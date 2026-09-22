@@ -107,7 +107,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation pill */}
         <div 
-          className="hidden md:flex backdrop-blur-[20px] text-[12px] px-1.5 py-1.5 rounded-[2rem] items-center gap-1 border transition-all duration-500 relative overflow-hidden mx-4"
+          className="hidden md:flex backdrop-blur-[40px] text-[12px] px-1.5 py-1.5 rounded-[2rem] items-center gap-1 border transition-all duration-500 relative overflow-hidden mx-4"
           style={{ backgroundColor: themeColors.dockBg, borderColor: themeColors.dockBorder, boxShadow: themeColors.shadow }}
         >
           {navLinks.map((link, i) => {

@@ -59,9 +59,9 @@
   --blog-hero-opacity: 0.15;
 
   /* Navbar Variables */
-  --dock-bg: rgba(255, 255, 255, 0.35);
+  --dock-bg: rgba(255, 255, 255, 0.45);
   --nav-hover-bg: rgba(124, 58, 237, 0.06);
-  --nav-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  --nav-shadow: 0 10px 30px rgba(0,0,0,0.04), inset 0 1px 1px rgba(255,255,255,0.8);
   --navbar-blur-border: rgba(0, 0, 0, 0.04);
   --navbar-blur-bg: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.6));
 }
@@ -94,9 +94,9 @@
   --blog-hero-opacity: 0.3;
 
   /* Navbar Variables */
-  --dock-bg: rgba(255, 255, 255, 0.03);
+  --dock-bg: rgba(255, 255, 255, 0.06);
   --nav-hover-bg: rgba(200, 255, 0, 0.06);
-  --nav-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  --nav-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.15);
   --navbar-blur-border: rgba(255, 255, 255, 0.05);
   --navbar-blur-bg: linear-gradient(to bottom, rgba(10,10,10,0.9), rgba(10,10,10,0.7));
 }
