@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
-import secondImage from '../assets/huzaif1234.jpg';
+import secondImage from '../assets/huzaif1234.png';
 import profileImage from '../assets/huzaif_profile.png';
 import { HiOutlineMail } from 'react-icons/hi';
 import {
