@@ -120,7 +120,7 @@ const Hero = () => {
 
       {/* ── 3D CARD + GEOMETRIC SVGS ── */}
       {/* ── 3D CARD + ORBIT SYSTEM ── */}
-      <div className="relative z-10 mb-10 flex items-center justify-center [--orbit-diameter:310px] sm:[--orbit-diameter:410px] md:[--orbit-diameter:510px] lg:[--orbit-diameter:550px]">
+      <div className="relative z-10 mb-10 flex items-center justify-center [--orbit-diameter:310px] sm:[--orbit-diameter:410px] md:[--orbit-diameter:470px] lg:[--orbit-diameter:510px]">
         
         {/* Animated Background Shape */}
         <motion.div

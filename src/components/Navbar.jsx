@@ -107,7 +107,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation pill */}
         <div 
-          className="hidden md:flex backdrop-blur-3xl text-[12px] px-2 py-2 rounded-[2rem] items-center gap-1 border transition-all duration-500 relative overflow-hidden mx-4"
+          className="hidden md:flex backdrop-blur-[20px] text-[12px] px-1.5 py-1.5 rounded-[2rem] items-center gap-1 border transition-all duration-500 relative overflow-hidden mx-4"
           style={{ backgroundColor: themeColors.dockBg, borderColor: themeColors.dockBorder, boxShadow: themeColors.shadow }}
         >
           {navLinks.map((link, i) => {
@@ -118,7 +118,7 @@ const Navbar = () => {
                 onClick={() => handleNavClick(link.path)}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className="relative px-3 py-3 lg:px-6 rounded-2xl flex items-center gap-3 transition-all group overflow-hidden"
+                className="relative px-3 py-2 lg:px-5 lg:py-2.5 rounded-2xl flex items-center gap-2.5 transition-all group overflow-hidden"
                 whileTap={{ scale: 0.95 }}
               >
                 <AnimatePresence>
@@ -146,7 +146,7 @@ const Navbar = () => {
                 )}
 
                 <motion.span
-                  className="relative z-10 text-[18px] lg:text-[20px] transition-transform duration-300"
+                  className="relative z-10 text-[17px] lg:text-[19px] transition-transform duration-300"
                   style={{ color: isActive ? themeColors.accent : themeColors.textSecondary }}
                   animate={hoveredIndex === i ? { scale: 1.2, y: -2 } : { scale: 1, y: 0 }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -154,7 +154,7 @@ const Navbar = () => {
                   {link.icon}
                 </motion.span>
                 <span
-                  className="relative z-10 hidden xl:block font-mono text-[13px] uppercase tracking-[0.2em] font-black"
+                  className="relative z-10 hidden xl:block font-mono text-[12px] uppercase tracking-[0.2em] font-black"
                   style={{ color: isActive ? themeColors.textPrimary : themeColors.textSecondary }}
                 >
                   {link.name}
