@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate, AnimatePresence } from "framer-motion";
+import React, { useRef, useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 import { Link } from 'react-router-dom';
 import { TypeAnimation } from 'react-type-animation';
 import secondImage from '../assets/huzaif1234.png';
@@ -81,21 +81,20 @@ const Hero = () => {
   };
   const handleMouseLeave = () => { x.set(0); y.set(0); };
 
-  // ── Image Slider Setup
-  const [sliderIndex, setSliderIndex] = useState(0);
-  const sliderImages = [
-    profileImage,
-    "https://images.unsplash.com/photo-1618641986557-1ecd230959aa?q=80&w=1974&auto=format&fit=crop", // Premium Indian Man Portrait
-    "https://images.unsplash.com/photo-1595064619472-fc71a4f028fa?q=80&w=1974&auto=format&fit=crop", // Elegant Indian Woman
-    "https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?q=80&w=1930&auto=format&fit=crop", // Professional Indian Portrait
-  ];
+  // ── Image Hover Reveal Mask Animation (Framer Motion Water Blob)
+  const maskX = useSpring(0, { stiffness: 200, damping: 20 });
+  const maskY = useSpring(0, { stiffness: 200, damping: 20 });
+  const maskSize = useSpring(0, { stiffness: 200, damping: 20 });
+  
+  const handleImageMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    maskX.set(e.clientX - rect.left);
+    maskY.set(e.clientY - rect.top);
+  };
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setSliderIndex((prev) => (prev + 1) % sliderImages.length);
-    }, 3500);
-    return () => clearInterval(timer);
-  }, []);
+  const blobMaskUrl = "url(\"data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M42.7,-73.4C55.9,-65.4,67.6,-53.4,75.9,-39.3C84.1,-25.2,88.9,-9,88.3,7.2C87.6,23.4,81.4,39.6,71.2,52.4C60.9,65.2,46.6,74.5,30.8,80.1C15,85.6,-2.3,87.4,-19.1,83.8C-35.9,80.3,-52.2,71.3,-64.1,58.5C-76,45.8,-83.5,29.3,-86.3,12C-89.1,-5.3,-87.3,-23.4,-79.6,-38.4C-71.9,-53.4,-58.3,-65.3,-43.3,-72.6C-28.3,-79.9,-14.1,-82.6,0.9,-84C15.9,-85.4,31.8,-85.4,42.7,-73.4Z' transform='translate(100 100)' /%3E%3C/svg%3E\")";
+  const maskPositionTemplate = useMotionTemplate`calc(${maskX}px - ${maskSize}px / 2) calc(${maskY}px - ${maskSize}px / 2)`;
+  const maskSizeTemplate = useMotionTemplate`${maskSize}px ${maskSize}px`;
 
   return (
     <section
@@ -233,22 +232,35 @@ const Hero = () => {
                        dark:shadow-[0_0_40px_rgba(200,255,0,0.25),_0_0_20px_rgba(255,255,255,0.15)]
                        group-hover:dark:shadow-[0_0_60px_rgba(200,255,0,0.4),_0_0_30px_rgba(255,255,255,0.25)]
                        group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] z-10"
-            onMouseEnter={() => {}}
-            onMouseLeave={() => {}}
+            onMouseMove={handleImageMouseMove}
+            onMouseEnter={() => maskSize.set(200)}
+            onMouseLeave={() => maskSize.set(0)}
           >
-            {/* Slider Images */}
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={sliderIndex}
-                src={sliderImages[sliderIndex]}
-                alt={`Premium Indian Model ${sliderIndex}`}
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full h-full object-cover absolute inset-0 grayscale-[0.1] group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]"
-              />
-            </AnimatePresence>
+            {/* Base Image (Darker / Grayscale) */}
+            <img
+              src={profileImage}
+              alt="Huzaif Sheikh"
+              className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
+                         group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
+            />
+
+            {/* Revealed Second Image (Follows cursor on hover) */}
+            <motion.div
+              className="absolute inset-0 z-10 pointer-events-none transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+              style={{
+                backgroundImage: `url(${secondImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                WebkitMaskImage: blobMaskUrl,
+                maskImage: blobMaskUrl,
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskPosition: maskPositionTemplate,
+                maskPosition: maskPositionTemplate,
+                WebkitMaskSize: maskSizeTemplate,
+                maskSize: maskSizeTemplate,
+              }}
+            />
 
             {/* Cinematic dark vignette */}
             <div
