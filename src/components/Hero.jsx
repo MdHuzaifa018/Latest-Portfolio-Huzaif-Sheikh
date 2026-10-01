@@ -238,7 +238,7 @@ const Hero = () => {
           >
             {/* Base Image (Darker / Grayscale) */}
             <img
-              src={profileImage}
+              src="https://res.cloudinary.com/qpxxnswd/image/upload/v1790863051/file_00000000a8bc820991b22d10e86ab3da_Picsart_AiImageEnhancer_jw92r4.png"
               alt="Huzaif Sheikh"
               className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
                          group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
@@ -248,7 +248,7 @@ const Hero = () => {
             <motion.div
               className="absolute inset-0 z-10 pointer-events-none transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
               style={{
-                backgroundImage: `url(${secondImage})`,
+                backgroundImage: `url(https://res.cloudinary.com/qpxxnswd/image/upload/v1786433302/techugrow/nyhu86z23ho6skxvz1rd.jpg )`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 WebkitMaskImage: blobMaskUrl,
